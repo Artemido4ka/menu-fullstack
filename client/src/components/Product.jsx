@@ -15,7 +15,7 @@ const Info = styled.div`
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
-  cursor: pointer;
+  // cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -60,7 +60,8 @@ const Circle = styled.div`
 `;
 
 const Image = styled.img`
-  height: 75%;
+  max-width: 200px;
+  height: auto;
   z-index: 2;
 `;
 
@@ -84,7 +85,7 @@ const Product = ({ item }) => {
   return (
     <Container>
       <Circle />
-      <Image src={item.img} />
+      <Image src={`http://localhost:5000/${item.image}`} />
       <Info>
         <Icon>
           <ShoppingCartOutlined />
