@@ -1,10 +1,12 @@
 import { Add, Remove } from "@material-ui/icons";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { publicRequest } from "../api";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { addProduct } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -80,6 +82,8 @@ const Product = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -91,6 +95,18 @@ const Product = () => {
     };
     getProduct();
   }, [id]);
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleAddToCartClick = () => {
+    dispatch(addProduct({ ...product, quantity }));
+  };
 
   return (
     <Container>
@@ -106,11 +122,11 @@ const Product = () => {
 
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => handleQuantity("dec")} />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={handleAddToCartClick}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
