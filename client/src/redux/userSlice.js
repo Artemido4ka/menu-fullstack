@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    currentUser: null,
+    currentUserToken: null,
+    user: null,
     isFetching: false,
     error: false,
   },
@@ -14,8 +15,9 @@ const userSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isFetching = false;
       state.error = false;
-      state.currentUser = action.payload;
-      console.log(state, "STATE")
+      state.user = action.payload.user;
+      state.currentUserToken = action.payload.token.token;
+      localStorage.setItem("currentUserToken", action.payload.token.token);
     },
     loginError: (state) => {
       state.isFetching = false;
