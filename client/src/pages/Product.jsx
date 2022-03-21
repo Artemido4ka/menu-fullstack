@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { publicRequest } from "../api";
+import { publicRequest } from "../requestMethods";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { addProduct } from "../redux/cartRedux";
