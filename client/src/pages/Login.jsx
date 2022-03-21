@@ -81,11 +81,9 @@ const Login = () => {
     }
   }, [navigate, user]);
 
-
   const handleLoginClick = (e) => {
     e.preventDefault();
     login(dispatch, { email, password });
-    console.log("SOMETHING");
   };
   return (
     <Container>

@@ -13,7 +13,7 @@ export const login = async (dispatch, user) => {
   try {
     const res = await publicRequest.post("auth/login", user);
     dispatch(loginSuccess(res.data));
-    console.log(res);
+    localStorage.setItem("currentUser", JSON.stringify(res.data.user));
   } catch (err) {
     dispatch(loginError());
   }
@@ -23,8 +23,8 @@ export const registrate = async (dispatch, user) => {
   dispatch(registrateStart());
   try {
     const res = await publicRequest.post("auth/registration", user);
-    // dispatch(registrateSuccess(res.data));
-    console.log(res);
+    dispatch(registrateSuccess(res.data));
+    localStorage.setItem("currentUser", JSON.stringify(res.data.user));
   } catch (err) {
     dispatch(registrateError());
   }

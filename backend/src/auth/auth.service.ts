@@ -39,7 +39,8 @@ export class AuthService {
       password: hashPassword,
     });
     this.emailService.sendEmail(userDto.email);
-    return this.generateToken(user);
+    const token = this.generateToken(user);
+    return { user, token };
   }
 
   async generateToken(user) {

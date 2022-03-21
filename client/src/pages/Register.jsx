@@ -68,17 +68,18 @@ const Register = () => {
   const [firstName, setName] = useState("");
 
   const dispatch = useDispatch();
-  const { isFetching, error } = useSelector((state) => state.user);
+  const { isFetching, error, user } = useSelector((state) => state.user);
   let navigate = useNavigate();
 
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   const handleRegistrationClick = (e) => {
     e.preventDefault();
     registrate(dispatch, { firstName, lastName, password, email });
-    if (!error) {
-      navigate("/login");
-    }
-    console.log("SOMETHING");
   };
   return (
     <Container>
