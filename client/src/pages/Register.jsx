@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { registrate } from "../redux/apiCalls";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 // import { mobile } from "../responsive";
 
@@ -53,22 +57,56 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Error = styled.span`
+  color: red;
+`;
+
 const Register = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setName] = useState("");
+
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+  let navigate = useNavigate();
+
+
+  const handleRegistrationClick = (e) => {
+    e.preventDefault();
+    registrate(dispatch, { firstName, lastName, password, email });
+    if (!error) {
+      navigate("/login");
+    }
+    console.log("SOMETHING");
+  };
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="password" />
+          <Input placeholder="name" onChange={(e) => setName(e.target.value)} />
+          <Input
+            placeholder="last name"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <Input
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <Input placeholder="confirm password" />
-          <Input placeholder="email" />
+          <Input
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleRegistrationClick} disabled={isFetching}>
+            CREATE
+          </Button>
+          {error && <Error>Something is wrong...</Error>}
         </Form>
       </Wrapper>
     </Container>
