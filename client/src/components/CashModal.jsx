@@ -57,13 +57,13 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const CashModal = ({ total, createOrder }) => {
+const CashModal = ({ total, products, createOrder }) => {
   const [customer, setCustomer] = useState("");
   const [comment, setComment] = useState("");
   const [phone, setPhone] = useState("");
 
   const handleClick = () => {
-    createOrder({ total, customer, phone, comment });
+    createOrder({ total, products, customer, phone, comment });
   };
 
   return (

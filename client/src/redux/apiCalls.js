@@ -24,7 +24,7 @@ export const login = async (dispatch, user) => {
     localStorage.setItem("currentUser", JSON.stringify(res.data.user));
     localStorage.setItem(
       "currentUserToken",
-      JSON.stringify(res.data.token.token)
+      JSON.stringify(res.data.token)
     );
   } catch (err) {
     dispatch(loginError());
@@ -39,7 +39,7 @@ export const registrate = async (dispatch, user) => {
     localStorage.setItem("currentUser", JSON.stringify(res.data.user));
     localStorage.setItem(
       "currentUserToken",
-      JSON.stringify(res.data.token.token)
+      JSON.stringify(res.data.token)
     );
   } catch (err) {
     dispatch(registrateError());

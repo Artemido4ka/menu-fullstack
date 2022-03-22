@@ -18,7 +18,7 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = false;
       state.user = action.payload.user;
-      state.currentUserToken = action.payload.token.token;
+      state.currentUserToken = action.payload.token;
     },
     loginError: (state) => {
       state.isFetching = false;
@@ -32,7 +32,7 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = false;
       state.user = action.payload.user;
-      state.currentUserToken = action.payload.token.token;
+      state.currentUserToken = action.payload.token;
     },
     registrateError: (state) => {
       state.isFetching = false;

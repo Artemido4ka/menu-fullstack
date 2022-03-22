@@ -190,7 +190,7 @@ const Cart = () => {
         </Bottom>
 
         {cash && (
-          <CashModal total={cart.totalPrice} createOrder={createNewOrder} />
+          <CashModal total={cart.totalPrice} products={cart.products} createOrder={createNewOrder} />
         )}
       </Wrapper>
       <Footer />
