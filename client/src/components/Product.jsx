@@ -1,7 +1,9 @@
 import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { signout } from "../redux/apiCalls";
 import CustomizedDialogs from "./InfoProduct";
 
 const Info = styled.div`
@@ -85,6 +87,13 @@ const Icon = styled.div`
 
 const Product = ({ item }) => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  let navigate = useNavigate();
+  const signoutHandler = () => {
+    dispatch(signout());
+    navigate("/");
+  };
 
   const handleClickOpen = () => {
     setOpen(!open);
@@ -98,7 +107,7 @@ const Product = ({ item }) => {
         <Icon onClick={handleClickOpen}>
           <SearchOutlined />
         </Icon>
-        <Link to={`/product/${item.id}`}>
+        <Link to={user ? `/product/${item.id}` : `/login`}>
           <Icon>
             <ShoppingCartOutlined />
           </Icon>
