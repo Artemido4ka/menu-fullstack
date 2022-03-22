@@ -1,6 +1,8 @@
 import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import CustomizedDialogs from "./InfoProduct";
 
 const Info = styled.div`
   opacity: 0;
@@ -82,21 +84,28 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <Container>
       <Circle />
       <Image src={`http://localhost:5000/${item.image}`} />
       <Info>
-        <Icon>
-          <ShoppingCartOutlined />
+        <Icon onClick={handleClickOpen}>
+          <SearchOutlined />
         </Icon>
         <Link to={`/product/${item.id}`}>
           <Icon>
-            <SearchOutlined />
+            <ShoppingCartOutlined />
           </Icon>
         </Link>
       </Info>
       <Title>{item.title}</Title>
+      {open ? <CustomizedDialogs handleOpen={setOpen} product={item} /> : null}
     </Container>
   );
 };
