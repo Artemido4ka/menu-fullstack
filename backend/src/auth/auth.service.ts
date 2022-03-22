@@ -38,7 +38,7 @@ export class AuthService {
       ...userDto,
       password: hashPassword,
     });
-    this.emailService.sendEmail(userDto.email);
+    // this.emailService.sendEmail(userDto.email); email sending
     const token = this.generateToken(user);
     return { user, token };
   }

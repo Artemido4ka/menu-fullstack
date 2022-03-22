@@ -13,7 +13,9 @@ export const login = async (dispatch, user) => {
   try {
     const res = await publicRequest.post("auth/login", user);
     dispatch(loginSuccess(res.data));
+    console.log(res.data)
     localStorage.setItem("currentUser", JSON.stringify(res.data.user));
+    localStorage.setItem("currentUserToken", JSON.stringify(res.data.token.token));
   } catch (err) {
     dispatch(loginError());
   }
@@ -25,6 +27,7 @@ export const registrate = async (dispatch, user) => {
     const res = await publicRequest.post("auth/registration", user);
     dispatch(registrateSuccess(res.data));
     localStorage.setItem("currentUser", JSON.stringify(res.data.user));
+    localStorage.setItem("currentUserToken", JSON.stringify(res.data.token.token));
   } catch (err) {
     dispatch(registrateError());
   }
