@@ -1,6 +1,7 @@
 import { Add, Remove } from "@material-ui/icons";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import CashModal from "../components/CashModal";
 import Footer from "../components/Footer";
@@ -135,9 +136,15 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [cash, setCash] = useState(false);
   const dispatch = useDispatch();
+  let navigate = useNavigate();
 
-  const createNewOrder = (newOrder) => {
-    createOrder(dispatch, newOrder);
+  const createNewOrder = async (newOrder) => {
+    try {
+      await createOrder(dispatch, newOrder);
+      navigate("/");
+    } catch (e) {
+      console.log("not good");
+    }
   };
 
   return (
@@ -190,7 +197,11 @@ const Cart = () => {
         </Bottom>
 
         {cash && (
-          <CashModal total={cart.totalPrice} products={cart.products} createOrder={createNewOrder} />
+          <CashModal
+            total={cart.totalPrice}
+            products={cart.products}
+            createOrder={createNewOrder}
+          />
         )}
       </Wrapper>
       <Footer />

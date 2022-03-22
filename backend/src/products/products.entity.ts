@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from 'src/orders/orders.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn()
@@ -27,4 +35,14 @@ export class Product {
 
   @Column()
   image: string;
+
+  // @Column({ nullable: true })
+  // orderId: number;
+
+  // @ManyToOne(() => Order, (order) => order.products)
+  // order: Order;
+
+  @ManyToMany(() => Order, (order) => order.products)
+  @JoinTable()
+  orders: Order[];
 }

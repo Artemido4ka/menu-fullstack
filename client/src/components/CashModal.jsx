@@ -60,10 +60,14 @@ const Button = styled.button`
 const CashModal = ({ total, products, createOrder }) => {
   const [customer, setCustomer] = useState("");
   const [comment, setComment] = useState("");
-  const [phone, setPhone] = useState("");
 
   const handleClick = () => {
-    createOrder({ total, products, customer, phone, comment });
+    createOrder({
+      price: total,
+      products,
+      title: customer,
+      description: comment,
+    });
   };
 
   return (
@@ -76,14 +80,6 @@ const CashModal = ({ total, products, createOrder }) => {
             placeholder="Billy Harringhton"
             type="text"
             onChange={(e) => setCustomer(e.target.value)}
-          />
-        </Item>
-        <Item>
-          <Label>Phone Number</Label>
-          <Input
-            type="text"
-            placeholder="+1 234 567 89"
-            onChange={(e) => setPhone(e.target.value)}
           />
         </Item>
         <Item>

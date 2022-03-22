@@ -10,9 +10,14 @@ export class OrdersService {
     @InjectRepository(Order) private orderRepository: Repository<Order>,
   ) {}
 
-  async createOrder(dto: OrderCreateDto, userId: any) {
-    const newOrder = { ...dto, userId, date: new Date().toISOString() };
-    const order = this.orderRepository.save(newOrder);
+  async createOrder(dto: any, userId: any) {
+    const newOrder = {
+      ...dto,
+      userId,
+      date: new Date().toISOString(),
+      status: 'ORDERED',
+    };
+    const order = await this.orderRepository.save(newOrder);
     return order;
   }
 

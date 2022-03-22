@@ -1,6 +1,15 @@
+import { Product } from './../products/products.entity';
 import { User } from './../users/users.entity';
 
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()
@@ -26,4 +35,11 @@ export class Order {
 
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
+
+  // @OneToMany(() => Product, (product) => product.order, { cascade: true })
+  // products: Product[];
+
+  @ManyToMany(() => Product, (product) => product.orders)
+  @JoinTable()
+  products: Product[];
 }
