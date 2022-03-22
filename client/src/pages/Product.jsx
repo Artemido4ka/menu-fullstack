@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { publicRequest } from "../requestMethods";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { addProduct } from "../redux/cartRedux";
+import { addProduct } from "../redux/cartSlice";
 
 const Container = styled.div``;
 

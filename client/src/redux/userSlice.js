@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null,
+    user: localStorage.getItem("currentUser")
+      ? JSON.parse(localStorage.getItem("currentUser"))
+      : null,
     currentUserToken: null,
     isFetching: false,
     error: false,
@@ -17,13 +19,11 @@ const userSlice = createSlice({
       state.error = false;
       state.user = action.payload.user;
       state.currentUserToken = action.payload.token.token;
-
     },
     loginError: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-
 
     registrateStart: (state) => {
       state.isFetching = true;
@@ -38,6 +38,10 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    logout: (state) => {
+      state.user = null;
+      state.currentUserToken = null;
+    },
   },
 });
 
@@ -48,5 +52,6 @@ export const {
   registrateStart,
   registrateSuccess,
   registrateError,
+  logout,
 } = userSlice.actions;
 export default userSlice.reducer;
