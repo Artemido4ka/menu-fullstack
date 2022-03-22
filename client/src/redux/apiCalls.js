@@ -1,5 +1,10 @@
-import { publicRequest } from "../requestMethods";
+import { publicRequest, userRequest } from "../requestMethods";
 import { clearCart } from "./cartSlice";
+import {
+  operateOrderError,
+  operateOrderStart,
+  createOrderSuccess,
+} from "./orderSlice";
 import {
   loginError,
   loginStart,
@@ -46,4 +51,15 @@ export const signout = () => (dispatch) => {
   localStorage.removeItem("currentUserToken");
   dispatch(logout());
   dispatch(clearCart());
+};
+
+export const createOrder = async (dispatch, newOrder) => {
+  console.log(newOrder, "newOrder");
+  dispatch(operateOrderStart());
+  try {
+    const res = await userRequest.post("orders", newOrder);
+    dispatch(createOrderSuccess(res.data));
+  } catch (err) {
+    dispatch(operateOrderError());
+  }
 };

@@ -1,8 +1,11 @@
 import { Add, Remove } from "@material-ui/icons";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import CashModal from "../components/CashModal";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { createOrder } from "../redux/apiCalls";
 // import { mobile } from "../responsive";
 
 const Container = styled.div``;
@@ -72,17 +75,6 @@ const Details = styled.div`
 
 const ProductName = styled.span``;
 
-const ProductId = styled.span``;
-
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-`;
-
-const ProductSize = styled.span``;
-
 const PriceDetail = styled.div`
   flex: 1;
   display: flex;
@@ -105,12 +97,6 @@ const ProductAmount = styled.div`
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
-`;
-
-const Hr = styled.hr`
-  background-color: #eee;
-  border: none;
-  height: 1px;
 `;
 
 const Summary = styled.div`
@@ -147,6 +133,13 @@ const Button = styled.button`
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const [cash, setCash] = useState(false);
+  const dispatch = useDispatch();
+
+  const createNewOrder = (newOrder) => {
+    createOrder(dispatch, newOrder);
+  };
+
   return (
     <Container>
       <Navbar />
@@ -192,9 +185,13 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {cart.totalPrice}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <Button onClick={() => setCash(true)}>Pay in cash</Button>
           </Summary>
         </Bottom>
+
+        {cash && (
+          <CashModal total={cart.totalPrice} createOrder={createNewOrder} />
+        )}
       </Wrapper>
       <Footer />
     </Container>

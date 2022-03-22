@@ -39,7 +39,7 @@ export class AuthService {
       password: hashPassword,
     });
     // this.emailService.sendEmail(userDto.email); email sending
-    const token = this.generateToken(user);
+    const token = await this.generateToken(user);
     return { user, token };
   }
 

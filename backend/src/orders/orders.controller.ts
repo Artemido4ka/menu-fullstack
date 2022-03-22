@@ -19,12 +19,14 @@ import { OrdersService } from './orders.service';
 export class OrdersController {
   constructor(private ordersService: OrdersService) {}
 
+  //TODO
   @UseGuards(JwtAuthGuard)
   @Roles('USER')
   @UseGuards(RolesGuard)
   @Post()
-  createOrder(@Body() dto: OrderCreateDto, @Request() req: any) {
-    return this.ordersService.createOrder(dto, req.user.id);
+  createOrder(@Body() dto: any, @Request() req: any) {
+    console.log(dto);
+    // return this.ordersService.createOrder(dto, req.user.id);
   }
 
   @UseGuards(JwtAuthGuard)
