@@ -49,7 +49,7 @@ export const signout = () => (dispatch) => {
 export const createOrder = async (dispatch, newOrder) => {
   dispatch(operateOrderStart());
   try {
-    const res = await userRequest.post("orders", newOrder);
+    const res = await userRequest(localStorage.getItem("currentUserToken").replace(/['"]+/g, "")).post("orders", newOrder);
     console.log(res.data);
     dispatch(createOrderSuccess(res.data));
     dispatch(clearCart());

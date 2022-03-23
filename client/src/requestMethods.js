@@ -6,11 +6,9 @@ export const publicRequest = axios.create({
   baseURL: BASE_URL,
 });
 
-export const userRequest = axios.create({
+export const userRequest = (token) => axios.create({
   baseURL: BASE_URL,
   headers: {
-    authorization: `Bearer ${localStorage
-      .getItem("currentUserToken")
-      .replace(/['"]+/g, "")}`,
+    authorization: `Bearer ${token}`,
   },
 });
