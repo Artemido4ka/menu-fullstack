@@ -57,8 +57,9 @@ const Navbar = () => {
           </Left>
         </Link>
         <Right>
-          <MenuItem>ORDERS</MenuItem>
-
+          <Link to="/orders">
+            <MenuItem>ORDERS</MenuItem>
+          </Link>
           {user ? (
             <>
               <MenuItem onClick={signoutHandler}>Logout</MenuItem>
