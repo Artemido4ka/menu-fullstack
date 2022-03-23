@@ -54,4 +54,9 @@ export class ProductsService {
     const product = await this.productRepository.findOne(id);
     return product;
   }
+
+  async findProductsByIds(arrayOfIds: any) {
+    const products = await this.productRepository.findByIds(arrayOfIds);
+    return products;
+  }
 }

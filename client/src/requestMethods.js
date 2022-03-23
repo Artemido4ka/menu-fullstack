@@ -8,5 +8,9 @@ export const publicRequest = axios.create({
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  headers: { authorization: `Bearer ${JSON.parse(localStorage.getItem("currentUserToken"))}` },
+  headers: {
+    authorization: `Bearer ${localStorage
+      .getItem("currentUserToken")
+      .replace(/['"]+/g, "")}`,
+  },
 });
