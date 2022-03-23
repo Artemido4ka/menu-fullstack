@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Avatar } from "@material-ui/core";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -19,32 +20,41 @@ const rows = [
   createData("Gingerbread", 356, 16.0, 49, 3.9),
 ];
 
-const ProductTable = () => {
+const ProductTable = ({ products }) => {
+  console.log(products);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell>Title</TableCell>
+            <TableCell align="right">Description</TableCell>
+            <TableCell align="right">Fats&nbsp;(g)</TableCell>
+            <TableCell align="right">Proteins&nbsp;(g)</TableCell>
             <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell align="right">Price&nbsp;(g)</TableCell>
+            <TableCell align="right">Weight&nbsp;(g)</TableCell>
+            <TableCell align="right">Image</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {products.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.title}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.description}</TableCell>
+              <TableCell align="right">{row.fats}</TableCell>
+              <TableCell align="right">{row.proteins}</TableCell>
+              <TableCell align="right">{row.carbohydrates}</TableCell>
+              <TableCell align="right">{row.price}</TableCell>
+              <TableCell align="right">{row.weight}</TableCell>
+              <TableCell align="right">
+                <Avatar alt="avatar" src={row.image ? `http://localhost:5000/${row.image}` : null} />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
