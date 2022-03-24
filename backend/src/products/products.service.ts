@@ -1,4 +1,3 @@
-import { FilesService } from './../files/files.service';
 import { Product } from './products.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,15 +7,10 @@ import { Repository } from 'typeorm';
 export class ProductsService {
   constructor(
     @InjectRepository(Product) private productRepository: Repository<Product>,
-    private filesService: FilesService,
   ) {}
 
-  async createProduct(dto: any, image: any) {
-    const fileName = await this.filesService.createFile(image);
-    const product = await this.productRepository.create({
-      ...dto,
-      image: fileName,
-    });
+  async createProduct(dto: any) {
+    const product = await this.productRepository.create(dto);
     await this.productRepository.save(product);
     return product;
   }
@@ -30,16 +24,16 @@ export class ProductsService {
   }
 
   async updateProduct(dto: any, id: string, image: any) {
-    const fileName = await this.filesService.createFile(image);
+    // const fileName = await this.filesService.createFile(image);
     const oldFields = await this.productRepository.findOne(id);
     if (!oldFields) {
       throw new NotFoundException('Product not found');
     }
-    return this.productRepository.save({
-      ...oldFields, // existing fields
-      ...dto, // updated fields
-      image: fileName,
-    });
+    // return this.productRepository.save({
+    //   ...oldFields, // existing fields
+    //   ...dto, // updated fields
+    //   image: fileName,
+    // });
   }
 
   async getAllProducts() {

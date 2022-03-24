@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Stack from "@mui/material/Stack";
 import styled from "styled-components";
+import { createProduct, uploadImage } from "../redux/apiCalls";
+import { useDispatch, useSelector } from "react-redux";
 
 const Input = styled.input`
   display: none;
@@ -23,7 +25,8 @@ const validationSchema = yup.object({
   //     .required("Password is required"),
 });
 
-const ProductForm = () => {
+const ProductForm = ({ image }) => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -33,12 +36,11 @@ const ProductForm = () => {
       carbohydrates: "",
       price: "",
       weight: "",
-      image: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
-      alert(JSON.stringify(values, null, 2));
+      values.image = image;
+      createProduct(dispatch, values);
     },
   });
 
@@ -136,7 +138,7 @@ const ProductForm = () => {
               id="file"
               multiple
               type="file"
-              onChange={formik.handleChange}
+              onChange={(event) => uploadImage(dispatch, event.target.files[0])}
             />
             <Button variant="contained" component="span">
               Upload

@@ -39,7 +39,6 @@ const Login = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       alert(JSON.stringify(values, null, 2));
       login(dispatch, values);
     },

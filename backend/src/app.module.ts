@@ -13,6 +13,8 @@ import { OrdersModule } from './orders/orders.module';
 import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
+import { ImagesModule } from './images/images.module';
+import { Image } from './images/images.entity';
 
 @Module({
   imports: [
@@ -29,7 +31,7 @@ import * as path from 'path';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [User, Role, Product, Order],
+      entities: [User, Role, Product, Order, Image],
       synchronize: true,
     }),
     UsersModule,
@@ -38,6 +40,7 @@ import * as path from 'path';
     ProductsModule,
     OrdersModule,
     FilesModule,
+    ImagesModule,
   ],
   controllers: [],
   providers: [],

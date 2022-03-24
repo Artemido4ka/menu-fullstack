@@ -7,10 +7,12 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import { Close } from "@material-ui/icons";
-import Typography from "@mui/material/Typography";
 import ProductForm from "./ProductForm";
 import { styled as styles } from "@mui/material/styles";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
+import defaultProduct from "../images/400.jpg";
 
 const Container = styled.div`
   padding: 50px;
@@ -71,6 +73,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function NewProduct({ handleOpen }) {
+  const { isFetching, error, image } = useSelector((state) => state.image);
   const handleClose = () => {
     handleOpen(false);
   };
@@ -91,10 +94,12 @@ export default function NewProduct({ handleOpen }) {
         <DialogContent dividers>
           <Container>
             <ImgContainer>
-              <Image src={`http://localhost:5000/`} />
+              <Image
+                src={image ? `http://localhost:5000/${image}` : defaultProduct}
+              />
             </ImgContainer>
             <InfoContainer>
-              <ProductForm />
+              <ProductForm image={image} />
             </InfoContainer>
           </Container>
         </DialogContent>

@@ -24,9 +24,9 @@ export class ProductsController {
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Post()
-  @UseInterceptors(FileInterceptor('image'))
-  createProduct(@Body() dto: any, @UploadedFile() image) {
-    return this.productsService.createProduct(dto, image);
+  createProduct(@Body() dto: any) {
+    console.log(dto);
+    return this.productsService.createProduct(dto);
   }
 
   @UseGuards(JwtAuthGuard)

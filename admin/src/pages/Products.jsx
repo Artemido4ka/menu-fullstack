@@ -8,6 +8,7 @@ import styled from "styled-components";
 import NewProduct from "../components/NewProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/apiCalls";
+import { clearImage } from "../redux/imageSlice";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ const Products = () => {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(!open);
+    dispatch(clearImage());
   };
   return (
     <>
@@ -38,7 +40,7 @@ const Products = () => {
         <Sidebar />
         <HomeWrapper>
           <button onClick={handleClickOpen}>Create Product</button>
-          {open ? <NewProduct handleOpen={setOpen} /> : null}
+          {open && <NewProduct handleOpen={setOpen} />}
           <ProductsTable products={products} />
         </HomeWrapper>
       </ProductContainer>

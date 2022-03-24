@@ -1,5 +1,11 @@
 import {
-  fetchOrderError,
+  fetchImageError,
+  fetchImageStart,
+  fetchImageSuccess,
+} from "./imageSlice";
+import {
+  createProductSuccess,
+  fetchProductError,
   fetchProductsStart,
   fetchProductsSuccess,
 } from "./productSlice";
@@ -12,7 +18,7 @@ export const fetchProducts = async (dispatch) => {
     const res = await publicRequest.get("products");
     dispatch(fetchProductsSuccess(res.data));
   } catch (err) {
-    dispatch(fetchOrderError());
+    dispatch(fetchProductError());
   }
 };
 
@@ -32,4 +38,30 @@ export const signout = () => (dispatch) => {
   localStorage.removeItem("currentUser");
   localStorage.removeItem("currentUserToken");
   dispatch(logout());
+};
+
+export const uploadImage = async (dispatch, image) => {
+  dispatch(fetchImageStart());
+  try {
+    const data = new FormData();
+    data.append("image", image);
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).post("images", data);
+    dispatch(fetchImageSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchImageError());
+  }
+};
+
+export const createProduct = async (dispatch, newProduct) => {
+  dispatch(fetchProductsStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).post("products", newProduct);
+    dispatch(createProductSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchProductError());
+  }
 };

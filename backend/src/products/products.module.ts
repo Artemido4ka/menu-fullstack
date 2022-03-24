@@ -1,4 +1,3 @@
-import { FilesModule } from './../files/files.module';
 import { ProductsController } from './products.controller';
 import { AuthModule } from './../auth/auth.module';
 
@@ -11,7 +10,7 @@ import { ProductsService } from './products.service';
 @Module({
   controllers: [ProductsController],
   providers: [ProductsService],
-  imports: [TypeOrmModule.forFeature([Product]), FilesModule, AuthModule],
+  imports: [TypeOrmModule.forFeature([Product]), AuthModule],
   exports: [ProductsService],
 })
 export class ProductsModule {}
