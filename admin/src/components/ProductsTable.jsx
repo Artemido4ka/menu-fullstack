@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Avatar } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
 
 const ProductTable = ({ products }) => {
   return (
@@ -16,13 +16,14 @@ const ProductTable = ({ products }) => {
         <TableHead>
           <TableRow>
             <TableCell>Title</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Fats&nbsp;(g)</TableCell>
-            <TableCell align="right">Proteins&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Price&nbsp;(g)</TableCell>
-            <TableCell align="right">Weight&nbsp;(g)</TableCell>
-            <TableCell align="right">Image</TableCell>
+            <TableCell align="center">Description</TableCell>
+            <TableCell align="center">Fats&nbsp;(g)</TableCell>
+            <TableCell align="center">Proteins&nbsp;(g)</TableCell>
+            <TableCell align="center">Carbs&nbsp;(g)</TableCell>
+            <TableCell align="center">Price&nbsp;(g)</TableCell>
+            <TableCell align="center">Weight&nbsp;(g)</TableCell>
+            <TableCell align="center">Image</TableCell>
+            <TableCell align="center">Info</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -31,17 +32,24 @@ const ProductTable = ({ products }) => {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
+              {console.log(row.id)}
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.fats}</TableCell>
-              <TableCell align="right">{row.proteins}</TableCell>
-              <TableCell align="right">{row.carbohydrates}</TableCell>
-              <TableCell align="right">{row.price}</TableCell>
-              <TableCell align="right">{row.weight}</TableCell>
+              <TableCell align="center">{row.description}</TableCell>
+              <TableCell align="center">{row.fats}</TableCell>
+              <TableCell align="center">{row.proteins}</TableCell>
+              <TableCell align="center">{row.carbohydrates}</TableCell>
+              <TableCell align="center">{row.price}</TableCell>
+              <TableCell align="center">{row.weight}</TableCell>
               <TableCell align="right">
-                <Avatar alt="avatar" src={row.image ? `http://localhost:5000/${row.image}` : null} />
+                <Avatar
+                  alt="avatar"
+                  src={row.image ? `http://localhost:5000/${row.image}` : null}
+                />
+              </TableCell>
+              <TableCell align="center">
+                <Link to={`/products/${row.id}`}>Check it ! </Link>
               </TableCell>
             </TableRow>
           ))}

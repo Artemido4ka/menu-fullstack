@@ -25,22 +25,32 @@ const validationSchema = yup.object({
   //     .required("Password is required"),
 });
 
-const ProductForm = ({ image }) => {
+const ProductForm = ({ loadedImage, handleForm, productValues }) => {
   const dispatch = useDispatch();
+
   const formik = useFormik({
-    initialValues: {
-      title: "",
-      description: "",
-      fats: "",
-      proteins: "",
-      carbohydrates: "",
-      price: "",
-      weight: "",
-    },
+    initialValues: productValues
+      ? productValues
+      : {
+          title: "",
+          description: "",
+          fats: "",
+          proteins: "",
+          carbohydrates: "",
+          price: "",
+          weight: "",
+        },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      values.image = image;
-      createProduct(dispatch, values);
+      let newForm = values;
+      if (loadedImage) {
+        newForm = Object.fromEntries(
+          Object.entries(values).filter((n) => n[0] !== "image")
+        );
+        newForm.image = loadedImage;
+      }
+
+      handleForm(newForm);
     },
   });
 

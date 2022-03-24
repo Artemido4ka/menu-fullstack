@@ -41,14 +41,14 @@ export class ProductsController {
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Put(':id')
-  @UseInterceptors(FileInterceptor('image'))
+  // @UseInterceptors(FileInterceptor('image'))
   updateProduct(
     @Body() dto: any,
     @Param('id') id: string,
-    @UploadedFile() image,
+    // @UploadedFile() image,
   ) {
     console.log(dto, 'DTO');
-    return this.productsService.updateProduct(dto, id, image);
+    return this.productsService.updateProduct(dto, id);
   }
 
   @Get()

@@ -10,9 +10,10 @@ import { Close } from "@material-ui/icons";
 import ProductForm from "./ProductForm";
 import { styled as styles } from "@mui/material/styles";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import defaultProduct from "../images/400.jpg";
+import defaultProduct from "../images/defaultProduct.jpg";
+import { createProduct } from "../redux/apiCalls";
 
 const Container = styled.div`
   padding: 50px;
@@ -73,9 +74,14 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function NewProduct({ handleOpen }) {
+  const dispatch = useDispatch();
   const { isFetching, error, image } = useSelector((state) => state.image);
   const handleClose = () => {
     handleOpen(false);
+  };
+
+  const handleForm = (formValues) => {
+    createProduct(dispatch, formValues);
   };
 
   return (
@@ -99,7 +105,7 @@ export default function NewProduct({ handleOpen }) {
               />
             </ImgContainer>
             <InfoContainer>
-              <ProductForm image={image} />
+              <ProductForm loadedImage={image} handleForm={handleForm} />
             </InfoContainer>
           </Container>
         </DialogContent>

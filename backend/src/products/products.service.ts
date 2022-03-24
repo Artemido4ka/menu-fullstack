@@ -23,17 +23,16 @@ export class ProductsService {
     return this.productRepository.delete(id);
   }
 
-  async updateProduct(dto: any, id: string, image: any) {
+  async updateProduct(dto: any, id: string) {
     // const fileName = await this.filesService.createFile(image);
-    const oldFields = await this.productRepository.findOne(id);
-    if (!oldFields) {
+    const oldProduct = await this.productRepository.findOne(id);
+    if (!oldProduct) {
       throw new NotFoundException('Product not found');
     }
-    // return this.productRepository.save({
-    //   ...oldFields, // existing fields
-    //   ...dto, // updated fields
-    //   image: fileName,
-    // });
+    return this.productRepository.save({
+      ...oldProduct, // existing fields
+      ...dto, // updated fields
+    });
   }
 
   async getAllProducts() {

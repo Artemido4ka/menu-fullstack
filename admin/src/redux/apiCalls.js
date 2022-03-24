@@ -5,6 +5,7 @@ import {
 } from "./imageSlice";
 import {
   createProductSuccess,
+  fetchOneProductSuccess,
   fetchProductError,
   fetchProductsStart,
   fetchProductsSuccess,
@@ -61,6 +62,29 @@ export const createProduct = async (dispatch, newProduct) => {
       localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
     ).post("products", newProduct);
     dispatch(createProductSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchProductError());
+  }
+};
+
+export const fetchOneProduct = async (dispatch, id) => {
+  dispatch(fetchProductsStart());
+  try {
+    const res = await publicRequest.get("products/" + id);
+    dispatch(fetchOneProductSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchProductError());
+  }
+};
+
+export const updateProduct = async (dispatch, newProduct, productId) => {
+  dispatch(fetchProductsStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).put("products/" + productId, newProduct);
+
+    dispatch(fetchOneProductSuccess(res.data));
   } catch (err) {
     dispatch(fetchProductError());
   }
