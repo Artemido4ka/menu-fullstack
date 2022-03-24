@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
 import Orders from "./pages/Orders";
@@ -11,7 +12,11 @@ const App = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="/products" element={<Products />} />
+      <Route
+        exact
+        path="/products"
+        element={<ProtectedRoute user={"user"} component={<Products />} />}
+      />
       <Route path="/products/:id" element={<Product />} />
       <Route exact path="/orders" element={<Orders />} />
       {/* <Route path="/login" element={<Login />} /> */}
