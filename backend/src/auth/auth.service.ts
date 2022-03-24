@@ -18,8 +18,16 @@ export class AuthService {
     private emailService: EmailService,
   ) {}
   async login(userDto: CreateUserDto) {
-    console.log(userDto);
     const user = await this.validateUser(userDto);
+    const token = await this.generateToken(user);
+    return { user, token };
+  }
+
+  async loginAdmin(userDto: CreateUserDto) {
+    const user = await this.validateUser(userDto);
+    console.log(user.roles[0].value);
+    if (user.roles[0].value !== 'ADMIN')
+      throw new UnauthorizedException({ message: 'Ошибка авторизации' });
     const token = await this.generateToken(user);
     return { user, token };
   }
@@ -57,7 +65,7 @@ export class AuthService {
     if (user && passwordEquals) {
       return user;
     } else {
-      throw new UnauthorizedException({ message: 'Некорректный пароль !' });
+      throw new UnauthorizedException({ message: 'Некорректные данные' });
     }
   }
 }

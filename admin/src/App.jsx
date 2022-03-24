@@ -6,20 +6,33 @@ import Home from "./pages/Home";
 import Orders from "./pages/Orders";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const { isFetching, error, user } = useSelector((state) => state.user);
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route
+        exact
+        path="/"
+        element={<ProtectedRoute user={user} component={<Home />} />}
+      />
       <Route
         exact
         path="/products"
-        element={<ProtectedRoute user={"user"} component={<Products />} />}
+        element={<ProtectedRoute user={user} component={<Products />} />}
       />
-      <Route path="/products/:id" element={<Product />} />
-      <Route exact path="/orders" element={<Orders />} />
-      {/* <Route path="/login" element={<Login />} /> */}
+      <Route
+        path="/products/:id"
+        element={<ProtectedRoute user={user} component={<Product />} />}
+      />
+      <Route
+        exact
+        path="/orders"
+        element={<ProtectedRoute user={user} component={<Orders />} />}
+      />
     </Routes>
   );
 };

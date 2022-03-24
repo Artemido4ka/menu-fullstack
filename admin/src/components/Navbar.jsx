@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { signout } from "../redux/apiCalls";
 // import { signout } from "../redux/apiCalls";
 // import { mobile } from "../responsive";
 
@@ -40,10 +41,11 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const signoutHandler = () => {
-    // dispatch(signout());
+    dispatch(signout());
     navigate("/");
   };
   return (
@@ -55,10 +57,14 @@ const Navbar = () => {
           </Left>
         </Link>
         <Right>
-          <Link to="/orders">
-            <MenuItem>ORDERS</MenuItem>
-          </Link>
-
+          {user && (
+            <>
+              <MenuItem onClick={signoutHandler}>Logout</MenuItem>
+              <MenuItem>
+                <Avatar alt="avatar" src={user.image ? user.image : null} />
+              </MenuItem>
+            </>
+          )}
         </Right>
       </Wrapper>
     </Container>

@@ -15,6 +15,11 @@ export class AuthController {
     return this.authService.login(userDto);
   }
 
+  @Post('/login/admin')
+  loginAdmin(@Body() userDto: CreateUserDto) {
+    return this.authService.loginAdmin(userDto);
+  }
+
   @Post('/registration')
   registration(@Body() userDto: any) {
     console.log(userDto);
