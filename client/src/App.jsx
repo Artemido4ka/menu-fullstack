@@ -7,6 +7,8 @@ import Orders from "./pages/Orders";
 import Product from "./pages/Product";
 import Register from "./pages/Register";
 
+import "./App.css";
+
 const App = () => {
   return (
     <Routes>

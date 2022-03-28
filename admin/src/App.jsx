@@ -1,14 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { useSelector } from "react-redux";
 
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Orders from "./pages/Orders";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
 import Login from "./pages/Login";
-import { useSelector } from "react-redux";
 import Order from "./pages/Order";
+
+import "./App.css";
 
 const App = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
