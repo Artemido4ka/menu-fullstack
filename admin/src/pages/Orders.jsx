@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import ProductsTable from "../components/ProductsTable";
-import Sidebar from "../components/Sidebar";
-
-import styled from "styled-components";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOrders, fetchProducts } from "../redux/apiCalls";
-import { clearImage } from "../redux/imageSlice";
+
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import { fetchOrders } from "../redux/apiCalls";
 import OrdersTable from "../components/OrdersTable";
+
+import { StyledButton } from "../components/StyledButton";
+import { ArrowBack } from "@material-ui/icons";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -15,19 +17,20 @@ const ProductContainer = styled.div`
 
 const HomeWrapper = styled.div`
   flex: 6;
+  padding: 20px;
+`;
 
-  /* gap: 20px; */
+const ButtonContainer = styled.div`
+  padding-bottom: 20px;
 `;
 
 const Orders = () => {
   const dispatch = useDispatch();
   const { isFetching, error, orders } = useSelector((state) => state.order);
 
-
   useEffect(() => {
     fetchOrders(dispatch);
   }, [dispatch]);
-  console.log(orders);
 
   return (
     <>
@@ -35,8 +38,14 @@ const Orders = () => {
       <ProductContainer>
         <Sidebar />
         <HomeWrapper>
-          <OrdersTable orders={orders}/>
-          {/* <ProductsTable products={products} /> */}
+          <ButtonContainer>
+            <Link to={`/`}>
+              <StyledButton startIcon={<ArrowBack />}>
+                To home page
+              </StyledButton>
+            </Link>
+          </ButtonContainer>
+          <OrdersTable orders={orders} />
         </HomeWrapper>
       </ProductContainer>
     </>

@@ -9,8 +9,10 @@ import NewProduct from "../components/NewProduct";
 import { fetchProducts } from "../redux/apiCalls";
 import { clearImage } from "../redux/imageSlice";
 
+import { ArrowBack, Create } from "@material-ui/icons";
 import styled from "styled-components";
 import { StyledButton } from "../components/StyledButton";
+import { Link } from "react-router-dom";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -45,7 +47,15 @@ const Products = () => {
         <Sidebar />
         <HomeWrapper>
           <ButtonContainer>
-            <StyledButton onClick={handleClickOpen}>
+            <Link to={`/`}>
+              <StyledButton
+                startIcon={<ArrowBack />}
+                sx={{ marginRight: "20px" }}
+              >
+                To home page
+              </StyledButton>
+            </Link>
+            <StyledButton onClick={handleClickOpen} startIcon={<Create />}>
               Create New Product
             </StyledButton>
           </ButtonContainer>

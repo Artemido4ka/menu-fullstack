@@ -47,7 +47,10 @@ export class OrdersService {
   }
 
   async getAllOrders() {
-    const orders = await this.orderRepository.find({ relations: ['products'] });
+    const orders = await this.orderRepository.find({
+      relations: ['user', 'products'],
+    });
+    console.log(orders);
     if (!orders) {
       throw new NotFoundException('orders not found');
     }
