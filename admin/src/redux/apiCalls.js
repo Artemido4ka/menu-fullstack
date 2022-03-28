@@ -3,6 +3,7 @@ import {
   fetchImageStart,
   fetchImageSuccess,
 } from "./imageSlice";
+import { fetchOrdersStart, fetchOrdersSuccess } from "./orderSlice";
 import {
   createProductSuccess,
   fetchOneProductSuccess,
@@ -87,5 +88,17 @@ export const updateProduct = async (dispatch, newProduct, productId) => {
     dispatch(fetchOneProductSuccess(res.data));
   } catch (err) {
     dispatch(fetchProductError());
+  }
+};
+
+export const fetchOrders = async (dispatch) => {
+  dispatch(fetchOrdersStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).get("orders");
+    dispatch(fetchOrdersSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchOrdersSuccess());
   }
 };
