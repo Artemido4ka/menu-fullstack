@@ -82,6 +82,7 @@ export default function NewProduct({ handleOpen }) {
   };
 
   const handleForm = (formValues) => {
+    console.log(formValues)
     createProduct(dispatch, formValues);
   };
 

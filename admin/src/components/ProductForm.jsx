@@ -27,7 +27,6 @@ const validationSchema = yup.object({
 
 const ProductForm = ({ loadedImage, handleForm, productValues }) => {
   const dispatch = useDispatch();
-  console.log(productValues)
 
   const formik = useFormik({
     initialValues: productValues
@@ -60,21 +59,34 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
       <Form onSubmit={formik.handleSubmit}>
         <TextField
           fullWidth
+          id="description"
+          name="description"
+          label="description"
+          value={formik.values.description}
+          onChange={formik.handleChange}
+          error={formik.touched.description && Boolean(formik.errors.description)}
+          helperText={formik.touched.description && formik.errors.description}
+        />
+
+        <TextField
+          fullWidth
           id="title"
           name="title"
           label="title"
           value={formik.values.title}
           onChange={formik.handleChange}
           error={formik.touched.title && Boolean(formik.errors.title)}
-          helperText={formik.touched.email && formik.errors.email}
+          helperText={formik.touched.title && formik.errors.title}
         />
-        <TextField
+
+        {/* <TextField
           fullWidth
           id="description"
           name="description"
-          label="description"OrderForm
+          label="description"
+          OrderForm
           helperText={formik.touched.description && formik.errors.description}
-        />
+        /> */}
 
         <TextField
           fullWidth
@@ -160,4 +172,3 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
 };
 
 export default ProductForm;
-

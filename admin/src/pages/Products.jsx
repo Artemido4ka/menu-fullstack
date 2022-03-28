@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../components/Footer";
+import { useDispatch, useSelector } from "react-redux";
+
 import Navbar from "../components/Navbar";
 import ProductsTable from "../components/ProductsTable";
 import Sidebar from "../components/Sidebar";
 
-import styled from "styled-components";
 import NewProduct from "../components/NewProduct";
-import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/apiCalls";
 import { clearImage } from "../redux/imageSlice";
+
+import styled from "styled-components";
+import { StyledButton } from "../components/StyledButton";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -16,8 +18,11 @@ const ProductContainer = styled.div`
 
 const HomeWrapper = styled.div`
   flex: 6;
+  padding: 20px;
+`;
 
-  /* gap: 20px; */
+const ButtonContainer = styled.div`
+  padding-bottom: 20px;
 `;
 
 const Products = () => {
@@ -39,7 +44,12 @@ const Products = () => {
       <ProductContainer>
         <Sidebar />
         <HomeWrapper>
-          <button onClick={handleClickOpen}>Create Product</button>
+          <ButtonContainer>
+            <StyledButton onClick={handleClickOpen}>
+              Create New Product
+            </StyledButton>
+          </ButtonContainer>
+
           {open && <NewProduct handleOpen={setOpen} />}
           <ProductsTable products={products} />
         </HomeWrapper>

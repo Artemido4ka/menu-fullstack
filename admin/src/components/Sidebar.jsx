@@ -15,7 +15,7 @@ import styled from "styled-components";
 // import { DarkModeContext } from "../../context/darkModeContext";
 
 const SidebarContainer = styled.div`
-  flex: 1;
+  width: 12%;
   border-right: 0.5px solid rgb(230, 227, 227);
   min-height: 100vh;
   background-color: white;
