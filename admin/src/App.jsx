@@ -8,6 +8,7 @@ import Product from "./pages/Product";
 import Products from "./pages/Products";
 import Login from "./pages/Login";
 import { useSelector } from "react-redux";
+import Order from "./pages/Order";
 
 const App = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
@@ -32,6 +33,10 @@ const App = () => {
         exact
         path="/orders"
         element={<ProtectedRoute user={user} component={<Orders />} />}
+      />
+      <Route
+        path="/orders/:id"
+        element={<ProtectedRoute user={user} component={<Order />} />}
       />
     </Routes>
   );

@@ -7,13 +7,14 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import { Close } from "@material-ui/icons";
-import ProductForm from "./ProductForm";
+
 import { styled as styles } from "@mui/material/styles";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import defaultProduct from "../images/defaultProduct.jpg";
 import { createProduct } from "../redux/apiCalls";
+import ProductForm from "./ProductForm";
 
 const Container = styled.div`
   padding: 50px;

@@ -17,6 +17,7 @@ const OrdersTable = ({ orders }) => {
             <TableCell>Title</TableCell>
             <TableCell align="center">Description</TableCell>
             <TableCell align="center">Price&nbsp;(BYN)</TableCell>
+            <TableCell align="center">Date</TableCell>
             <TableCell align="center">Products</TableCell>
             <TableCell align="center">Status</TableCell>
             <TableCell align="center">Info</TableCell>
@@ -33,14 +34,15 @@ const OrdersTable = ({ orders }) => {
               </TableCell>
               <TableCell align="center">{row.description}</TableCell>
               <TableCell align="center">{row.price}</TableCell>
+              <TableCell align="center">{row.date}</TableCell>
               <TableCell align="center">
                 {row.products.map((product) => (
-                  <div>{product.title}</div>
+                  <div key={product.id}>{product.title}</div>
                 ))}
               </TableCell>
               <TableCell align="center">{row.status}</TableCell>
               <TableCell align="center">
-                <Link to={`/products/${row.id}`}>Check it ! </Link>
+                <Link to={`/orders/${row.id}`}>Check it ! </Link>
               </TableCell>
             </TableRow>
           ))}

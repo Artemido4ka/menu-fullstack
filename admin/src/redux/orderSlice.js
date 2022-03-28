@@ -17,11 +17,11 @@ const productSlice = createSlice({
       state.error = false;
       state.orders = action.payload;
     },
-    // fetchOneOrderSuccess: (state, action) => {
-    //   state.isFetching = false;
-    //   state.error = false;
-    //   state.product = action.payload;
-    // },
+    fetchOneOrderSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+      state.order = action.payload;
+    },
     fetchOrderError: (state) => {
       state.isFetching = false;
       state.error = true;
@@ -37,7 +37,7 @@ const productSlice = createSlice({
 export const {
   fetchOrdersStart,
   fetchOrdersSuccess,
-//   fetchOneOrderSuccess,
+  fetchOneOrderSuccess,
   fetchOrderError,
   //   createProductSuccess,
 } = productSlice.actions;

@@ -3,13 +3,14 @@ import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";
 import Widget from "../components/Widget";
-import ProductForm from "../components/ProductForm";
+
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchOneProduct, updateProduct } from "../redux/apiCalls";
 import { useSelector, useDispatch } from "react-redux";
 
 import defaultProduct from "../images/defaultProduct.jpg";
+import ProductForm from "../components/ProductForm";
 
 const ProductContainer = styled.div`
   padding: 50px;
