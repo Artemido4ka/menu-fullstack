@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
 import { fetchOrders } from "../redux/apiCalls";
 import OrdersTable from "../components/OrdersTable";
 
@@ -10,9 +10,14 @@ import { StyledButton } from "../components/StyledButton";
 import { ArrowBack } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { devices } from "../devices";
 
 const ProductContainer = styled.div`
   display: flex;
+  /* @media ${devices.laptop} {
+    flex-direction: row;
+    display: none;
+  } */
 `;
 
 const HomeWrapper = styled.div`
@@ -36,7 +41,6 @@ const Orders = () => {
     <>
       <Navbar />
       <ProductContainer>
-        <Sidebar />
         <HomeWrapper>
           <ButtonContainer>
             <Link to={`/`}>

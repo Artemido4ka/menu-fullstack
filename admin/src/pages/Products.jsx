@@ -44,7 +44,6 @@ const Products = () => {
     <>
       <Navbar />
       <ProductContainer>
-        <Sidebar />
         <HomeWrapper>
           <ButtonContainer>
             <Link to={`/`}>
