@@ -31,7 +31,7 @@ const InfoContainer = styled.div`
   padding: 0px 50px;
 `;
 
-const Product = () => {
+const Order = () => {
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
   const { isFetching, error, product } = useSelector((state) => state.product);
@@ -75,4 +75,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Order;
