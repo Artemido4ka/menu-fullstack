@@ -11,10 +11,14 @@ import { useSelector, useDispatch } from "react-redux";
 
 import defaultProduct from "../images/defaultProduct.jpg";
 import ProductForm from "../components/ProductForm";
+import { devices } from "../devices";
 
 const ProductContainer = styled.div`
   padding: 50px;
-  display: flex;
+
+  @media ${devices.tablet} {
+    display: flex;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -23,8 +27,9 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 90vh;
+
   object-fit: cover;
+  margin-bottom: 20px;
 `;
 
 const InfoContainer = styled.div`

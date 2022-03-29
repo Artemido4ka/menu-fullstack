@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Button from "@material-ui/core/Button";
+import { useDispatch } from "react-redux";
+
+import { uploadImage } from "../redux/apiCalls";
+
 import TextField from "@material-ui/core/TextField";
-import Stack from "@mui/material/Stack";
 import styled from "styled-components";
-import { createProduct, uploadImage } from "../redux/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
+import { StyledButton } from "./StyledButton";
+import { AddPhotoAlternate, Beenhere } from "@material-ui/icons";
 
 const Input = styled.input`
   display: none;
 `;
 
 const Form = styled.form``;
+
+const Buttons = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
 
 const validationSchema = yup.object({
   //   email: yup
@@ -27,6 +34,12 @@ const validationSchema = yup.object({
 
 const ProductForm = ({ loadedImage, handleForm, productValues }) => {
   const dispatch = useDispatch();
+
+  const hiddenFileInput = React.useRef(null);
+
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
 
   const formik = useFormik({
     initialValues: productValues
@@ -64,7 +77,9 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           label="description"
           value={formik.values.description}
           onChange={formik.handleChange}
-          error={formik.touched.description && Boolean(formik.errors.description)}
+          error={
+            formik.touched.description && Boolean(formik.errors.description)
+          }
           helperText={formik.touched.description && formik.errors.description}
         />
 
@@ -147,25 +162,29 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           error={formik.touched.weight && Boolean(formik.errors.weight)}
           helperText={formik.touched.weight && formik.errors.weight}
         />
-
-        <Stack direction="row" alignItems="center" spacing={2}>
-          <label htmlFor="file">
+        <Buttons>
+          <>
             <Input
               accept="image/*"
-              id="file"
-              multiple
+              ref={hiddenFileInput}
               type="file"
               onChange={(event) => uploadImage(dispatch, event.target.files[0])}
             />
-            <Button variant="contained" component="span">
-              Upload
-            </Button>
-          </label>
-        </Stack>
+            <StyledButton onClick={handleClick}>
+              <AddPhotoAlternate /> Upload image
+            </StyledButton>
+          </>
 
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
-        </Button>
+          <StyledButton
+            color="primary"
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
+            <Beenhere />
+            Submit
+          </StyledButton>
+        </Buttons>
       </Form>
     </>
   );
