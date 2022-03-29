@@ -70,7 +70,7 @@ const Order = () => {
           {!isFetching &&
             order &&
             order.products.map((product) => (
-              <ProductRow>
+              <ProductRow key={product.id}>
                 <ProductName>{product.title} </ProductName>
                 <ProductImage src={`http://localhost:5000/${product.image}`} />
               </ProductRow>
