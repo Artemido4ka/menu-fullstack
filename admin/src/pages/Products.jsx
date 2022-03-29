@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import ProductsTable from "../components/ProductsTable";
-import NewProduct from "../components/NewProduct";
 import { fetchProducts } from "../redux/apiCalls";
-import { clearImage } from "../redux/imageSlice";
 
-import { ArrowBack, Create } from "@material-ui/icons";
 import styled from "styled-components";
+import { ArrowBack, Create } from "@material-ui/icons";
 import { StyledButton } from "../components/StyledButton";
-import { Link } from "react-router-dom";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -33,11 +31,6 @@ const Products = () => {
     fetchProducts(dispatch);
   }, [dispatch]);
 
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(!open);
-    dispatch(clearImage());
-  };
   return (
     <ProductContainer>
       <HomeWrapper>
@@ -48,13 +41,13 @@ const Products = () => {
               To home page
             </StyledButton>
           </Link>
-          <StyledButton onClick={handleClickOpen}>
-            <Create />
-            Create New Product
-          </StyledButton>
+          <Link to={`/products/new`}>
+            <StyledButton>
+              <Create />
+              Create New Product
+            </StyledButton>
+          </Link>
         </ButtonContainer>
-
-        {open && <NewProduct handleOpen={setOpen} />}
         <ProductsTable products={products} />
       </HomeWrapper>
     </ProductContainer>

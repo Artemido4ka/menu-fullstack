@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Order from "./pages/Order";
 
 import "./App.css";
+import CreateProduct from "./pages/CreateProduct";
 
 const App = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
@@ -25,6 +26,11 @@ const App = () => {
         exact
         path="/products"
         element={<ProtectedRoute user={user} component={<Products />} />}
+      />
+      <Route
+        exact
+        path="/products/new"
+        element={<ProtectedRoute user={user} component={<CreateProduct />} />}
       />
       <Route
         path="/products/:id"
