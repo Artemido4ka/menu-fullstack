@@ -8,7 +8,8 @@ import { uploadImage } from "../redux/apiCalls";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
-import { AddPhotoAlternate, Beenhere } from "@material-ui/icons";
+import { AddPhotoAlternate, ArrowBack, Beenhere } from "@material-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 const Input = styled.input`
   display: none;
@@ -34,6 +35,11 @@ const validationSchema = yup.object({
 
 const ProductForm = ({ loadedImage, handleForm, productValues }) => {
   const dispatch = useDispatch();
+
+  let navigate = useNavigate();
+  const onClickHandler = () => {
+    navigate("/products");
+  };
 
   const hiddenFileInput = React.useRef(null);
 
@@ -68,125 +74,109 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
   });
 
   return (
-    <>
-      <Form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="description"
-          name="description"
-          label="description"
-          value={formik.values.description}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.description && Boolean(formik.errors.description)
-          }
-          helperText={formik.touched.description && formik.errors.description}
-        />
+    <Form onSubmit={formik.handleSubmit}>
+      <TextField
+        fullWidth
+        id="title"
+        name="title"
+        label="title"
+        value={formik.values.title}
+        onChange={formik.handleChange}
+        error={formik.touched.title && Boolean(formik.errors.title)}
+        helperText={formik.touched.title && formik.errors.title}
+      />
 
-        <TextField
-          fullWidth
-          id="title"
-          name="title"
-          label="title"
-          value={formik.values.title}
-          onChange={formik.handleChange}
-          error={formik.touched.title && Boolean(formik.errors.title)}
-          helperText={formik.touched.title && formik.errors.title}
-        />
+      <TextField
+        fullWidth
+        id="description"
+        name="description"
+        label="description"
+        value={formik.values.description}
+        onChange={formik.handleChange}
+        error={formik.touched.description && Boolean(formik.errors.description)}
+        helperText={formik.touched.description && formik.errors.description}
+      />
 
-        {/* <TextField
-          fullWidth
-          id="description"
-          name="description"
-          label="description"
-          OrderForm
-          helperText={formik.touched.description && formik.errors.description}
-        /> */}
-
-        <TextField
-          fullWidth
-          id="fats"
-          name="fats"
-          label="fats"
-          type="text"
-          value={formik.values.fats}
-          onChange={formik.handleChange}
-          error={formik.touched.fats && Boolean(formik.errors.fats)}
-          helperText={formik.touched.fats && formik.errors.fats}
-        />
-        <TextField
-          fullWidth
-          id="proteins"
-          name="proteins"
-          label="proteins"
-          type="text"
-          value={formik.values.proteins}
-          onChange={formik.handleChange}
-          error={formik.touched.proteins && Boolean(formik.errors.proteins)}
-          helperText={formik.touched.proteins && formik.errors.proteins}
-        />
-        <TextField
-          fullWidth
-          id="carbohydrates"
-          name="carbohydrates"
-          label="carbohydrates"
-          type="text"
-          value={formik.values.carbohydrates}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.carbohydrates && Boolean(formik.errors.carbohydrates)
-          }
-          helperText={
-            formik.touched.carbohydrates && formik.errors.carbohydrates
-          }
-        />
-        <TextField
-          fullWidth
-          id="price"
-          name="price"
-          label="price"
-          type="text"
-          value={formik.values.price}
-          onChange={formik.handleChange}
-          error={formik.touched.price && Boolean(formik.errors.price)}
-          helperText={formik.touched.price && formik.errors.price}
-        />
-        <TextField
-          fullWidth
-          id="weight"
-          name="weight"
-          label="weight"
-          type="text"
-          value={formik.values.weight}
-          onChange={formik.handleChange}
-          error={formik.touched.weight && Boolean(formik.errors.weight)}
-          helperText={formik.touched.weight && formik.errors.weight}
-        />
-        <Buttons>
-          <>
-            <Input
-              accept="image/*"
-              ref={hiddenFileInput}
-              type="file"
-              onChange={(event) => uploadImage(dispatch, event.target.files[0])}
-            />
-            <StyledButton onClick={handleClick}>
-              <AddPhotoAlternate /> Upload image
-            </StyledButton>
-          </>
-
-          <StyledButton
-            color="primary"
-            variant="contained"
-            fullWidth
-            type="submit"
-          >
-            <Beenhere />
-            Submit
+      <TextField
+        fullWidth
+        id="fats"
+        name="fats"
+        label="fats"
+        type="text"
+        value={formik.values.fats}
+        onChange={formik.handleChange}
+        error={formik.touched.fats && Boolean(formik.errors.fats)}
+        helperText={formik.touched.fats && formik.errors.fats}
+      />
+      <TextField
+        fullWidth
+        id="proteins"
+        name="proteins"
+        label="proteins"
+        type="text"
+        value={formik.values.proteins}
+        onChange={formik.handleChange}
+        error={formik.touched.proteins && Boolean(formik.errors.proteins)}
+        helperText={formik.touched.proteins && formik.errors.proteins}
+      />
+      <TextField
+        fullWidth
+        id="carbohydrates"
+        name="carbohydrates"
+        label="carbohydrates"
+        type="text"
+        value={formik.values.carbohydrates}
+        onChange={formik.handleChange}
+        error={
+          formik.touched.carbohydrates && Boolean(formik.errors.carbohydrates)
+        }
+        helperText={formik.touched.carbohydrates && formik.errors.carbohydrates}
+      />
+      <TextField
+        fullWidth
+        id="price"
+        name="price"
+        label="price"
+        type="text"
+        value={formik.values.price}
+        onChange={formik.handleChange}
+        error={formik.touched.price && Boolean(formik.errors.price)}
+        helperText={formik.touched.price && formik.errors.price}
+      />
+      <TextField
+        fullWidth
+        id="weight"
+        name="weight"
+        label="weight"
+        type="text"
+        value={formik.values.weight}
+        onChange={formik.handleChange}
+        error={formik.touched.weight && Boolean(formik.errors.weight)}
+        helperText={formik.touched.weight && formik.errors.weight}
+      />
+      <Buttons>
+        <>
+          <Input
+            accept="image/*"
+            ref={hiddenFileInput}
+            type="file"
+            onChange={(event) => uploadImage(dispatch, event.target.files[0])}
+          />
+          <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
+            <ArrowBack /> Go back
           </StyledButton>
-        </Buttons>
-      </Form>
-    </>
+
+          <StyledButton margin="0 20px 0 0" onClick={handleClick}>
+            <AddPhotoAlternate /> Upload image
+          </StyledButton>
+        </>
+
+        <StyledButton type="submit">
+          <Beenhere />
+          Submit
+        </StyledButton>
+      </Buttons>
+    </Form>
   );
 };
 

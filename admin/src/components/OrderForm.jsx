@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Stack from "@mui/material/Stack";
-import styled from "styled-components";
-import { createProduct, uploadImage } from "../redux/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-const Input = styled.input`
-  display: none;
+import styled from "styled-components";
+import TextField from "@material-ui/core/TextField";
+import { StyledButton } from "./StyledButton";
+import { ArrowBack, Beenhere } from "@material-ui/icons";
+import { useNavigate } from "react-router-dom";
+
+const Buttons = styled.div`
+  display: flex;
+  margin-top: 20px;
 `;
 
 const Form = styled.form``;
@@ -25,11 +27,17 @@ const validationSchema = yup.object({
   //     .required("Password is required"),
 });
 
-const OrderForm = ({ loadedImage, handleForm, productValues }) => {
+const OrderForm = ({ loadedImage, handleForm, orderValues }) => {
   const dispatch = useDispatch();
+
+  let navigate = useNavigate();
+  const onClickHandler = () => {
+    navigate("/orders");
+  };
+
   const formik = useFormik({
-    initialValues: productValues
-      ? productValues
+    initialValues: orderValues
+      ? orderValues
       : {
           title: "",
           description: "",
@@ -39,87 +47,81 @@ const OrderForm = ({ loadedImage, handleForm, productValues }) => {
         },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // let newForm = values;
-      // if (loadedImage) {
-      //   newForm = Object.fromEntries(
-      //     Object.entries(values).filter((n) => n[0] !== "image")
-      //   );
-      //   newForm.image = loadedImage;
-      // }
-
       handleForm(values);
     },
   });
 
   return (
-    <>
-      <Form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="title"
-          name="title"
-          label="title"
-          type="text"
-          value={formik.values.title}
-          onChange={formik.handleChange}
-          error={formik.touched.title && Boolean(formik.errors.title)}
-          helperText={formik.touched.title && formik.errors.title}
-        />
-        <TextField
-          fullWidth
-          id="description"
-          name="description"
-          label="description"
-          type="text"
-          value={formik.values.description}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.description && Boolean(formik.errors.description)
-          }
-          helperText={formik.touched.description && formik.errors.description}
-        />
+    <Form onSubmit={formik.handleSubmit}>
+      <TextField
+        fullWidth
+        id="title"
+        name="title"
+        label="title"
+        type="text"
+        value={formik.values.title}
+        onChange={formik.handleChange}
+        error={formik.touched.title && Boolean(formik.errors.title)}
+        helperText={formik.touched.title && formik.errors.title}
+      />
+      <TextField
+        fullWidth
+        id="description"
+        name="description"
+        label="description"
+        type="text"
+        value={formik.values.description}
+        onChange={formik.handleChange}
+        error={formik.touched.description && Boolean(formik.errors.description)}
+        helperText={formik.touched.description && formik.errors.description}
+      />
 
-        <TextField
-          fullWidth
-          id="price"
-          name="price"
-          label="price"
-          type="text"
-          value={formik.values.price}
-          onChange={formik.handleChange}
-          error={formik.touched.price && Boolean(formik.errors.price)}
-          helperText={formik.touched.price && formik.errors.price}
-        />
+      <TextField
+        fullWidth
+        id="price"
+        name="price"
+        label="price"
+        type="text"
+        value={formik.values.price}
+        onChange={formik.handleChange}
+        error={formik.touched.price && Boolean(formik.errors.price)}
+        helperText={formik.touched.price && formik.errors.price}
+      />
 
-        <TextField
-          fullWidth
-          id="date"
-          name="date"
-          label="date"
-          type="text"
-          value={formik.values.date}
-          onChange={formik.handleChange}
-          error={formik.touched.date && Boolean(formik.errors.date)}
-          helperText={formik.touched.date && formik.errors.date}
-        />
+      <TextField
+        fullWidth
+        id="date"
+        name="date"
+        label="date"
+        type="text"
+        value={formik.values.date}
+        onChange={formik.handleChange}
+        error={formik.touched.date && Boolean(formik.errors.date)}
+        helperText={formik.touched.date && formik.errors.date}
+      />
 
-        <TextField
-          fullWidth
-          id="status"
-          name="status"
-          label="status"
-          type="text"
-          value={formik.values.status}
-          onChange={formik.handleChange}
-          error={formik.touched.status && Boolean(formik.errors.status)}
-          helperText={formik.touched.status && formik.errors.status}
-        />
+      <TextField
+        fullWidth
+        id="status"
+        name="status"
+        label="status"
+        type="text"
+        value={formik.values.status}
+        onChange={formik.handleChange}
+        error={formik.touched.status && Boolean(formik.errors.status)}
+        helperText={formik.touched.status && formik.errors.status}
+      />
+      <Buttons>
+        <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>   
+          <ArrowBack /> Go back
+        </StyledButton>
 
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <StyledButton type="submit">
+          <Beenhere />
           Submit
-        </Button>
-      </Form>
-    </>
+        </StyledButton>
+      </Buttons>
+    </Form>
   );
 };
 

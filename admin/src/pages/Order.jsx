@@ -1,71 +1,87 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import styled from "styled-components";
-import Sidebar from "../components/Sidebar";
-import Widget from "../components/Widget";
-import ProductForm from "../components/OrderForm";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import {
-  fetchOneOrder,
-  fetchOneProduct,
-  updateOrder,
-  updateProduct,
-} from "../redux/apiCalls";
 import { useSelector, useDispatch } from "react-redux";
 
-import defaultProduct from "../images/defaultProduct.jpg";
-import OrderForm from "../components/ProductForm";
+import Navbar from "../components/Navbar";
+import OrderForm from "../components/OrderForm";
+import { fetchOneOrder, updateOrder } from "../redux/apiCalls";
+import { devices } from "../devices";
 
-const ProductContainer = styled.div`
+import styled from "styled-components";
+
+const OrderContainer = styled.div`
   padding: 50px;
-  display: flex;
+
+  @media ${devices.tablet} {
+    display: flex;
+  }
 `;
 
-const ImgContainer = styled.div`
+const ProductsContainer = styled.div`
   flex: 1;
 `;
 
-const Image = styled.img`
-  width: 100%;
-  height: 90vh;
-  object-fit: cover;
+const ProductRow = styled.div`
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid black;
+`;
+
+const ProductName = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+`;
+
+const ProductImage = styled.img`
+  max-width: 200px;
+  height: auto;
+`;
+
+const InfoContainer = styled.div`
+  flex: 1;
+  padding: 0px 50px;
 `;
 
 const Order = () => {
   const location = useLocation();
   const orderId = location.pathname.split("/")[2];
   const { isFetching, error, order } = useSelector((state) => state.order);
-  const { image } = useSelector((state) => state.image);
+  console.log(order);
 
   const dispatch = useDispatch();
 
   const handleForm = (formValues) => {
     updateOrder(dispatch, formValues, orderId);
-    // console.log(formValues);
   };
 
   useEffect(() => {
     fetchOneOrder(dispatch, orderId);
   }, [dispatch, orderId]);
 
-  //   const handleImageSrc = () => {
-  //     if (image) return `http://localhost:5000/${image}`;
-  //     if (order) return `http://localhost:5000/${order.image}`;
-  //     return defaultProduct;
-  //   };
-
   return (
     <>
       <Navbar />
-      <ProductContainer>
-        {!isFetching && order && (
-          <ProductForm
-            productValues={order}
-            handleForm={handleForm}
-          />
-        )}
-      </ProductContainer>
+
+      <OrderContainer>
+        <ProductsContainer>
+          {!isFetching &&
+            order &&
+            order.products.map((product) => (
+              <ProductRow>
+                <ProductName>{product.title} </ProductName>
+                <ProductImage src={`http://localhost:5000/${product.image}`} />
+              </ProductRow>
+            ))}
+        </ProductsContainer>
+        <InfoContainer>
+          {!isFetching && order && (
+            <OrderForm orderValues={order} handleForm={handleForm} />
+          )}
+        </InfoContainer>
+      </OrderContainer>
     </>
   );
 };
