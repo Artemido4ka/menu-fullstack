@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { login } from "../redux/apiCalls";
 import { useNavigate } from "react-router-dom";
-// import { mobile } from "../responsive";
+
+import { login } from "../redux/apiCalls";
+import { devices } from "../devices";
+
+import TextField from "@material-ui/core/TextField";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100vw;
@@ -21,9 +26,15 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 25%;
+  width: 75%;
   padding: 20px;
   background-color: white;
+  @media ${devices.tablet} {
+    width: 40%;
+  }
+  @media ${devices.laptopL} {
+    width: 30%;
+  }
 `;
 
 const Title = styled.h1`
@@ -44,6 +55,8 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
+  text-transform: uppercase;
+  margin-top: 20px;
   width: 40%;
   border: none;
   padding: 15px 20px;
@@ -68,9 +81,18 @@ const Error = styled.span`
   color: red;
 `;
 
+const validationSchema = yup.object({
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: yup
+    .string("Enter your password")
+    .min(4, "Password should be of minimum 4 characters length")
+    .required("Password is required"),
+});
+
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error, user } = useSelector((state) => state.user);
   let navigate = useNavigate();
@@ -81,26 +103,46 @@ const Login = () => {
     }
   }, [navigate, user]);
 
-  const handleLoginClick = (e) => {
-    e.preventDefault();
-    login(dispatch, { email, password });
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      login(dispatch, values);
+    },
+  });
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
-        <Form>
-          <Input
-            placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
+        <Form onSubmit={formik.handleSubmit}>
+          <TextField
+            fullWidth
+            id="email"
+            name="email"
+            label="email"
+            type="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
           />
-          <Input
+          <TextField
+            fullWidth
+            id="password"
+            name="password"
+            label="password"
             type="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
           />
-          <Button onClick={handleLoginClick} disabled={isFetching}>
-            LOGIN
+          <Button color="primary" variant="contained" fullWidth type="submit">
+            Submit
           </Button>
           {error && <Error>Something is wrong...</Error>}
           {/* <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link> */}

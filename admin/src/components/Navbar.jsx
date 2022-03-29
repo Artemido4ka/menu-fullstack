@@ -1,12 +1,13 @@
-import { Avatar, Badge } from "@material-ui/core";
-import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
-import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import { signout } from "../redux/apiCalls";
-// import { signout } from "../redux/apiCalls";
-// import { mobile } from "../responsive";
+
+import styled from "styled-components";
+import { Avatar } from "@material-ui/core";
+import { PowerSettingsNew } from "@material-ui/icons";
+import { StyledNavItem } from "./NavItem";
 
 const Container = styled.div`
   height: 60px;
@@ -59,7 +60,11 @@ const Navbar = () => {
         <Right>
           {user && (
             <>
-              <MenuItem onClick={signoutHandler}>Logout</MenuItem>
+              <MenuItem onClick={signoutHandler}>
+                <StyledNavItem>
+                  <span>Logout </span> <PowerSettingsNew />
+                </StyledNavItem>
+              </MenuItem>
               <MenuItem>
                 <Avatar alt="avatar" src={user.image ? user.image : null} />
               </MenuItem>

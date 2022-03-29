@@ -36,7 +36,7 @@ const Products = () => {
       <HomeWrapper>
         <ButtonContainer>
           <Link to={`/`}>
-            <StyledButton>
+            <StyledButton margin="0 20px 0 0">
               <ArrowBack />
               To home page
             </StyledButton>

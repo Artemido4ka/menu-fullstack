@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   display: flex;
-  margin-right: 20px;
+  /* margin-right: 20px; */
+  margin: ${(props) => (props.margin ? `${props.margin}` : "none")};
+  border: none;
   justify-content: center;
   align-items: center;
   font-weight: 600;
@@ -12,9 +14,10 @@ export const StyledButton = styled.button`
   background: rgba(75, 15, 125, 0.7);
   color: "white";
   background: ${(props) => (props.primary ? "teal" : "rgba(75, 15, 125, 0.7)")};
+  border: ${(props) => (props.primary ? "1px solid white" : "none")};
   color: ${(props) => (props.primary ? "white" : "white")};
   height: 35px;
-  border: none;
+
   border-radius: 3px;
   transition: all 0.5s ease-out;
   cursor: pointer;
