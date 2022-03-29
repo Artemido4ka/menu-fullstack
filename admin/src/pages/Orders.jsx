@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Navbar from "../components/Navbar";
-
 import { fetchOrders } from "../redux/apiCalls";
 import OrdersTable from "../components/OrdersTable";
 
@@ -38,21 +36,19 @@ const Orders = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Navbar />
-      <ProductContainer>
-        <HomeWrapper>
-          <ButtonContainer>
-            <Link to={`/`}>
-              <StyledButton startIcon={<ArrowBack />}>
-                To home page
-              </StyledButton>
-            </Link>
-          </ButtonContainer>
-          <OrdersTable orders={orders} />
-        </HomeWrapper>
-      </ProductContainer>
-    </>
+    <ProductContainer>
+      <HomeWrapper>
+        <ButtonContainer>
+          <Link to={`/`}>
+            <StyledButton>
+              <ArrowBack />
+              To home page
+            </StyledButton>
+          </Link>
+        </ButtonContainer>
+        <OrdersTable orders={orders} />
+      </HomeWrapper>
+    </ProductContainer>
   );
 };
 
