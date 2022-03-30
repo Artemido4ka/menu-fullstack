@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 
 import "./App.css";
 import Order from "./pages/Order";
+import User from "./pages/User";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
       <Route path="/orders/:id" element={<Order />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/users/:id" element={<User />} />
     </Routes>
   );
 };

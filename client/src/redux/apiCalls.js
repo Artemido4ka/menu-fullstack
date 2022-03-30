@@ -1,6 +1,11 @@
 import { publicRequest, userRequest } from "../requestMethods";
 import { clearCart } from "./cartSlice";
 import {
+  fetchImageError,
+  fetchImageSuccess,
+  fetchImageStart,
+} from "./imageSlice";
+import {
   fetchOrderError,
   fetchOrdersStart,
   createOrderSuccess,
@@ -15,6 +20,9 @@ import {
   registrateSuccess,
   registrateError,
   logout,
+  fetchUserStart,
+  fetchUserError,
+  fetchUserSuccess,
 } from "./userSlice";
 
 export const login = async (dispatch, user) => {
@@ -85,5 +93,32 @@ export const fetchOneUserOrder = async (dispatch, productId) => {
     dispatch(fetchUserOneOrderSuccess(res.data));
   } catch (err) {
     dispatch(fetchOrderError());
+  }
+};
+
+export const uploadImage = async (dispatch, image) => {
+  dispatch(fetchImageStart());
+  try {
+    const data = new FormData();
+    data.append("image", image);
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).post("images", data);
+    dispatch(fetchImageSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchImageError());
+  }
+};
+
+export const fetchUserProfile = async (dispatch, userId) => {
+  dispatch(fetchUserStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).get("users/" + userId);
+
+    dispatch(fetchUserSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchUserError());
   }
 };

@@ -6,12 +6,15 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
+  Request,
   UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { Roles } from 'src/auth/roles-auth.decorator';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -23,6 +26,12 @@ export class UsersController {
   @Get()
   getAll() {
     return this.usersService.getAllUsers();
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/:id')
+  getUser(@Request() req: any) {
+    return this.usersService.getUser(req.user.id);
   }
 
   // @Roles('ADMIN')

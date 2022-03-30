@@ -32,6 +32,9 @@ export class User {
   @Column({ default: null })
   activationCode: string;
 
+  @Column({ default: null })
+  avatar: string;
+
   @ManyToMany(() => Role, (role) => role.users)
   @JoinTable()
   roles: Role[];

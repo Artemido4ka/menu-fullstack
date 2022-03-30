@@ -42,6 +42,14 @@ export class UsersService {
     return users;
   }
 
+  async getUser(userId: string) {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      // relations: ['roles'],
+    });
+    return user;
+  }
+
   async getUsersByEmail(email: string) {
     const user = await this.userRepository.findOne({
       where: { email: email },
