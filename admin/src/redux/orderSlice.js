@@ -26,11 +26,6 @@ const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    // createProductSuccess: (state, action) => {
-    //   state.isFetching = false;
-    //   state.error = false;
-    //   state.products.push(action.payload);
-    // },
   },
 });
 
@@ -39,6 +34,5 @@ export const {
   fetchOrdersSuccess,
   fetchOneOrderSuccess,
   fetchOrderError,
-  //   createProductSuccess,
 } = productSlice.actions;
 export default productSlice.reducer;

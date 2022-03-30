@@ -112,11 +112,11 @@ const OrderForm = ({ loadedImage, handleForm, orderValues }) => {
         helperText={formik.touched.status && formik.errors.status}
       />
       <Buttons>
-        <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>   
+        <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
           <ArrowBack /> Go back
         </StyledButton>
 
-        <StyledButton type="submit">
+        <StyledButton type="submit" primary>
           <Beenhere />
           Submit
         </StyledButton>

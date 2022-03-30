@@ -8,5 +8,6 @@ export default configureStore({
     cart: cartReducer,
     user: userReducer,
     order: orderSlice,
+    
   },
 });

@@ -66,11 +66,29 @@ export class OrdersService {
   }
 
   async getUserOrders(userId) {
-    const orders = await this.orderRepository.find({ where: { userId } });
-    console.log(orders, 'ODRERS');
+    const orders = await this.orderRepository.find({
+      where: { userId },
+      relations: ['products'],
+    });
+
     if (!orders) {
       throw new NotFoundException('orders of user not found');
     }
     return orders;
+  }
+
+  async getOneUserOrder(userId, orderId) {
+    const order = await this.orderRepository.findOne({
+      where: { id: orderId },
+      relations: ['products', 'user'],
+    });
+    if (!order) {
+      throw new NotFoundException('orders of user not found');
+    }
+    if (order.user.id !== userId) {
+      throw new NotFoundException('user not found');
+    }
+
+    return order;
   }
 }

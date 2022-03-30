@@ -1,9 +1,11 @@
 import { publicRequest, userRequest } from "../requestMethods";
 import { clearCart } from "./cartSlice";
 import {
-  operateOrderError,
-  operateOrderStart,
+  fetchOrderError,
+  fetchOrdersStart,
   createOrderSuccess,
+  fetchUserOrdersSuccess,
+  fetchUserOneOrderSuccess,
 } from "./orderSlice";
 import {
   loginError,
@@ -47,14 +49,41 @@ export const signout = () => (dispatch) => {
 };
 
 export const createOrder = async (dispatch, newOrder) => {
-  dispatch(operateOrderStart());
+  dispatch(fetchOrdersStart());
   try {
-    const res = await userRequest(localStorage.getItem("currentUserToken").replace(/['"]+/g, "")).post("orders", newOrder);
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).post("orders", newOrder);
     console.log(res.data);
     dispatch(createOrderSuccess(res.data));
     dispatch(clearCart());
   } catch (err) {
-    dispatch(operateOrderError());
+    dispatch(fetchOrderError());
     throw new Error();
+  }
+};
+
+export const fetchOrders = async (dispatch) => {
+  dispatch(fetchOrdersStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).get("orders/user");
+    dispatch(fetchUserOrdersSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchOrderError());
+  }
+};
+
+export const fetchOneUserOrder = async (dispatch, productId) => {
+  dispatch(fetchOrdersStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).get("orders/user/" + productId);
+    console.log(res.data);
+    dispatch(fetchUserOneOrderSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchOrderError());
   }
 };

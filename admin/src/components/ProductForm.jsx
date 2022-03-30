@@ -166,12 +166,12 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
             <ArrowBack /> Go back
           </StyledButton>
 
-          <StyledButton margin="0 20px 0 0" onClick={handleClick}>
+          <StyledButton margin="0 20px 0 0" onClick={handleClick}  background="rgba(23, 35, 143, 0.8);">  
             <AddPhotoAlternate /> Upload image
           </StyledButton>
         </>
 
-        <StyledButton type="submit">
+        <StyledButton type="submit" primary>
           <Beenhere />
           Submit
         </StyledButton>

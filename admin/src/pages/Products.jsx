@@ -42,7 +42,7 @@ const Products = () => {
             </StyledButton>
           </Link>
           <Link to={`/products/new`}>
-            <StyledButton>
+            <StyledButton primary>
               <Create />
               Create New Product
             </StyledButton>

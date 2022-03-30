@@ -53,7 +53,7 @@ const Navbar = () => {
       <Wrapper>
         <Link to="/">
           <Left>
-            <Logo>Menu.</Logo>
+            <Logo>Menu</Logo>
           </Left>
         </Link>
         <Right>

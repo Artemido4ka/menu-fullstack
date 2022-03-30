@@ -4,11 +4,12 @@ const orderSlice = createSlice({
   name: "order",
   initialState: {
     orders: [],
+    order: null,
     isFetching: false,
     error: false,
   },
   reducers: {
-    operateOrderStart: (state) => {
+    fetchOrdersStart: (state) => {
       state.isFetching = true;
     },
     createOrderSuccess: (state, action) => {
@@ -16,16 +17,28 @@ const orderSlice = createSlice({
       state.error = false;
       state.orders.push(action.payload);
     },
-    operateOrderError: (state) => {
+    fetchOrderError: (state) => {
       state.isFetching = false;
       state.error = true;
+    },
+    fetchUserOrdersSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+      state.orders = action.payload;
+    },
+    fetchUserOneOrderSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+      state.order = action.payload;
     },
   },
 });
 
 export const {
-  operateOrderStart,
-  operateOrderError,
+  fetchOrdersStart,
+  fetchOrderError,
   createOrderSuccess,
+  fetchUserOrdersSuccess,
+  fetchUserOneOrderSuccess,
 } = orderSlice.actions;
 export default orderSlice.reducer;

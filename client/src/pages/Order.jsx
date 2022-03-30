@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import Navbar from "../components/Navbar";
-import OrderForm from "../components/OrderForm";
-import { fetchOneOrder, updateOrder } from "../redux/apiCalls";
+import { fetchOneUserOrder } from "../redux/apiCalls";
 import { devices } from "../devices";
 
 import styled from "styled-components";
+import OrderInfo from "../components/OrderInfo";
 
 const OrderContainer = styled.div`
   padding: 50px;
@@ -53,11 +53,11 @@ const Order = () => {
   const dispatch = useDispatch();
 
   const handleForm = (formValues) => {
-    updateOrder(dispatch, formValues, orderId);
+    // updateOrder(dispatch, formValues, orderId);
   };
 
   useEffect(() => {
-    fetchOneOrder(dispatch, orderId);
+    fetchOneUserOrder(dispatch, orderId);
   }, [dispatch, orderId]);
 
   return (
@@ -77,7 +77,7 @@ const Order = () => {
         </ProductsContainer>
         <InfoContainer>
           {!isFetching && order && (
-            <OrderForm orderValues={order} handleForm={handleForm} />
+            <OrderInfo orderValues={order} handleForm={handleForm} />
           )}
         </InfoContainer>
       </OrderContainer>

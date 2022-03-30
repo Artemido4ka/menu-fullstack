@@ -41,8 +41,21 @@ export class OrdersController {
   @UseGuards(RolesGuard)
   @Put(':id')
   updateOrder(@Body() dto: any, @Param('id') id: string) {
-    // console.log(dto, 'DTO');
     return this.ordersService.updateOrder(dto, id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/user')
+  getUserOrders(@Request() req: any) {
+    return this.ordersService.getUserOrders(req.user.id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Roles('USER')
+  @UseGuards(RolesGuard)
+  @Get('/user/:id')
+  getOneUserOrder(@Request() req: any, @Param('id') orderId: string) {
+    return this.ordersService.getOneUserOrder(req.user.id, orderId);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -59,11 +72,5 @@ export class OrdersController {
   @Get(':id')
   getOneOrder(@Param('id') id: string) {
     return this.ordersService.getOneOrder(id);
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Get('user')
-  getUserOrders(@Request() req: any) {
-    return this.ordersService.getUserOrders(req.user.id);
   }
 }

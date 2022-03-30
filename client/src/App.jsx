@@ -8,6 +8,7 @@ import Product from "./pages/Product";
 import Register from "./pages/Register";
 
 import "./App.css";
+import Order from "./pages/Order";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path="/product/:id" element={<Product />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/orders" element={<Orders />} />
+      <Route path="/orders/:id" element={<Order />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Routes>
