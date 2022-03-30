@@ -1,9 +1,15 @@
 import { RolesService } from './../roles/roles.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.entity';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -47,7 +53,52 @@ export class UsersService {
       where: { id: userId },
       // relations: ['roles'],
     });
-    return user;
+    console.log(user);
+    const res = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password,
+      avatar: user.avatar,
+    };
+    return res;
+  }
+
+  async updateUser(dto: any, userId: string) {
+    const candidate = await this.userRepository.findOne({
+      where: { id: userId },
+    });
+
+    if (!candidate) {
+      throw new NotFoundException('User not found');
+    }
+    const passwordEquals = await bcrypt.compare(
+      dto.password,
+      candidate.password,
+    );
+
+    // в случаи если пароль несовпадает и новый и он не сатрый, хэшируем заново
+    let hashPassword = candidate.password;
+    if (!passwordEquals && dto.password !== candidate.password) {
+      hashPassword = await bcrypt.hash(dto.password, 5);
+    }
+
+    const updatedUser = await this.userRepository.save({
+      ...candidate,
+      ...dto,
+      password: hashPassword,
+    });
+
+    const res = {
+      id: updatedUser.id,
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      email: updatedUser.email,
+      password: updatedUser.password,
+      avatar: updatedUser.avatar,
+    };
+    return res;
   }
 
   async getUsersByEmail(email: string) {

@@ -122,3 +122,17 @@ export const fetchUserProfile = async (dispatch, userId) => {
     dispatch(fetchUserError());
   }
 };
+
+export const updateUser = async (dispatch, updatedUser) => {
+  dispatch(fetchUserStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).put("users/", updatedUser);
+    console.log(res.data);
+    localStorage.setItem("currentUser", JSON.stringify(res.data));
+    dispatch(fetchUserSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchUserError());
+  }
+};

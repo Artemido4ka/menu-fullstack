@@ -62,10 +62,20 @@ const Navbar = () => {
           </Link>
           {user ? (
             <>
+              {console.log(user)}
               <MenuItem onClick={signoutHandler}>Logout</MenuItem>
-              <MenuItem>
-                <Avatar alt="avatar" src={user.image ? user.image : null} />
-              </MenuItem>
+              <Link to={`/users/${user.id}`}>
+                <MenuItem>
+                  <Avatar
+                    alt="avatar"
+                    src={
+                      user.avatar
+                        ? `http://localhost:5000/${user.avatar}`
+                        : null
+                    }
+                  />
+                </MenuItem>
+              </Link>
             </>
           ) : (
             <>

@@ -8,6 +8,7 @@ import {
   Get,
   Param,
   Post,
+  Put,
   Request,
   UseGuards,
   UsePipes,
@@ -32,6 +33,14 @@ export class UsersController {
   @Get('/:id')
   getUser(@Request() req: any) {
     return this.usersService.getUser(req.user.id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Put()
+  updateUser(@Request() req: any, @Body() dto: any) {
+    // console.log(dto);
+    // console.log(req.user.id);
+    return this.usersService.updateUser(dto, req.user.id);
   }
 
   // @Roles('ADMIN')

@@ -41,13 +41,7 @@ export class ProductsController {
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Put(':id')
-  // @UseInterceptors(FileInterceptor('image'))
-  updateProduct(
-    @Body() dto: any,
-    @Param('id') id: string,
-    // @UploadedFile() image,
-  ) {
-    console.log(dto, 'DTO');
+  updateProduct(@Body() dto: any, @Param('id') id: string) {
     return this.productsService.updateProduct(dto, id);
   }
 
