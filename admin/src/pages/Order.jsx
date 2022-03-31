@@ -52,8 +52,8 @@ const Order = () => {
 
   const dispatch = useDispatch();
 
-  const handleForm = (formValues) => {
-    updateOrder(dispatch, formValues, orderId);
+  const handleForm = (orderFormValues) => {
+    updateOrder(dispatch, orderFormValues, orderId);
   };
 
   useEffect(() => {

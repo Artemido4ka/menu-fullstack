@@ -1,13 +1,12 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import { StyledButton } from "./StyledButton";
 import { ArrowBack, Beenhere } from "@material-ui/icons";
-import { useNavigate } from "react-router-dom";
 
 const Buttons = styled.div`
   display: flex;
@@ -27,24 +26,14 @@ const validationSchema = yup.object({
   //     .required("Password is required"),
 });
 
-const OrderForm = ({ loadedImage, handleForm, orderValues }) => {
-  const dispatch = useDispatch();
-
+const OrderForm = ({ handleForm, orderValues }) => {
   let navigate = useNavigate();
   const onClickHandler = () => {
     navigate("/orders");
   };
 
   const formik = useFormik({
-    initialValues: orderValues
-      ? orderValues
-      : {
-          title: "",
-          description: "",
-          price: "",
-          date: "",
-          status: "",
-        },
+    initialValues: orderValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
       handleForm(values);
