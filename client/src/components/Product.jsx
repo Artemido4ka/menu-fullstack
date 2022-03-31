@@ -1,9 +1,12 @@
-import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import CustomizedDialogs from "./InfoProduct";
+
+import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
+
+import styled from "styled-components";
 
 const Info = styled.div`
   opacity: 0;
@@ -18,7 +21,6 @@ const Info = styled.div`
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
-  // cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -33,7 +35,7 @@ const Title = styled.div`
   justify-content: center;
   transition: all 0.5s ease;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const Container = styled.div`
@@ -78,6 +80,7 @@ const Icon = styled.div`
   justify-content: center;
   margin: 10px;
   transition: all 0.5s ease;
+  cursor: pointer;
   &:hover {
     background-color: #e9f5f5;
     transform: scale(1.1);
@@ -87,10 +90,11 @@ const Icon = styled.div`
 const Product = ({ item }) => {
   const [open, setOpen] = useState(false);
   const { user } = useSelector((state) => state.user);
-  // const signoutHandler = () => {
-  //   dispatch(signout());
-  //   navigate("/");
-  // };
+
+  const navigate = useNavigate();
+  const redirectToProductHandler = () => {
+    navigate(user ? `/product/${item.id}` : `/login`);
+  };
 
   const handleClickOpen = () => {
     setOpen(!open);
@@ -104,11 +108,9 @@ const Product = ({ item }) => {
         <Icon onClick={handleClickOpen}>
           <SearchOutlined />
         </Icon>
-        <Link to={user ? `/product/${item.id}` : `/login`}>
-          <Icon>
-            <ShoppingCartOutlined />
-          </Icon>
-        </Link>
+        <Icon onClick={() => redirectToProductHandler()}>
+          <ShoppingCartOutlined />
+        </Icon>
       </Info>
       <Title>{item.title}</Title>
       {open ? <CustomizedDialogs handleOpen={setOpen} product={item} /> : null}

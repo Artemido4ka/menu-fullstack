@@ -1,11 +1,16 @@
-import { Avatar, Badge } from "@material-ui/core";
-import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+
 import { signout } from "../redux/apiCalls";
-// import { mobile } from "../responsive";
+
+import styled from "styled-components";
+import { Avatar, Badge } from "@material-ui/core";
+import {
+  Fastfood,
+  PowerSettingsNew,
+  ShoppingCartOutlined,
+} from "@material-ui/icons";
 
 const Container = styled.div`
   height: 60px;
@@ -25,7 +30,15 @@ const Left = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 1.3s;
+  :hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
 `;
+
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -34,9 +47,23 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  color: white;
+  text-transform: uppercase;
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
+  transition: 1.3s;
+  :hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  }
+`;
+
+const MenuItemText = styled.span`
+  margin-right: 5px;
 `;
 
 const Navbar = () => {
@@ -44,6 +71,7 @@ const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const { user } = useSelector((state) => state.user);
   let navigate = useNavigate();
+
   const signoutHandler = () => {
     dispatch(signout());
     navigate("/");
@@ -58,12 +86,17 @@ const Navbar = () => {
         </Link>
         <Right>
           <Link to="/orders">
-            <MenuItem>ORDERS</MenuItem>
+            <MenuItem>
+              <MenuItemText>orders </MenuItemText>
+              <Fastfood />
+            </MenuItem>
           </Link>
           {user ? (
             <>
-              {console.log(user)}
-              <MenuItem onClick={signoutHandler}>Logout</MenuItem>
+              <MenuItem onClick={signoutHandler}>
+                <MenuItemText>logout </MenuItemText>
+                <PowerSettingsNew />
+              </MenuItem>
               <Link to={`/users/${user.id}`}>
                 <MenuItem>
                   <Avatar
