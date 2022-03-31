@@ -48,17 +48,17 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
   };
 
   const formik = useFormik({
-    initialValues: productValues,
-    // ? productValues
-    // : {
-    //     title: "",
-    //     description: "",
-    //     fats: "",
-    //     proteins: "",
-    //     carbohydrates: "",
-    //     price: "",
-    //     weight: "",
-    //   },
+    initialValues: productValues
+    ? productValues
+    : {
+        title: "",
+        description: "",
+        fats: "",
+        proteins: "",
+        carbohydrates: "",
+        price: "",
+        weight: "",
+      },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       let newValues = { ...values };

@@ -1,21 +1,13 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import styled from "styled-components";
-import Sidebar from "../components/Sidebar";
-import Widget from "../components/Widget";
-
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import {
-  createProduct,
-  fetchOneProduct,
-  updateProduct,
-} from "../redux/apiCalls";
 import { useSelector, useDispatch } from "react-redux";
 
+import Navbar from "../components/Navbar";
+import { createProduct } from "../redux/apiCalls";
 import defaultProduct from "../images/defaultProduct.jpg";
 import ProductForm from "../components/ProductForm";
 import { devices } from "../devices";
+
+import styled from "styled-components";
 
 const ProductContainer = styled.div`
   padding: 50px;
