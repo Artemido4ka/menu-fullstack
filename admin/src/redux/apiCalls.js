@@ -17,7 +17,7 @@ import {
   fetchProductsSuccess,
 } from "./productSlice";
 import { userRequest, publicRequest } from "./requestMethods";
-import { loginError, loginStart, loginSuccess, logout } from "./userSlice";
+import { fetchUserError, fetchUserStart, fetchUserSuccess, loginError, loginStart, loginSuccess, logout } from "./userSlice";
 
 export const fetchProducts = async (dispatch) => {
   dispatch(fetchProductsStart());
@@ -131,5 +131,32 @@ export const updateOrder = async (dispatch, newOrder, productId) => {
     dispatch(fetchOneOrderSuccess(res.data));
   } catch (err) {
     dispatch(fetchOrderError());
+  }
+};
+
+export const fetchUserProfile = async (dispatch, userId) => {
+  dispatch(fetchUserStart ());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).get("users/" + userId);
+
+    dispatch(fetchUserSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchUserError());
+  }
+};
+
+export const updateUser = async (dispatch, updatedUser) => {
+  dispatch(fetchUserStart());
+  try {
+    const res = await userRequest(
+      localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+    ).put("users/", updatedUser);
+    console.log(res.data);
+    localStorage.setItem("currentUser", JSON.stringify(res.data));
+    dispatch(fetchUserSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchUserError());
   }
 };

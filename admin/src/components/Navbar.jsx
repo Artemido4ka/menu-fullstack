@@ -66,7 +66,19 @@ const Navbar = () => {
                 </StyledNavItem>
               </MenuItem>
               <MenuItem>
-                <Avatar alt="avatar" src={user.image ? user.image : null} />
+              <Link to={`/users/${user.id}`}>
+                <MenuItem>
+                  <Avatar
+                    alt="avatar"
+                    src={
+                      user.avatar
+                        ? `http://localhost:5000/${user.avatar}`
+                        : null
+                    }
+                  />
+                </MenuItem>
+              </Link>
+                {/* <Avatar alt="avatar" src={user.image ? user.image : null} /> */}
               </MenuItem>
             </>
           )}
