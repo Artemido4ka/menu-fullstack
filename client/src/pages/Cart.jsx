@@ -7,6 +7,7 @@ import CashModal from "../components/CashModal";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { createOrder } from "../redux/apiCalls";
+import { changeProductQuantity } from "../redux/cartSlice";
 // import { mobile } from "../responsive";
 
 const Container = styled.div``;
@@ -138,6 +139,8 @@ const Cart = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
+  // const [quantity, setQuantity] = useState(1);
+
   const createNewOrder = async (newOrder) => {
     try {
       await createOrder(dispatch, newOrder);
@@ -145,6 +148,21 @@ const Cart = () => {
     } catch (e) {
       console.log("not good");
     }
+  };
+
+  // @TODO
+  const handleQuantity = (type, product) => {
+    let priceDiff = 0;
+    let newQuantity = product.quantity;
+    if (type === "dec") {
+      product.quantity > 1 &&
+        (newQuantity = product.quantity - 1) &&
+        (priceDiff = -product.price);
+    } else {
+      newQuantity = product.quantity + 1;
+      priceDiff = product.price;
+    }
+    dispatch(changeProductQuantity({ ...product, newQuantity, priceDiff }));
   };
 
   return (
@@ -172,11 +190,18 @@ const Cart = () => {
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
+                  {console.log(product)}
+
                   <ProductAmountContainer>
-                    <Add />
+                    <Add
+                      onClick={() => handleQuantity("inc", product)}
+                      />
                     <ProductAmount> {product.quantity}</ProductAmount>
-                    <Remove />
+                    <Remove
+                     onClick={() => handleQuantity("dec", product)} 
+                     />
                   </ProductAmountContainer>
+
                   <ProductPrice>
                     $ {product.price * product.quantity}
                   </ProductPrice>
