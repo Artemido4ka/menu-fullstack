@@ -44,7 +44,6 @@ const Product = () => {
 
   const handleForm = (formValues) => {
     updateProduct(dispatch, formValues, productId);
-    console.log(formValues);
   };
 
   useEffect(() => {
