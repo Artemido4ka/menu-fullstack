@@ -12,6 +12,7 @@ import {
   fetchUserOrdersSuccess,
   fetchUserOneOrderSuccess,
 } from "./orderSlice";
+import { fetchOneProductSuccess, fetchProductsError, fetchProductsStart, fetchProductsSuccess } from "./productSlice";
 import {
   loginError,
   loginStart,
@@ -134,5 +135,27 @@ export const updateUser = async (dispatch, updatedUser) => {
     dispatch(fetchUserSuccess(res.data));
   } catch (err) {
     dispatch(fetchUserError());
+  }
+};
+
+export const fetchProducts = async (dispatch) => {
+  dispatch(fetchProductsStart());
+  try {
+    const res = await publicRequest.get("products");
+    dispatch(fetchProductsSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchProductsError());
+  }
+};
+
+
+export const fetchOneProduct = async (dispatch, productId) => {
+  dispatch(fetchProductsStart());
+  try {
+    const res = await publicRequest.get("/products/" + productId);
+    dispatch(fetchOneProductSuccess(res.data));
+    console.log(res.data)
+  } catch (err) {
+    dispatch(fetchProductsError());
   }
 };

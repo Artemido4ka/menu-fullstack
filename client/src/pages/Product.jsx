@@ -1,12 +1,13 @@
 import { Add, Remove } from "@material-ui/icons";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { publicRequest } from "../requestMethods";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { addProduct } from "../redux/cartSlice";
+import { fetchOneProduct } from "../redux/apiCalls";
 
 const Container = styled.div``;
 
@@ -80,21 +81,15 @@ const Button = styled.button`
 
 const Product = () => {
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
-  const [product, setProduct] = useState({});
+  const productId = location.pathname.split("/")[2];
+  const { isFetching, error, product } = useSelector((state) => state.product);
+
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getProduct = async () => {
-      try {
-        const res = await publicRequest.get("/products/" + id);
-        console.log(res.data);
-        setProduct(res.data);
-      } catch (err) {}
-    };
-    getProduct();
-  }, [id]);
+    fetchOneProduct(dispatch, productId);
+  }, [dispatch, productId]);
 
   const handleQuantity = (type) => {
     if (type === "dec") {
@@ -111,25 +106,28 @@ const Product = () => {
   return (
     <Container>
       <Navbar />
-      <Wrapper>
-        <ImgContainer>
-          <Image src={`http://localhost:5000/${product.image}`} />
-        </ImgContainer>
-        <InfoContainer>
-          <Title> {product.title}</Title>
-          <Desc>{product.description}</Desc>
-          <Price>$ {product.price}</Price>
+      {!isFetching && product && (
+        <Wrapper>
+          <ImgContainer>
+            <Image src={`http://localhost:5000/${product.image}`} />
+          </ImgContainer>
+          <InfoContainer>
+            <Title> {product.title}</Title>
+            <Desc>{product.description}</Desc>
+            <Price>$ {product.price}</Price>
 
-          <AddContainer>
-            <AmountContainer>
-              <Remove onClick={() => handleQuantity("dec")} />
-              <Amount>{quantity}</Amount>
-              <Add onClick={() => handleQuantity("inc")} />
-            </AmountContainer>
-            <Button onClick={handleAddToCartClick}>ADD TO CART</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
+            <AddContainer>
+              <AmountContainer>
+                <Remove onClick={() => handleQuantity("dec")} />
+                <Amount>{quantity}</Amount>
+                <Add onClick={() => handleQuantity("inc")} />
+              </AmountContainer>
+              <Button onClick={handleAddToCartClick}>ADD TO CART</Button>
+            </AddContainer>
+          </InfoContainer>
+        </Wrapper>
+      )}
+
       <Footer />
     </Container>
   );

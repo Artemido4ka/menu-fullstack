@@ -17,6 +17,7 @@ const cartSlice = createSlice({
       state.totalPrice += action.payload.price * action.payload.quantity;
     },
     clearCart: () => initialState,
+    
     changeProductQuantity: (state, action) => {
 
       state.products = state.products.map((product) => {

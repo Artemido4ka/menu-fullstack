@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Product from "./Product";
-import axios from "axios";
+
+import { fetchProducts } from "../redux/apiCalls";
+
+import styled from "styled-components";
 
 const Container = styled.div`
   padding: 20px;
@@ -11,16 +15,13 @@ const Container = styled.div`
 `;
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const { isFetching, error, products } = useSelector((state) => state.product);
+
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/products");
-        setProducts(res.data);
-      } catch (err) {}
-    };
-    getProducts();
-  }, []);
+    fetchProducts(dispatch);
+  }, [dispatch]);
+
   return (
     <Container>
       {products.map((item) => (
