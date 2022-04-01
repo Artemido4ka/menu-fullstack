@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { publicRequest } from "../requestMethods";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { fetchOneProduct } from "../redux/apiCalls/product.api";
 import { addProduct } from "../redux/cartSlice";
-import { fetchOneProduct } from "../redux/apiCalls";
+// import { fetchOneProduct } from "../redux/apiCalls";
 
 const Container = styled.div``;
 

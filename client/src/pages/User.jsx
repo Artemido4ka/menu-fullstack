@@ -8,7 +8,7 @@ import { devices } from "../devices";
 
 import styled from "styled-components";
 import UserForm from "../components/UserForm";
-import { fetchUserProfile, updateUser } from "../redux/apiCalls";
+import { fetchUserProfile, updateUser } from "../redux/apiCalls/user.api";
 
 const UserContainer = styled.div`
   padding: 50px;

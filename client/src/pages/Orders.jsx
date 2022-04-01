@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchOrders } from "../redux/apiCalls";
+import { fetchOrders } from "../redux/apiCalls/order.api";
 import OrdersTable from "../components/OrdersTable";
 
 import { StyledButton } from "../components/StyledButton";

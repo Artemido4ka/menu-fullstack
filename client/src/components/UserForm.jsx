@@ -2,14 +2,15 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { uploadImage } from "../redux/apiCalls";
+import { uploadImage } from "../redux/apiCalls/image.api";
+import { StyledButton } from "./StyledButton";
 
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
-import { StyledButton } from "./StyledButton";
+
 import { AddPhotoAlternate, ArrowBack, Beenhere } from "@material-ui/icons";
-import { useNavigate } from "react-router-dom";
 
 const Input = styled.input`
   display: none;

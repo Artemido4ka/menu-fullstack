@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { registrate } from "../redux/apiCalls";
+import { registrate } from "../redux/apiCalls/auth.api";
 import { devices } from "../devices";
 
 import TextField from "@material-ui/core/TextField";

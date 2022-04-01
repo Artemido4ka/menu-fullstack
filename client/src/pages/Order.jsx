@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import Navbar from "../components/Navbar";
-import { fetchOneUserOrder } from "../redux/apiCalls";
+import { fetchOneUserOrder } from "../redux/apiCalls/order.api";
 import { devices } from "../devices";
 
 import styled from "styled-components";

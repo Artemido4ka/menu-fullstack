@@ -6,7 +6,7 @@ import styled from "styled-components";
 import CashModal from "../components/CashModal";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { createOrder } from "../redux/apiCalls";
+import { createOrder } from "../redux/apiCalls/order.api";
 import { changeProductQuantity } from "../redux/cartSlice";
 // import { mobile } from "../responsive";
 

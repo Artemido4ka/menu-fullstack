@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Product from "./Product";
 
-import { fetchProducts } from "../redux/apiCalls";
+import { fetchProducts } from "../redux/apiCalls/product.api";
 
 import styled from "styled-components";
 
