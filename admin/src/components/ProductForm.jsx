@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 
-import { uploadImage } from "../redux/apiCalls";
+import { uploadImage } from "../redux/apiCalls/image.api";
 
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";

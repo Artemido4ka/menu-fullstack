@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import ProductsTable from "../components/ProductsTable";
-import { fetchProducts } from "../redux/apiCalls";
+import { fetchProducts } from "../redux/apiCalls/product.api";
 
 import styled from "styled-components";
 import { ArrowBack, Create } from "@material-ui/icons";

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Navbar from "../components/Navbar";
 import OrderForm from "../components/OrderForm";
-import { fetchOneOrder, updateOrder } from "../redux/apiCalls";
+import { fetchOneOrder, updateOrder } from "../redux/apiCalls/order.api";
 import { devices } from "../devices";
 
 import styled from "styled-components";

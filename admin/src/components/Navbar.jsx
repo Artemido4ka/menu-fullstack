@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { signout } from "../redux/apiCalls";
+import { signout } from "../redux/apiCalls/auth.api";
 
 import styled from "styled-components";
 import { Avatar } from "@material-ui/core";
