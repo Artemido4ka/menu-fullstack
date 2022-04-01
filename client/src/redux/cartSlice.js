@@ -12,12 +12,25 @@ const cartSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       console.log(action.payload)
-      state.quantity += 1;
-      state.products.push(action.payload);
+      let isNew = true;
+
+      state.products = state.products.map((product) => {
+        if (product.id === action.payload.id) {
+          product.quantity = product.quantity + action.payload.quantity;
+          isNew = false;
+
+        }
+        return product
+      })
+      if (isNew) state.products.push(action.payload);
+
+      state.quantity += action.payload.quantity;
+
+
       state.totalPrice += action.payload.price * action.payload.quantity;
     },
     clearCart: () => initialState,
-    
+
     changeProductQuantity: (state, action) => {
 
       state.products = state.products.map((product) => {
