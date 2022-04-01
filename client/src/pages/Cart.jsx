@@ -135,19 +135,15 @@ const Button = styled.button`
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const quantity = useSelector((state) => state.cart.quantity);
   const [cash, setCash] = useState(false);
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  // const [quantity, setQuantity] = useState(1);
-
-  const createNewOrder = async (newOrder) => {
-    try {
-      await createOrder(dispatch, newOrder);
-      navigate("/");
-    } catch (e) {
-      console.log("not good");
-    }
+  //TODO add handle close/open
+  const createNewOrder = (newOrder) => {
+    createOrder(dispatch, newOrder);
+    // navigate("/");
   };
 
   // @TODO
@@ -173,7 +169,7 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({quantity})</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
@@ -193,13 +189,9 @@ const Cart = () => {
                   {console.log(product)}
 
                   <ProductAmountContainer>
-                    <Add
-                      onClick={() => handleQuantity("inc", product)}
-                      />
+                    <Add onClick={() => handleQuantity("inc", product)} />
                     <ProductAmount> {product.quantity}</ProductAmount>
-                    <Remove
-                     onClick={() => handleQuantity("dec", product)} 
-                     />
+                    <Remove onClick={() => handleQuantity("dec", product)} />
                   </ProductAmountContainer>
 
                   <ProductPrice>

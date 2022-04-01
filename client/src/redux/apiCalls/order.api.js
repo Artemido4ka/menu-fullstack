@@ -13,7 +13,6 @@ export const createOrder = async (dispatch, newOrder) => {
       dispatch(clearCart());
     } catch (err) {
       dispatch(fetchOrderError());
-      throw new Error();
     }
   };
   
