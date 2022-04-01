@@ -101,6 +101,7 @@ const Product = () => {
 
   const handleAddToCartClick = () => {
     dispatch(addProduct({ ...product, quantity }));
+    setQuantity(1);
   };
 
   return (
