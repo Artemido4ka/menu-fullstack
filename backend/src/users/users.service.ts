@@ -53,7 +53,6 @@ export class UsersService {
       where: { id: userId },
       // relations: ['roles'],
     });
-    console.log(user);
     const res = {
       id: user.id,
       firstName: user.firstName,

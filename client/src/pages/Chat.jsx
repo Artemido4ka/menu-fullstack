@@ -1,11 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Products from "../components/Products";
-import Slider from "../components/Slider";
-
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
+
+import Navbar from "../components/Navbar";
 import { devices } from "../devices";
 
 import styled from "styled-components";
@@ -14,7 +11,7 @@ const socket = io("http://localhost:5000/");
 
 const ChatContainer = styled.div`
   max-width: 700px;
-  margin: 0 auto;
+  margin: 50px auto;
   border: 1px solid teal;
   border-radius: 5px;
 `;
@@ -22,18 +19,17 @@ const ChatContainer = styled.div`
 const ChatPanel = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   height: 70vh;
 `;
 
 const ChatDisplay = styled.div`
-  overflow: scroll;
+  overflow-y: scroll;
 `;
-
 const ChatBottom = styled.div`
   background: teal;
   padding: 20px;
   display: flex;
-  bottom: 0;
   border-radius: 5px;
 `;
 
@@ -57,6 +53,7 @@ const Message = styled.div`
   display: flex;
   padding: 5px;
   max-width: 40%;
+  margin-left: ${(props) => (props.isMine ? "60%" : "none")};
 `;
 
 const MessageAuthor = styled.div`
@@ -71,11 +68,9 @@ const MessageText = styled.div`
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
-  const [joined, setJoined] = useState(false);
-  //   const [name, setName] = useState("");
   const [typingDisplay, setTypingDisplay] = useState("");
 
-  const dummy = useRef(null);
+  const scrollPoint = useRef(null);
 
   const { user } = useSelector((state) => state.user);
 
@@ -96,32 +91,22 @@ const Chat = () => {
         setTypingDisplay("");
       }
     });
-  }, []);
 
-  //для отчистки инпута
+    scrollPoint.current.scrollIntoView({ behavior: "smooth" });
+  }, [scrollPoint.current]);
+
   const sendMessage = () => {
-    socket.emit("createMessage", { text: messageText }, () => {
+    socket.emit("createMessage", { messageText, userId: user.id }, () => {
       setMessageText("");
-      dummy.current.scrollIntoView({ behavior: "smooth" });
+      scrollPoint.current.scrollIntoView({ behavior: "smooth" });
     });
   };
 
-  const join = () => {
-    //отправляем имя
-    console.log(user);
-    socket.emit("join", { name: user.firstName }, () => setJoined(true));
-  };
-
-  let timeout;
   const emitTyping = () => {
-    socket.emit("typing", { isTyping: true });
-    timeout = setTimeout(() => {
-      socket.emit("typing", { isTyping: false });
+    socket.emit("typing", { isTyping: true, user });
+    setTimeout(() => {
+      socket.emit("typing", { isTyping: false, user });
     }, 2000);
-  };
-
-  const handleSend = () => {
-    join();
   };
 
   const handleInput = (inputText) => {
@@ -132,20 +117,21 @@ const Chat = () => {
   return (
     <>
       <Navbar />
-      {/* {joined ? ( */}
-      <button onClick={() => handleSend()}>Start chat</button>
       <ChatContainer>
         <ChatPanel>
           <ChatDisplay>
             {messages.map((element) => (
-              <Message>
-                <MessageAuthor>{element.name} </MessageAuthor>
+              <Message
+                key={element.id}
+                isMine={element.userId === user.id ? true : false}
+              >
+                {console.log(element, user)}
+                <MessageAuthor>{element.name}</MessageAuthor>
                 <MessageText>{element.text} </MessageText>
-
-                {/* {typingDisplay && <div>{typingDisplay}</div>} */}
               </Message>
             ))}
-            <div ref={dummy}> </div>
+            {typingDisplay && <div>{typingDisplay}</div>}
+            <div ref={scrollPoint}> </div>
           </ChatDisplay>
 
           <ChatBottom>
@@ -159,18 +145,6 @@ const Chat = () => {
           </ChatBottom>
         </ChatPanel>
       </ChatContainer>
-      {/* ) : (
-        <div>
-          {/* <form action=""> */}
-      {/* <label>What is your name ?</label> */}
-      {/* <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          /> */}
-      {/*  */}
-      {/* </form> */}
-      {/* </div>  */}
     </>
   );
 };

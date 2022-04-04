@@ -1,3 +1,4 @@
+import { Message } from './../messages/entities/message.entity';
 import { Order } from './../orders/orders.entity';
 import { Role } from './../roles/roles.entity';
 
@@ -41,4 +42,7 @@ export class User {
 
   @OneToMany(() => Order, (order) => order.user)
   orders: Order[];
+
+  @OneToMany(() => Message, (message) => message.user)
+  messages: Message[];
 }

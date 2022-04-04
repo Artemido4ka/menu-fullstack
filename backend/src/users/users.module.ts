@@ -1,3 +1,4 @@
+import { Message } from './../messages/entities/message.entity';
 import { Order } from './../orders/orders.entity';
 import { AuthModule } from './../auth/auth.module';
 import { RolesModule } from './../roles/roles.module';
@@ -12,7 +13,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [UsersController],
   providers: [UsersService],
   imports: [
-    TypeOrmModule.forFeature([User, Role, Order]),
+    TypeOrmModule.forFeature([User, Role, Order, Message]),
     RolesModule,
     forwardRef(() => AuthModule),
   ],

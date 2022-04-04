@@ -23,14 +23,13 @@ export class MessagesGateway {
 
   @SubscribeMessage('createMessage')
   async create(
-    @MessageBody() createMessageDto: CreateMessageDto,
+    @MessageBody() createMessageDto: any,
     @ConnectedSocket() client: Socket,
   ) {
     const message = await this.messagesService.create(
       createMessageDto,
       client.id,
     );
-    // console.log(message);
 
     this.server.emit('message', message);
     return message;
@@ -40,38 +39,13 @@ export class MessagesGateway {
   findAll() {
     return this.messagesService.findAll();
   }
-
-  @SubscribeMessage('join')
-  joinRoom(
-    @MessageBody('name') name: string,
-    @ConnectedSocket() client: Socket,
-  ) {
-    return this.messagesService.identify(name, client.id);
-  }
-
   @SubscribeMessage('typing')
   async typing(
-    @MessageBody('isTyping') isTyping: boolean,
+    @MessageBody() typingDto: any,
     @ConnectedSocket() client: Socket,
   ) {
-    const name = await this.messagesService.getClientName(client.id);
-    console.log(name, isTyping);
+    const name = typingDto.user.firstName + ' ' + typingDto.user.lastName;
 
-    client.broadcast.emit('typing', { name, isTyping }); //информировать всех кроме себя
+    client.broadcast.emit('typing', { name, isTyping: typingDto.isTyping }); //информировать всех кроме себя
   }
-
-  // @SubscribeMessage('findOneMessage')
-  // findOne(@MessageBody() id: number) {
-  //   return this.messagesService.findOne(id);
-  // }
-
-  // @SubscribeMessage('updateMessage')
-  // update(@MessageBody() updateMessageDto: UpdateMessageDto) {
-  //   return this.messagesService.update(updateMessageDto.id, updateMessageDto);
-  // }
-
-  // @SubscribeMessage('removeMessage')
-  // remove(@MessageBody() id: number) {
-  //   return this.messagesService.remove(id);
-  // }
 }

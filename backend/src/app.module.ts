@@ -16,6 +16,7 @@ import * as path from 'path';
 import { ImagesModule } from './images/images.module';
 import { Image } from './images/images.entity';
 import { MessagesModule } from './messages/messages.module';
+import { Message } from './messages/entities/message.entity';
 
 @Module({
   imports: [
@@ -32,7 +33,7 @@ import { MessagesModule } from './messages/messages.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [User, Role, Product, Order, Image],
+      entities: [User, Role, Product, Order, Image, Message],
       synchronize: true,
     }),
     UsersModule,
