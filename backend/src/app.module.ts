@@ -15,6 +15,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
 import { ImagesModule } from './images/images.module';
 import { Image } from './images/images.entity';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { Image } from './images/images.entity';
     OrdersModule,
     FilesModule,
     ImagesModule,
+    MessagesModule,
   ],
   controllers: [],
   providers: [],

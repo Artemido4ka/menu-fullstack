@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import "./App.css";
 import Order from "./pages/Order";
 import User from "./pages/User";
+import Chat from "./pages/Chat";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/users/:id" element={<User />} />
+      <Route path="/chat" element={<Chat />} />
     </Routes>
   );
 };
