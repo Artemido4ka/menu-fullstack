@@ -9,25 +9,7 @@ dotenv.config();
 async function bootstrap() {
   const PORT = process.env.PORT || 5000;
   const app = await NestFactory.create(AppModule);
-  // app.use(helmet());
-  // app.use(
-  //   helmet({
-  //     crossOriginEmbedderPolicy: false,
-  //     // ...
-  //   }),
-  // );
-
-  // app.use(
-  //   helmet.contentSecurityPolicy({
-  //     // useDefaults: true,
-  //     // directives: {
-  //     //   'script-src': ["'self'"],
-  //     // },
-  //   }),
-  // );
-
   app.use(helmet({ crossOriginResourcePolicy: false }));
-
   app.enableCors({
     origin: ['http://localhost:3000', 'http://localhost:3001'],
   });

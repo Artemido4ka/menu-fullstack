@@ -35,6 +35,10 @@ import { Message } from './messages/entities/message.entity';
       database: process.env.POSTGRES_DB,
       entities: [User, Role, Product, Order, Image, Message],
       synchronize: true,
+      migrations: ['dist/src/db/migrations/*.js'],
+      cli: {
+        migrationsDir: 'src/db/migrations',
+      },
     }),
     UsersModule,
     RolesModule,
