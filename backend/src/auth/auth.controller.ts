@@ -1,9 +1,18 @@
+import { LoggingInterceptor } from './../interceptor';
 import { ResendEmailDto } from './../email/dto/email-resend.dto';
 import { EmailService } from './../email/email.service';
 import { AuthService } from './auth.service';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UseInterceptors,
+} from '@nestjs/common';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
+@UseInterceptors(LoggingInterceptor)
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -21,7 +30,7 @@ export class AuthController {
   }
 
   @Post('/registration')
-  registration(@Body() userDto: any) {
+  registration(@Body() userDto: CreateUserDto) {
     return this.authService.registration(userDto);
   }
 
