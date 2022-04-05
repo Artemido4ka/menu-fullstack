@@ -12,7 +12,7 @@ import { OrdersModule } from './orders/orders.module';
 import { FilesModule } from './files/files.module';
 import { ImagesModule } from './images/images.module';
 import { MessagesModule } from './messages/messages.module';
-import config from 'ormconfig';
+import config from 'config/database';
 
 @Module({
   imports: [

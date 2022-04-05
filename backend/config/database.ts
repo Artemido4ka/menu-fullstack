@@ -1,11 +1,11 @@
 import * as dotenv from 'dotenv';
 
-import { Message } from './src/messages/entities/message.entity';
-import { Image } from 'src/images/images.entity';
-import { Order } from './src/orders/orders.entity';
-import { Product } from './src/products/products.entity';
-import { Role } from './src/roles/roles.entity';
-import { User } from './src/users/users.entity';
+import { Message } from '../src/messages/entities/message.entity';
+import { Image } from '../src/images/images.entity';
+import { Order } from '../src/orders/orders.entity';
+import { Product } from '../src/products/products.entity';
+import { Role } from '../src/roles/roles.entity';
+import { User } from '../src/users/users.entity';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 dotenv.config();
