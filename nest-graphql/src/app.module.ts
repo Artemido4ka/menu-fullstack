@@ -2,8 +2,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { RolesModule } from './roles/roles.module';
 import { ApolloDriver } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
@@ -30,7 +28,7 @@ import { Role } from './roles/roles.entity';
     }),
     RolesModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

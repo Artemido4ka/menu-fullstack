@@ -1,3 +1,4 @@
+import { CreateRoleInput } from './dto/create-role';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -14,5 +15,10 @@ export class RolesService {
   //   }
   async getAllRoles(): Promise<Role[]> {
     return this.rolesRepository.find();
+  }
+
+  async createRole(createRoleInput: CreateRoleInput): Promise<Role> {
+    const newRole = this.rolesRepository.create(createRoleInput);
+    return this.rolesRepository.save(newRole);
   }
 }
