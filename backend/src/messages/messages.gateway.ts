@@ -31,8 +31,8 @@ export class MessagesGateway {
       client.id,
     );
 
-    this.server.emit('message', message);
-    return message;
+    return this.server.emit('message', message);
+    //   return message;
   }
 
   @SubscribeMessage('findAllMessages')

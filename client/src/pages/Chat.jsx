@@ -75,6 +75,10 @@ const Chat = () => {
   const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
+    scrollPoint.current.scrollIntoView({ behavior: "smooth" });
+  }, [scrollPoint.current]);
+
+  useEffect(() => {
     socket.emit("findAllMessages", {}, (response) => {
       setMessages(response);
     });
@@ -84,16 +88,13 @@ const Chat = () => {
     });
 
     socket.on("typing", ({ name, isTyping }) => {
-      console.log(name, isTyping);
       if (isTyping) {
         setTypingDisplay(`${name} is typing...`);
       } else {
         setTypingDisplay("");
       }
     });
-
-    scrollPoint.current.scrollIntoView({ behavior: "smooth" });
-  }, [scrollPoint.current]);
+  }, []);
 
   const sendMessage = () => {
     socket.emit("createMessage", { messageText, userId: user.id }, () => {
@@ -125,7 +126,6 @@ const Chat = () => {
                 key={element.id}
                 isMine={element.userId === user.id ? true : false}
               >
-                {console.log(element, user)}
                 <MessageAuthor>{element.name}</MessageAuthor>
                 <MessageText>{element.text} </MessageText>
               </Message>
