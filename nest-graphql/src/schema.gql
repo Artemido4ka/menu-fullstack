@@ -11,3 +11,12 @@ type Role {
 type Query {
   roles: [Role!]!
 }
+
+type Mutation {
+  createRole(createRoleInput: CreateRoleInput!): Role!
+}
+
+input CreateRoleInput {
+  value: String!
+  description: String
+}
