@@ -1,17 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Role } from './roles.entity';
 
 @Injectable()
 export class RolesService {
+  constructor(
+    @InjectRepository(Role) private rolesRepository: Repository<Role>,
+  ) {}
   //   async getRoleByValue(value: string) {
   //     const role = await this.roleRepository.findOne({ value: value });
   //     return role;
   //   }
   async getAllRoles(): Promise<Role[]> {
-    const role = new Role();
-    role.id = 1;
-    role.value = 'ADMIN';
-
-    return [role];
+    return this.rolesRepository.find();
   }
 }
