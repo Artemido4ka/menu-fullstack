@@ -21,4 +21,8 @@ export class RolesService {
     const newRole = this.rolesRepository.create(createRoleInput);
     return this.rolesRepository.save(newRole);
   }
+
+  async getOneRole(id: number): Promise<Role> {
+    return this.rolesRepository.findOneOrFail(id);
+  }
 }

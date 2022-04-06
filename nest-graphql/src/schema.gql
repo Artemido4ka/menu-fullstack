@@ -2,21 +2,39 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type User {
+  id: Int!
+  name: String!
+  roleId: Float!
+  role: Role!
+  getRole: Role!
+}
+
 type Role {
   id: Int!
   value: String!
   description: String
+  users: [User!]
 }
 
 type Query {
-  roles: [Role!]!
+  getOneRole(id: Int!): Role!
+  getAllRoles: [Role!]!
+  users: [User!]!
+  user(id: Int!): User!
 }
 
 type Mutation {
   createRole(createRoleInput: CreateRoleInput!): Role!
+  createUser(createUserInput: CreateUserInput!): User!
 }
 
 input CreateRoleInput {
   value: String!
   description: String
+}
+
+input CreateUserInput {
+  name: String!
+  roleId: Int!
 }

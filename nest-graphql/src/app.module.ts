@@ -6,6 +6,8 @@ import { RolesModule } from './roles/roles.module';
 import { ApolloDriver } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
 import { Role } from './roles/roles.entity';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
@@ -23,10 +25,11 @@ import { Role } from './roles/roles.entity';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [Role],
+      entities: [Role, User],
       synchronize: true,
     }),
     RolesModule,
+    UsersModule,
   ],
   controllers: [],
   providers: [],

@@ -1,5 +1,5 @@
 import { CreateRoleInput } from './dto/create-role';
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { Role } from './roles.entity';
 import { RolesService } from './roles.service';
 
@@ -7,8 +7,13 @@ import { RolesService } from './roles.service';
 export class RolesResolver {
   constructor(private rolesService: RolesService) {}
 
+  @Query((returns) => Role)
+  getOneRole(@Args('id', { type: () => Int }) id: number): Promise<Role> {
+    return this.rolesService.getOneRole(id);
+  }
+
   @Query((returns) => [Role])
-  roles(): Promise<Role[]> {
+  getAllRoles(): Promise<Role[]> {
     return this.rolesService.getAllRoles();
   }
 
