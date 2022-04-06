@@ -53,11 +53,11 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
     : {
         title: "",
         description: "",
-        fats: "",
-        proteins: "",
-        carbohydrates: "",
-        price: "",
-        weight: "",
+        fats: 0,
+        proteins: 0,
+        carbohydrates: 0,
+        price: 0,
+        weight: 0,
       },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -100,7 +100,7 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           id="fats"
           name="fats"
           label="fats"
-          type="text"
+          type="number"
           value={formik.values.fats}
           onChange={formik.handleChange}
           error={formik.touched.fats && Boolean(formik.errors.fats)}
@@ -111,7 +111,7 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           id="proteins"
           name="proteins"
           label="proteins"
-          type="text"
+          type="number"
           value={formik.values.proteins}
           onChange={formik.handleChange}
           error={formik.touched.proteins && Boolean(formik.errors.proteins)}
@@ -122,7 +122,7 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           id="carbohydrates"
           name="carbohydrates"
           label="carbohydrates"
-          type="text"
+          type="number"
           value={formik.values.carbohydrates}
           onChange={formik.handleChange}
           error={
@@ -137,7 +137,7 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           id="price"
           name="price"
           label="price"
-          type="text"
+          type="number"
           value={formik.values.price}
           onChange={formik.handleChange}
           error={formik.touched.price && Boolean(formik.errors.price)}
@@ -148,7 +148,7 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           id="weight"
           name="weight"
           label="weight"
-          type="text"
+          type="number"
           value={formik.values.weight}
           onChange={formik.handleChange}
           error={formik.touched.weight && Boolean(formik.errors.weight)}

@@ -1,7 +1,9 @@
+import { ProductResponseDto } from './dto/product-response.dto';
 import { Product } from './products.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ProductDto } from './dto/product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -9,12 +11,15 @@ export class ProductsService {
     @InjectRepository(Product) private productRepository: Repository<Product>,
   ) {}
 
-  async createProduct(dto: any) {
-    const product = await this.productRepository.create(dto);
-    await this.productRepository.save(product);
-    return product;
+  //CREATE PRODUCT
+  async createProduct(
+    createProductDto: ProductDto,
+  ): Promise<ProductResponseDto> {
+    const product = await this.productRepository.create(createProductDto);
+    return await this.productRepository.save(product);
   }
 
+  //DELETE PRODUCT
   async deleteProduct(id: string) {
     const product = await this.productRepository.findOne(id);
     if (!product) {
@@ -23,19 +28,23 @@ export class ProductsService {
     return this.productRepository.delete(id);
   }
 
-  async updateProduct(dto: any, id: string) {
-    // const fileName = await this.filesService.createFile(image);
+  //UPDATE PRODUCT
+  async updateProduct(
+    updateProductDto: ProductDto,
+    id: string,
+  ): Promise<ProductResponseDto> {
     const oldProduct = await this.productRepository.findOne(id);
     if (!oldProduct) {
       throw new NotFoundException('Product not found');
     }
-    return this.productRepository.save({
+    return await this.productRepository.save({
       ...oldProduct, // existing fields
-      ...dto, // updated fields
+      ...updateProductDto, // updated fields
     });
   }
 
-  async getAllProducts() {
+  //GET ALL PRODUCTS
+  async getAllProducts(): Promise<ProductResponseDto[]> {
     const products = await this.productRepository.find();
     if (!products) {
       throw new NotFoundException('products not found');
@@ -43,12 +52,14 @@ export class ProductsService {
     return products;
   }
 
-  async getOneProduct(id: string) {
+  //GET ONE PRODUCT
+  async getOneProduct(id: string): Promise<ProductResponseDto> {
     const product = await this.productRepository.findOne(id);
     return product;
   }
 
-  async findProductsByIds(arrayOfIds: any) {
+  //GET PRODUCTS BY GIVVEN ID's
+  async findProductsByIds(arrayOfIds: any): Promise<ProductResponseDto[]> {
     const products = await this.productRepository.findByIds(arrayOfIds);
     return products;
   }

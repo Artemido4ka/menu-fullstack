@@ -6,29 +6,31 @@ import {
   Param,
   Post,
   Put,
-  UploadedFile,
   UseGuards,
-  UseInterceptors,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { ProductDto } from './dto/product.dto';
+import { ProductResponseDto } from './dto/product-response.dto';
 import { ProductsService } from './products.service';
 
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  //CREATE PRODUCT
   @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Post()
-  createProduct(@Body() dto: any) {
-    console.log(dto);
-    return this.productsService.createProduct(dto);
+  async createProduct(
+    @Body() createProductDto: ProductDto,
+  ): Promise<ProductResponseDto> {
+    return this.productsService.createProduct(createProductDto);
   }
 
+  //DELETE PRODUCT
   @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
@@ -37,21 +39,27 @@ export class ProductsController {
     return this.productsService.deleteProduct(id);
   }
 
+  //UPDATE PRODUCT
   @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Put(':id')
-  updateProduct(@Body() dto: any, @Param('id') id: string) {
-    return this.productsService.updateProduct(dto, id);
+  async updateProduct(
+    @Body() updateProductDto: ProductDto,
+    @Param('id') id: string,
+  ): Promise<ProductResponseDto> {
+    return this.productsService.updateProduct(updateProductDto, id);
   }
 
+  //GET ALL PRODUCTS
   @Get()
-  getAllProducts() {
+  async getAllProducts(): Promise<ProductResponseDto[]> {
     return this.productsService.getAllProducts();
   }
 
+  //GET ONE PRODUCT
   @Get(':id')
-  getOneProduct(@Param('id') id: string) {
+  async getOneProduct(@Param('id') id: string): Promise<ProductResponseDto> {
     return this.productsService.getOneProduct(id);
   }
 }

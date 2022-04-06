@@ -4,7 +4,6 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
-  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 @Entity()
@@ -35,12 +34,6 @@ export class Product {
 
   @Column()
   image: string;
-
-  // @Column({ nullable: true })
-  // orderId: number;
-
-  // @ManyToOne(() => Order, (order) => order.products)
-  // order: Order;
 
   @ManyToMany(() => Order, (order) => order.products)
   @JoinTable()
