@@ -20,8 +20,8 @@ type Role {
 type Query {
   getOneRole(id: Int!): Role!
   getAllRoles: [Role!]!
-  users: [User!]!
-  user(id: Int!): User!
+  findAllUsers: [User!]!
+  findOneUser(id: Int!): User!
 }
 
 type Mutation {

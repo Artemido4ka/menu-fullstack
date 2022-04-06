@@ -13,7 +13,7 @@ import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { Role } from 'src/roles/roles.entity';
 
-@Resolver(() => User)
+@Resolver((of) => User)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
@@ -22,8 +22,8 @@ export class UsersResolver {
     return this.usersService.create(createUserInput);
   }
 
-  @Query(() => [User], { name: 'users' })
-  findAll() {
+  @Query(() => [User])
+  findAllUsers() {
     return this.usersService.findAll();
   }
 
@@ -32,8 +32,8 @@ export class UsersResolver {
     return this.usersService.getRole(user.roleId);
   }
 
-  @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  @Query(() => User)
+  findOneUser(@Args('id', { type: () => Int }) id: number) {
     return this.usersService.findOne(id);
   }
 }
