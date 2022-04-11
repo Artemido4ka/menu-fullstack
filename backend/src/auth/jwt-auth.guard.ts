@@ -31,7 +31,7 @@ export class JwtAuthGuard implements CanActivate {
       return true;
     } catch (e) {
       throw new UnauthorizedException({
-        message: 'Пользователь не авторизованyfre',
+        message: 'Пользователь не авторизован',
       });
     }
   }

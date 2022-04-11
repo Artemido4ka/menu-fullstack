@@ -16,11 +16,11 @@ import { OrderCreateDto } from './orders-create.dto';
 import { OrdersService } from './orders.service';
 
 @Controller('orders')
+@UseGuards(JwtAuthGuard)
 export class OrdersController {
   constructor(private ordersService: OrdersService) {}
 
   //TODO
-  @UseGuards(JwtAuthGuard)
   @Roles('USER')
   @UseGuards(RolesGuard)
   @Post()
@@ -28,7 +28,6 @@ export class OrdersController {
     return this.ordersService.createOrder(dto, req.user.id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Delete(':id')
@@ -36,7 +35,6 @@ export class OrdersController {
     return this.ordersService.deleteOrder(id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Put(':id')
@@ -44,21 +42,17 @@ export class OrdersController {
     return this.ordersService.updateOrder(dto, id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('/user')
   getUserOrders(@Request() req: any) {
     return this.ordersService.getUserOrders(req.user.id);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Roles('USER')
-  @UseGuards(RolesGuard)
   @Get('/user/:id')
   getOneUserOrder(@Request() req: any, @Param('id') orderId: string) {
     return this.ordersService.getOneUserOrder(req.user.id, orderId);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Get()
@@ -66,7 +60,6 @@ export class OrdersController {
     return this.ordersService.getAllOrders();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Get(':id')
