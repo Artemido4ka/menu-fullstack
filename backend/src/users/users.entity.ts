@@ -36,6 +36,21 @@ export class User {
   @Column({ default: null })
   avatar: string;
 
+  @Column({ default: 0 })
+  weight: number;
+
+  @Column({ default: 0 })
+  height: number;
+
+  @Column({ default: 0 })
+  age: number;
+
+  @Column({ type: 'decimal', default: 0 })
+  activity: number;
+
+  @Column({ default: null })
+  sex: string;
+
   @ManyToMany(() => Role, (role) => role.users)
   @JoinTable()
   roles: Role[];

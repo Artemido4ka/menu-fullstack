@@ -9,6 +9,7 @@ import { devices } from "../devices";
 import styled from "styled-components";
 import UserForm from "../components/UserForm";
 import { fetchUserProfile, updateUser } from "../redux/apiCalls/user.api";
+import { useLocation } from "react-router-dom";
 
 const UserContainer = styled.div`
   padding: 50px;
@@ -37,6 +38,8 @@ const InfoContainer = styled.div`
 const User = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
   const { image } = useSelector((state) => state.image);
+  const location = useLocation();
+  const userId = location.pathname.split("/")[2];
 
   const dispatch = useDispatch();
 
@@ -45,8 +48,8 @@ const User = () => {
   };
 
   useEffect(() => {
-    fetchUserProfile(dispatch);
-  }, [dispatch]);
+    fetchUserProfile(dispatch, userId);
+  }, [dispatch, userId]);
 
   const handleImageSrc = () => {
     if (image) return `http://localhost:5000/${image}`;

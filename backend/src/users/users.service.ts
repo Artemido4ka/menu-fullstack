@@ -53,15 +53,8 @@ export class UsersService {
       where: { id: userId },
       // relations: ['roles'],
     });
-    const res = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      password: user.password,
-      avatar: user.avatar,
-    };
-    return res;
+
+    return user;
   }
 
   async updateUser(dto: any, userId: string) {
@@ -89,15 +82,15 @@ export class UsersService {
       password: hashPassword,
     });
 
-    const res = {
-      id: updatedUser.id,
-      firstName: updatedUser.firstName,
-      lastName: updatedUser.lastName,
-      email: updatedUser.email,
-      password: updatedUser.password,
-      avatar: updatedUser.avatar,
-    };
-    return res;
+    // const res = {
+    //   id: updatedUser.id,
+    //   firstName: updatedUser.firstName,
+    //   lastName: updatedUser.lastName,
+    //   email: updatedUser.email,
+    //   password: updatedUser.password,
+    //   avatar: updatedUser.avatar,
+    // };
+    return updatedUser;
   }
 
   async getUsersByEmail(email: string) {

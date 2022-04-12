@@ -107,6 +107,66 @@ const UserForm = ({ loadedImage, handleForm, userValues }) => {
           helperText={formik.touched.password && formik.errors.password}
         />
 
+        <TextField
+          fullWidth
+          id="weight"
+          name="weight"
+          label="weight"
+          type="number"
+          value={formik.values.weight}
+          onChange={formik.handleChange}
+          error={formik.touched.weight && Boolean(formik.errors.weight)}
+          helperText={formik.touched.weight && formik.errors.weight}
+        />
+
+        <TextField
+          fullWidth
+          id="height"
+          name="height"
+          label="height"
+          type="number"
+          value={formik.values.height}
+          onChange={formik.handleChange}
+          error={formik.touched.height && Boolean(formik.errors.height)}
+          helperText={formik.touched.height && formik.errors.height}
+        />
+
+        <TextField
+          fullWidth
+          id="age"
+          name="age"
+          label="age"
+          type="number"
+          value={formik.values.age}
+          onChange={formik.handleChange}
+          error={formik.touched.age && Boolean(formik.errors.age)}
+          helperText={formik.touched.age && formik.errors.age}
+        />
+
+        <TextField
+          fullWidth
+          id="activity"
+          name="activity"
+          label="activity"
+          type="number"
+          value={formik.values.activity}
+          onChange={formik.handleChange}
+          error={formik.touched.activity && Boolean(formik.errors.activity)}
+          helperText={formik.touched.activity && formik.errors.activity}
+        />
+
+        <TextField
+          fullWidth
+          id="sex"
+          name="sex"
+          label="sex"
+          type="text"
+          value={formik.values.sex}
+          onChange={formik.handleChange}
+          error={formik.touched.sex && Boolean(formik.errors.sex)}
+          helperText={formik.touched.sex && formik.errors.sex}
+        />
+
         <Buttons>
           <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
             <ArrowBack /> Go back
