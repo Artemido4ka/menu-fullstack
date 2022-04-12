@@ -11,8 +11,12 @@ export class RecommendationService {
     private usersService: UsersService,
   ) {}
 
-  async getRecommendation(recommendationDto: any) {
-    console.log(recommendationDto);
+  async getRecommendation(userId: any) {
+    const user = await this.usersService.getUser(userId);
+    console.log(user);
+
+    const products = await this.productsService.getAllProducts();
+    console.log(products);
   }
 
   // async getUser(userId: string) {

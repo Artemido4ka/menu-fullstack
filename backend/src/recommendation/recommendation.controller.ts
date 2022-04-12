@@ -1,12 +1,5 @@
 import { RecommendationService } from './recommendation.service';
-import {
-  Body,
-  Controller,
-  Get,
-  Request,
-  UseGuards,
-  Post,
-} from '@nestjs/common';
+import { Controller, Get, Request, UseGuards, Param } from '@nestjs/common';
 
 // import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
@@ -15,11 +8,13 @@ export class RecommendationController {
   constructor(private recommendationService: RecommendationService) {}
 
   // @UseGuards(JwtAuthGuard)
-  @Post()
-  getUser(@Request() req: any, @Body() recommendationDto: any) {
-    return this.recommendationService.getRecommendation(recommendationDto);
-  }
-  // addRole(@Body() dto: AddRoleDto) {
-  //   return this.usersService.addRole(dto);
+  // @Post()
+  // getUser(@Request() req: any, @Body() recommendationDto: any) {
+  //   return this.recommendationService.getRecommendation(recommendationDto);
   // }
+
+  @Get('/:id')
+  getUser(@Param('id') userId: string) {
+    return this.recommendationService.getRecommendation(userId);
+  }
 }
