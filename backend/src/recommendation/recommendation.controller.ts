@@ -8,10 +8,6 @@ export class RecommendationController {
   constructor(private recommendationService: RecommendationService) {}
 
   // @UseGuards(JwtAuthGuard)
-  // @Post()
-  // getUser(@Request() req: any, @Body() recommendationDto: any) {
-  //   return this.recommendationService.getRecommendation(recommendationDto);
-  // }
 
   @Get('/:id')
   getUser(@Param('id') userId: string) {
