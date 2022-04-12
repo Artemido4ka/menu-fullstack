@@ -12,6 +12,7 @@ import { OrdersModule } from './orders/orders.module';
 import { FilesModule } from './files/files.module';
 import { ImagesModule } from './images/images.module';
 import { MessagesModule } from './messages/messages.module';
+import { RecommendationModule } from './recommendation/recommendation.module';
 import config from 'config/database';
 
 @Module({
@@ -23,6 +24,7 @@ import config from 'config/database';
       rootPath: path.resolve(__dirname, 'static'),
     }),
     TypeOrmModule.forRoot(config),
+    RecommendationModule,
     UsersModule,
     RolesModule,
     AuthModule,
