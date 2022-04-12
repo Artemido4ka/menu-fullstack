@@ -3,11 +3,11 @@ import { getRepository, MigrationInterface } from 'typeorm';
 
 const roles = [
   {
-    value: 'USER',
+    value: 'ADMIN',
     description: 'administrator',
   },
   {
-    value: 'ADMIN',
+    value: 'USER',
     description: 'user',
   },
 ];
