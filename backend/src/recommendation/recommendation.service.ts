@@ -4,6 +4,20 @@ import { Injectable } from '@nestjs/common';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const solver = require('javascript-lp-solver');
 
+import {
+  CARBOHYDRATES_CONST_NORM,
+  FATS_CONST_NORM,
+  FEM_K1,
+  FEM_K2,
+  FEM_K3,
+  FEM_K4,
+  MAN_K1,
+  MAN_K2,
+  MAN_K3,
+  MAN_K4,
+  PROTEINS_CONST_NORM,
+} from './constants';
+
 //@TODO check calculateNeededElements and how to return this
 @Injectable()
 export class RecommendationService {
@@ -21,6 +35,7 @@ export class RecommendationService {
 
     //create variables for algorithm
     const variables = await this.createVariables(products);
+    console.log(variables);
 
     const model = {
       optimize: 'price',
@@ -31,24 +46,36 @@ export class RecommendationService {
 
     const results = solver.Solve(model);
     console.log(results);
+
+    // const res = Object.entries(results)
+    //   .map((item) => {
+    //     if (item[0].includes('x')) return item;
+    //   })
+    //   .filter(Boolean);
+    // console.log(res);
+
+    const keys = Object.keys(results)
+      .map((item) => {
+        if (item[0].includes('x')) return item.replace('x', '');
+      })
+      .filter(Boolean);
+
+    console.log(keys);
   }
 
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   calculateNeededElements = async ({ weight, height, age, activity, sex }) => {
     const needCalories =
       sex === 'female'
-        ? (447.593 + 9.247 * weight + 3.098 * height - 4.33 * age) * activity
-        : (88.362 + 13.397 * weight + 4.799 * height - 5.677 * age) * activity;
+        ? (FEM_K1 + FEM_K2 * weight + FEM_K3 * height - FEM_K4 * age) * activity
+        : (MAN_K1 + MAN_K2 * weight + MAN_K3 * height - MAN_K4 * age) *
+          activity;
 
-    // return {
-    //   fats: { max: (needCalories * 0.3) / 9 / 3 },
-    //   proteins: { max: (needCalories * 0.3) / 4 / 5 },
-    //   carbohydrates: { max: (needCalories * 0.4) / 4 / 5 },
-    // };
     return {
-      fats: { min: 15 },
-      proteins: { min: 17 },
-      carbohydrates: { min: 58 },
+      fats: { min: Math.round(needCalories * FATS_CONST_NORM) },
+      proteins: { min: Math.round(needCalories * PROTEINS_CONST_NORM) },
+      carbohydrates: {
+        min: Math.round(needCalories * CARBOHYDRATES_CONST_NORM),
+      },
     };
   };
 

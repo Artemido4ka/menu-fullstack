@@ -23,7 +23,7 @@ const users = [
     weight: 65,
     height: 174,
     age: 21,
-    activity: 1.1,
+    activity: 1.375,
     sex: 'male',
   },
 ];
