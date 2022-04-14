@@ -17,19 +17,19 @@ export class Product {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ type: 'decimal' })
   fats: number;
 
-  @Column()
+  @Column({ type: 'decimal' })
   proteins: number;
 
-  @Column()
+  @Column({ type: 'decimal' })
   carbohydrates: number;
 
-  @Column()
+  @Column({ type: 'decimal' })
   price: number;
 
-  @Column()
+  @Column({ type: 'decimal' })
   weight: number;
 
   @Column()
