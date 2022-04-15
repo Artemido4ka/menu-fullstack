@@ -22,12 +22,12 @@ const RecommendationModalContainer = ({ active, setActive }) => {
   const [error, setError] = useState(false);
 
   const user = localStorage.getItem("currentUser");
-  const userId = JSON.parse(user).id;
 
   useEffect(() => {
     const fetchRecommendation = async () => {
       setLoading(true);
       try {
+        const userId = JSON.parse(user).id;
         const res = await publicRequest.get("recommendation/" + userId);
         setRecommendation(res.data);
         setLoading(false);
@@ -37,7 +37,7 @@ const RecommendationModalContainer = ({ active, setActive }) => {
       }
     };
     fetchRecommendation();
-  }, [userId]);
+  }, [user]);
 
   console.log(products);
 

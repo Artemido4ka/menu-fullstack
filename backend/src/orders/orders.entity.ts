@@ -4,10 +4,8 @@ import { User } from './../users/users.entity';
 import {
   Column,
   Entity,
-  JoinTable,
   ManyToMany,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 @Entity()
@@ -18,7 +16,7 @@ export class Order {
   @Column()
   title: string;
 
-  @Column()
+  @Column({ type: 'decimal' })
   price: number;
 
   @Column()
