@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateTables1649944833867 implements MigrationInterface {
-  name = 'CreateTables1649944833867';
+export class CreateTables1650035598864 implements MigrationInterface {
+  name = 'CreateTables1650035598864';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
@@ -11,7 +11,7 @@ export class CreateTables1649944833867 implements MigrationInterface {
       `CREATE TABLE "product" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, "description" character varying NOT NULL, "fats" numeric NOT NULL, "proteins" numeric NOT NULL, "carbohydrates" numeric NOT NULL, "price" numeric NOT NULL, "weight" numeric NOT NULL, "image" character varying NOT NULL, CONSTRAINT "PK_bebc9158e480b949565b4dc7a82" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "order" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, "price" integer NOT NULL, "description" character varying NOT NULL, "date" TIMESTAMP NOT NULL, "status" character varying NOT NULL, "userId" integer NOT NULL, CONSTRAINT "PK_1031171c13130102495201e3e20" PRIMARY KEY ("id"))`,
+      `CREATE TABLE "order" ("id" SERIAL NOT NULL, "title" character varying NOT NULL, "price" numeric NOT NULL, "description" character varying NOT NULL, "date" TIMESTAMP NOT NULL, "status" character varying NOT NULL, "userId" integer NOT NULL, CONSTRAINT "PK_1031171c13130102495201e3e20" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
       `CREATE TABLE "role" ("id" SERIAL NOT NULL, "value" character varying NOT NULL, "description" character varying NOT NULL, CONSTRAINT "PK_b36bcfe02fc8de3c57a8b2391c2" PRIMARY KEY ("id"))`,
