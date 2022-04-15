@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import {
   PowerSettingsNew,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
+import Modal from "./Modal";
 
 const Container = styled.div`
   height: 60px;
@@ -76,61 +77,75 @@ const Navbar = () => {
     dispatch(signout());
     navigate("/");
   };
+  const [modalActive, setModalActive] = useState(false);
+  const openModal = () => {
+    setModalActive((prev) => !prev);
+  };
   return (
-    <Container>
-      <Wrapper>
-        <Link to="/">
-          <Left>
-            <Logo>Menu</Logo>
-          </Left>
-        </Link>
-        <Right>
-          <Link to="/orders">
-            <MenuItem>
-              <MenuItemText>orders </MenuItemText>
-              <Fastfood />
-            </MenuItem>
+    <>
+      <Container>
+        <Wrapper>
+          <Link to="/">
+            <Left>
+              <Logo>Menu</Logo>
+            </Left>
           </Link>
-          {user ? (
-            <>
-              <MenuItem onClick={signoutHandler}>
-                <MenuItemText>logout </MenuItemText>
-                <PowerSettingsNew />
+          <Right>
+            <Link to="/orders">
+              <MenuItem>
+                <MenuItemText>orders </MenuItemText>
+                <Fastfood />
               </MenuItem>
-              <Link to={`/users/${user.id}`}>
-                <MenuItem>
-                  <Avatar
-                    alt="avatar"
-                    src={
-                      user.avatar
-                        ? `http://localhost:5000/${user.avatar}`
-                        : null
-                    }
-                  />
+            </Link>
+            {user ? (
+              <>
+                <MenuItem onClick={openModal}>
+                  <MenuItemText>Recommendation </MenuItemText>
+                  <PowerSettingsNew />
                 </MenuItem>
-              </Link>
-            </>
-          ) : (
-            <>
-              <Link to="/register">
-                <MenuItem>REGISTER</MenuItem>
-              </Link>
-              <Link to="/login">
-                <MenuItem>SIGN IN</MenuItem>
-              </Link>
-            </>
-          )}
 
-          <Link to="/cart">
-            <MenuItem>
-              <Badge badgeContent={quantity} color="primary">
-                <ShoppingCartOutlined />
-              </Badge>
-            </MenuItem>
-          </Link>
-        </Right>
-      </Wrapper>
-    </Container>
+                <MenuItem onClick={signoutHandler}>
+                  <MenuItemText>logout </MenuItemText>
+                  <PowerSettingsNew />
+                </MenuItem>
+                <Link to={`/users/${user.id}`}>
+                  <MenuItem>
+                    <Avatar
+                      alt="avatar"
+                      src={
+                        user.avatar
+                          ? `http://localhost:5000/${user.avatar}`
+                          : null
+                      }
+                    />
+                  </MenuItem>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/register">
+                  <MenuItem>REGISTER</MenuItem>
+                </Link>
+                <Link to="/login">
+                  <MenuItem>SIGN IN</MenuItem>
+                </Link>
+              </>
+            )}
+
+            <Link to="/cart">
+              <MenuItem>
+                <Badge badgeContent={quantity} color="primary">
+                  <ShoppingCartOutlined />
+                </Badge>
+              </MenuItem>
+            </Link>
+          </Right>
+        </Wrapper>
+      </Container>
+      <Modal active={modalActive} setActive={setModalActive}>
+        fnruehygfehhgireluhvjreiughliyerhgeryh
+      </Modal>
+    </>
   );
 };
 
