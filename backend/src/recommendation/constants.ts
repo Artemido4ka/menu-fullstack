@@ -11,3 +11,5 @@ export const MAN_K1 = 88.362;
 export const MAN_K2 = 13.397;
 export const MAN_K3 = 4.799;
 export const MAN_K4 = 5.677;
+
+export const FEMALE_SEX = 'female';

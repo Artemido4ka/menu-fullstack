@@ -7,6 +7,7 @@ const solver = require('javascript-lp-solver');
 import {
   CARBOHYDRATES_CONST_NORM,
   FATS_CONST_NORM,
+  FEMALE_SEX,
   FEM_K1,
   FEM_K2,
   FEM_K3,
@@ -18,7 +19,6 @@ import {
   PROTEINS_CONST_NORM,
 } from './constants';
 
-//@TODO check calculateNeededElements and how to return this
 @Injectable()
 export class RecommendationService {
   constructor(
@@ -35,7 +35,6 @@ export class RecommendationService {
 
     //create variables for algorithm
     const variables = await this.createVariables(products);
-    console.log(variables);
 
     const model = {
       optimize: 'price',
@@ -44,28 +43,36 @@ export class RecommendationService {
       variables,
     };
 
+    //find the solution
     const results = solver.Solve(model);
     console.log(results);
 
-    // const res = Object.entries(results)
-    //   .map((item) => {
-    //     if (item[0].includes('x')) return item;
-    //   })
-    //   .filter(Boolean);
-    // console.log(res);
-
-    const keys = Object.keys(results)
+    //return the result
+    const produtsIds = Object.keys(results)
       .map((item) => {
-        if (item[0].includes('x')) return item.replace('x', '');
+        if (item[0].includes('x')) return parseInt(item.replace('x', ''));
       })
       .filter(Boolean);
 
-    console.log(keys);
+    const filteredProducts = await this.productsService.findProductsByIds(
+      produtsIds,
+    );
+
+    const productsWithQuantity = filteredProducts.map((product: any) => {
+      for (const key in results) {
+        if (key.includes(product.id.toString())) {
+          product.recommendedQuantity = Math.round(results[key]);
+        }
+      }
+      return product;
+    });
+
+    return productsWithQuantity;
   }
 
   calculateNeededElements = async ({ weight, height, age, activity, sex }) => {
     const needCalories =
-      sex === 'female'
+      sex === FEMALE_SEX
         ? (FEM_K1 + FEM_K2 * weight + FEM_K3 * height - FEM_K4 * age) * activity
         : (MAN_K1 + MAN_K2 * weight + MAN_K3 * height - MAN_K4 * age) *
           activity;
