@@ -2,6 +2,8 @@ import { useSpring, animated } from "react-spring";
 import { useRef } from "react";
 import styled from "styled-components";
 
+import { Close } from "@material-ui/icons";
+
 const Modal = ({ active, setActive, children }) => {
   const ModalContainer = styled.div`
     height: 100vh;
@@ -16,12 +18,19 @@ const Modal = ({ active, setActive, children }) => {
     z-index: 15;
   `;
 
-  const ModalContent = styled.div`
+  const ModalContentWrapper = styled.div`
     padding: 20px;
     border-radius: 12px;
     background-color: white;
+    position: relative;
 
     width: 50vw;
+  `;
+
+  const ButtonClose = styled.div`
+    position: fixed;
+    top: 5px;
+    right: 5px;
   `;
 
   const animation = useSpring({
@@ -44,7 +53,12 @@ const Modal = ({ active, setActive, children }) => {
       {active && (
         <ModalContainer onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
-            <ModalContent>{children}</ModalContent>
+            <ModalContentWrapper>
+              <ButtonClose onClick={() => setActive((prev) => !prev)}>
+                <Close />
+              </ButtonClose>
+              {children}
+            </ModalContentWrapper>
           </animated.div>
         </ModalContainer>
       )}
