@@ -7,11 +7,13 @@ import { signout } from "../redux/apiCalls/auth.api";
 import styled from "styled-components";
 import { Avatar, Badge } from "@material-ui/core";
 import {
+  Chat,
+  EmojiObjects,
   Fastfood,
   PowerSettingsNew,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
-import Modal from "./Modal";
+import RecommendationModalContainer from "./RecommendationModalContainer";
 
 const Container = styled.div`
   height: 60px;
@@ -91,17 +93,25 @@ const Navbar = () => {
             </Left>
           </Link>
           <Right>
-            <Link to="/orders">
-              <MenuItem>
-                <MenuItemText>orders </MenuItemText>
-                <Fastfood />
-              </MenuItem>
-            </Link>
             {user ? (
               <>
+                <Link to="/chat">
+                  <MenuItem>
+                    <MenuItemText>chat </MenuItemText>
+                    <Chat />
+                  </MenuItem>
+                </Link>
+
+                <Link to="/orders">
+                  <MenuItem>
+                    <MenuItemText>orders </MenuItemText>
+                    <Fastfood />
+                  </MenuItem>
+                </Link>
+
                 <MenuItem onClick={openModal}>
                   <MenuItemText>Recommendation </MenuItemText>
-                  <PowerSettingsNew />
+                  <EmojiObjects />
                 </MenuItem>
 
                 <MenuItem onClick={signoutHandler}>
@@ -142,9 +152,11 @@ const Navbar = () => {
           </Right>
         </Wrapper>
       </Container>
-      <Modal active={modalActive} setActive={setModalActive}>
-        fnruehygfehhgireluhvjreiughliyerhgeryh
-      </Modal>
+
+      <RecommendationModalContainer
+        active={modalActive}
+        setActive={setModalActive}
+      />
     </>
   );
 };

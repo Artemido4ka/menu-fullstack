@@ -19,7 +19,7 @@ const Modal = ({ active, setActive, children }) => {
   `;
 
   const ModalContentWrapper = styled.div`
-    padding: 20px;
+    padding: 25px;
     border-radius: 12px;
     background-color: white;
     position: relative;
