@@ -7,7 +7,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "copy:static": "cpx 'src/static/**' 'dist/src/static'",
+    "build": "nest build && npm run copy:static",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -45,6 +46,7 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "helmet": "^5.0.2",
