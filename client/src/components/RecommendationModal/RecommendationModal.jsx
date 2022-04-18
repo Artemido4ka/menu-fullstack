@@ -6,7 +6,7 @@ import ProductTable from "../ProductsTable";
 
 import { ModalContainer, ModalTitle } from "./styled";
 
-const RecommendationModalContainer = ({ active, setActive }) => {
+const RecommendationModal = ({ active, setActive }) => {
   const [products, setRecommendation] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -45,4 +45,4 @@ const RecommendationModalContainer = ({ active, setActive }) => {
   );
 };
 
-export default RecommendationModalContainer;
+export default RecommendationModal;

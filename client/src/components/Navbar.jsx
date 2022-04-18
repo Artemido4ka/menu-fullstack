@@ -13,7 +13,7 @@ import {
   PowerSettingsNew,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
-import RecommendationModalContainer from "./RecommendationModalContainer/RecommendationModalContainer";
+import RecommendationModal from "./RecommendationModal/RecommendationModal";
 
 const Container = styled.div`
   height: 60px;
@@ -153,7 +153,7 @@ const Navbar = () => {
         </Wrapper>
       </Container>
 
-      <RecommendationModalContainer
+      <RecommendationModal
         active={modalActive}
         setActive={setModalActive}
       />

@@ -11,7 +11,6 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action) => {
-      console.log(action.payload);
       let isNew = true;
 
       state.products = state.products.map((product) => {
@@ -40,7 +39,6 @@ const cartSlice = createSlice({
         (state.totalPrice + action.payload.priceDiff).toFixed(2)
       );
       state.totalPrice = newSum;
-      console.log(newSum, "AFTER");
 
       let result = state.products.reduce(function (sum, elem) {
         return sum + elem.quantity;
