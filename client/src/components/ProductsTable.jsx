@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -39,18 +38,16 @@ const ProductTable = ({ products }) => {
               background: "teal",
             }}
           >
-            <StyledTableHeadCell>Title</StyledTableHeadCell>
-            <StyledTableHeadCell>Price&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>
-              Recommended quantity&nbsp;(g)
-            </StyledTableHeadCell>
-            <StyledTableHeadCell>Description</StyledTableHeadCell>
-            <StyledTableHeadCell>Fats&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Proteins&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Carbs&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Weight&nbsp;(g)</StyledTableHeadCell>
+            <StyledTableHeadCell>Название</StyledTableHeadCell>
+            <StyledTableHeadCell>Цена&nbsp;(руб)</StyledTableHeadCell>
+            <StyledTableHeadCell>Рекомендуемое кол-во</StyledTableHeadCell>
+            <StyledTableHeadCell>Описание</StyledTableHeadCell>
+            <StyledTableHeadCell>Жиры&nbsp;(г)</StyledTableHeadCell>
+            <StyledTableHeadCell>Белки&nbsp;(г)</StyledTableHeadCell>
+            <StyledTableHeadCell>Углеводы&nbsp;(г)</StyledTableHeadCell>
+            <StyledTableHeadCell>Масса&nbsp;(г)</StyledTableHeadCell>
             <StyledTableHeadCell sx={{ "&:last-child,": { border: 0 } }}>
-              Image
+              Изображение
             </StyledTableHeadCell>
           </TableRow>
         </TableHead>

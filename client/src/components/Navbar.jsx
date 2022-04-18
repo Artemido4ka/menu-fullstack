@@ -89,7 +89,7 @@ const Navbar = () => {
         <Wrapper>
           <Link to="/">
             <Left>
-              <Logo>Menu</Logo>
+              <Logo>Меню</Logo>
             </Left>
           </Link>
           <Right>
@@ -97,25 +97,25 @@ const Navbar = () => {
               <>
                 <Link to="/chat">
                   <MenuItem>
-                    <MenuItemText>chat </MenuItemText>
+                    <MenuItemText>чат </MenuItemText>
                     <Chat />
                   </MenuItem>
                 </Link>
 
                 <Link to="/orders">
                   <MenuItem>
-                    <MenuItemText>orders </MenuItemText>
+                    <MenuItemText>заказы </MenuItemText>
                     <Fastfood />
                   </MenuItem>
                 </Link>
 
                 <MenuItem onClick={openModal}>
-                  <MenuItemText>Recommendation </MenuItemText>
+                  <MenuItemText>рекомендация </MenuItemText>
                   <EmojiObjects />
                 </MenuItem>
 
                 <MenuItem onClick={signoutHandler}>
-                  <MenuItemText>logout </MenuItemText>
+                  <MenuItemText>выйти </MenuItemText>
                   <PowerSettingsNew />
                 </MenuItem>
                 <Link to={`/users/${user.id}`}>
@@ -153,10 +153,7 @@ const Navbar = () => {
         </Wrapper>
       </Container>
 
-      <RecommendationModal
-        active={modalActive}
-        setActive={setModalActive}
-      />
+      <RecommendationModal active={modalActive} setActive={setModalActive} />
     </>
   );
 };

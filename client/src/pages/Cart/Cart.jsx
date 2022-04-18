@@ -69,7 +69,7 @@ const Cart = () => {
           <Link to={`/`}>
             <StyledButton>
               <ArrowBack />
-              To home page
+              На главную страницу
             </StyledButton>
           </Link>
           <TopTexts>
