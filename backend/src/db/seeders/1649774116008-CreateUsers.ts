@@ -44,7 +44,7 @@ export class CreateUsers1649774116008 implements MigrationInterface {
         password: hashPassword,
       });
 
-      return userRepository.save(newUser);
+      return await userRepository.save(newUser);
     });
     await Promise.all(createUsersPromises);
   }
