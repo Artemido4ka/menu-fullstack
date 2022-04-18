@@ -36,8 +36,11 @@ const cartSlice = createSlice({
         }
         return product;
       });
-      console.log(action.payload.priceDiff, "action.payload.priceDiff");
-      state.totalPrice = state.totalPrice + action.payload.priceDiff;
+      const newSum = Number(
+        (state.totalPrice + action.payload.priceDiff).toFixed(2)
+      );
+      state.totalPrice = newSum;
+      console.log(newSum, "AFTER");
 
       let result = state.products.reduce(function (sum, elem) {
         return sum + elem.quantity;

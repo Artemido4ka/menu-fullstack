@@ -156,8 +156,9 @@ const Cart = () => {
         (priceDiff = -product.price);
     } else {
       newQuantity = product.quantity + 1;
-      priceDiff = product.price;
+      priceDiff = +product.price;
     }
+    console.log(newQuantity, priceDiff);
     dispatch(changeProductQuantity({ ...product, newQuantity, priceDiff }));
   };
 
@@ -186,8 +187,6 @@ const Cart = () => {
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
-
-
                   <ProductAmountContainer>
                     <Add onClick={() => handleQuantity("inc", product)} />
                     <ProductAmount> {product.quantity}</ProductAmount>
@@ -195,7 +194,7 @@ const Cart = () => {
                   </ProductAmountContainer>
 
                   <ProductPrice>
-                    $ {product.price * product.quantity}
+                    $ {Number((product.price * product.quantity).toFixed(2))}
                   </ProductPrice>
                 </PriceDetail>
               </Product>
