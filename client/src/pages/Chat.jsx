@@ -3,7 +3,6 @@ import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 
 import Navbar from "../components/Navbar";
-import { devices } from "../devices";
 
 import styled from "styled-components";
 

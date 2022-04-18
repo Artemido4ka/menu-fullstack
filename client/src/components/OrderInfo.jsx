@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
@@ -28,8 +27,6 @@ const OrderRow = styled.div`
 `;
 
 const OrderInfo = ({ orderValues }) => {
-  const dispatch = useDispatch();
-
   let navigate = useNavigate();
   const onClickHandler = () => {
     navigate("/orders");

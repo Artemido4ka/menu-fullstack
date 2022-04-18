@@ -1,22 +1,12 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { publicRequest } from "../redux/requestMethods";
-import Modal from "./Modal";
-import ProductTable from "./ProductsTable";
+
+import { publicRequest } from "../../redux/requestMethods";
+import Modal from "../Modal/Modal";
+import ProductTable from "../ProductsTable";
+
+import { ModalContainer, ModalTitle } from "./styled";
 
 const RecommendationModalContainer = ({ active, setActive }) => {
-  const ModalContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  `;
-
-  const ModalTitle = styled.div`
-    font-size: 26px;
-    margin-bottom: 20px;
-  `;
-
   const [products, setRecommendation] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

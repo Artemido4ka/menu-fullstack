@@ -13,7 +13,7 @@ import {
   PowerSettingsNew,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
-import RecommendationModalContainer from "./RecommendationModalContainer";
+import RecommendationModalContainer from "./RecommendationModalContainer/RecommendationModalContainer";
 
 const Container = styled.div`
   height: 60px;

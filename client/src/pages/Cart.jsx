@@ -186,7 +186,7 @@ const Cart = () => {
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
-                  {console.log(product)}
+
 
                   <ProductAmountContainer>
                     <Add onClick={() => handleQuantity("inc", product)} />
