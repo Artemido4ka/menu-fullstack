@@ -1,6 +1,13 @@
 import styled from "styled-components";
+import { devices } from "../../devices";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  padding: 50px;
+
+  @media ${devices.laptopL} {
+    display: flex;
+  }
+`;
 
 export const Wrapper = styled.div`
   padding: 50px;
@@ -17,9 +24,11 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
-export const InfoContainer = styled.div`
-  flex: 1;
-  padding: 0px 50px;
+export const ProductInfoContainer = styled.div`
+  flex: 3;
+  @media ${devices.laptopL} {
+    margin: 0px 50px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -36,11 +45,13 @@ export const Price = styled.span`
 `;
 
 export const AddContainer = styled.div`
-  margin-top: 40px;
-  width: 50%;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid teal;
+  padding: 20px;
 `;
 
 export const AmountContainer = styled.div`
@@ -59,4 +70,26 @@ export const Amount = styled.span`
   align-items: center;
   justify-content: center;
   margin: 0px 5px;
+`;
+
+export const ImageWithAmmountContainer = styled.div`
+  background-color: rgba(199, 136, 93, 0.1);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  @media ${devices.laptopL} {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 0;
+  }
+`;
+
+export const ProductImage = styled.img`
+  max-width: 200px;
+  height: auto;
 `;

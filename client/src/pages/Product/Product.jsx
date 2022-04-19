@@ -3,21 +3,17 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import { fetchOneProduct } from "../../redux/apiCalls/product.api";
 import { addProduct } from "../../redux/cartSlice";
 
 import { StyledButton } from "../../components/StyledButton";
+import ProductTable from "../../components/ProductTable/ProductTable";
 import {
   Container,
-  Wrapper,
-  ImgContainer,
-  Image,
-  InfoContainer,
-  Title,
-  Desc,
-  Price,
+  ImageWithAmmountContainer,
+  ProductImage,
+  ProductInfoContainer,
   AddContainer,
   AmountContainer,
   Amount,
@@ -49,17 +45,12 @@ const Product = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
-      {!isFetching && product && (
-        <Wrapper>
-          <ImgContainer>
-            <Image src={`http://localhost:5000/${product.image}`} />
-          </ImgContainer>
-          <InfoContainer>
-            <Title> {product.title}</Title>
-            <Desc>{product.description}</Desc>
-            <Price> {product.price} Руб.</Price>
+      <Container>
+        {!isFetching && product && (
+          <ImageWithAmmountContainer>
+            <ProductImage src={`http://localhost:5000/${product.image}`} />
 
             <AddContainer>
               <AmountContainer>
@@ -72,12 +63,16 @@ const Product = () => {
                 Добавить в корзину
               </StyledButton>
             </AddContainer>
-          </InfoContainer>
-        </Wrapper>
-      )}
+          </ImageWithAmmountContainer>
+        )}
 
-      <Footer />
-    </Container>
+        <ProductInfoContainer>
+          {!isFetching && product && (
+            <ProductTable productValues={product} handleForm={product} />
+          )}
+        </ProductInfoContainer>
+      </Container>
+    </>
   );
 };
 

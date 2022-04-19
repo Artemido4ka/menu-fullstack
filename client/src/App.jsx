@@ -1,14 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
+import "./App.css";
+
 import Cart from "./pages/Cart/Cart";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Orders from "./pages/Orders";
 import Product from "./pages/Product/Product";
 import Register from "./pages/Register";
-
-import "./App.css";
-import Order from "./pages/Order";
+import Order from "./pages/Order/Order";
 import User from "./pages/User";
 import Chat from "./pages/Chat";
 
