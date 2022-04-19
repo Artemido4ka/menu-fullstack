@@ -1,25 +1,27 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/DG69bQ4/2.png",
+    img: "https://pngimg.com/uploads/cocktail/cocktail_PNG113.png",
     title: "SUMMER SALE",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "f5fafd",
   },
   {
     id: 2,
-    img: "https://i.ibb.co/DG69bQ4/2.png",
+    img: "https://pngimg.com/uploads/christmas_garland/christmas_garland_PNG10.png",
     title: "AUTUMN COLLECTION",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "fcf1ed",
   },
   {
     id: 3,
-    img: "https://i.ibb.co/cXFnLLV/3.png",
+    img: "https://pngimg.com/uploads/student/student_PNG62552.png",
     title: "LOUNGEWEAR LOVE",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "fbf0f4",
   },
+
+  
 ];
 
 export const categories = [

@@ -7,7 +7,7 @@ export const productsArray = [
     carbohydrates: 78.9,
     price: 1,
     weight: 105,
-    image: 'image.png',
+    image: 'rice.png',
   },
   {
     title: 'борщ',
@@ -27,7 +27,7 @@ export const productsArray = [
     carbohydrates: 7.8,
     price: 2,
     weight: 180,
-    image: 'image.png',
+    image: 'chiken_cutlet.png',
   },
   {
     title: 'котлета',
@@ -37,7 +37,7 @@ export const productsArray = [
     carbohydrates: 3.6,
     price: 1.7,
     weight: 118,
-    image: 'image.png',
+    image: 'fish_cutlet.png',
   },
   {
     title: 'компот',
@@ -47,7 +47,7 @@ export const productsArray = [
     carbohydrates: 16.5,
     price: 0.6,
     weight: 252,
-    image: 'image.png',
+    image: 'cherry_juice.png',
   },
   {
     title: 'пирожок',
