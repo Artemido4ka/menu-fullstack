@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 import Navbar from "../components/Navbar/Navbar";
 
+import { Send } from "@material-ui/icons";
 import styled from "styled-components";
 
 const socket = io("http://localhost:5000/");
@@ -140,7 +141,9 @@ const Chat = () => {
               onChange={(event) => handleInput(event.target.value)}
             />
 
-            <ChatButton onClick={() => sendMessage()}>Send</ChatButton>
+            <ChatButton onClick={() => sendMessage()}>
+              <Send color="disabled" />
+            </ChatButton>
           </ChatBottom>
         </ChatPanel>
       </ChatContainer>

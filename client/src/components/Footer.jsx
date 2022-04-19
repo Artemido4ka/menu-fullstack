@@ -80,12 +80,8 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>Menu.</Logo>
-        <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
-        </Desc>
+        <Logo>Меню</Logo>
+        <Desc>Мы всегда рады новым посетителям !</Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
             <AlternateEmail />
@@ -102,25 +98,26 @@ const Footer = () => {
         </SocialContainer>
       </Left>
       <Center>
-        <Title>Useful Links</Title>
+        <Title>Полезные ссылки</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>University</ListItem>
-          <ListItem>Faculty</ListItem>
-          <ListItem>For students</ListItem>
-          <ListItem>Orders</ListItem>
+          <ListItem>Главная</ListItem>
+          <ListItem>Рекомендация</ListItem>
+          <ListItem>Моя страница</ListItem>
+          <ListItem>Заказы</ListItem>
+          <ListItem>Чат</ListItem>
         </List>
       </Center>
       <Right>
-        <Title>Contact</Title>
+        <Title>Контакты</Title>
         <ContactItem>
-          <Room style={{ marginRight: "10px" }} /> пр. Независимости 65, Минск
+          <Room style={{ marginRight: "10px" }} /> пр. Партизанский, ул Народная
+          32, Минск
         </ContactItem>
         <ContactItem>
-          <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
+          <Phone style={{ marginRight: "10px" }} /> +375 24 *******
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{ marginRight: "10px" }} /> bntu@test.com
+          <MailOutline style={{ marginRight: "10px" }} /> admin@test.com
         </ContactItem>
       </Right>
     </Container>
