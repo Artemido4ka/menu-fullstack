@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Products from "../components/Products";
+import Navbar from "../components/Navbar/Navbar";
+import MenuProducts from "../components/MenuProducts";
 import Slider from "../components/Slider";
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
     <div>
       <Navbar />
       <Slider />
-      <Products />
+      <MenuProducts />
       <Footer/>
     </div>
   );

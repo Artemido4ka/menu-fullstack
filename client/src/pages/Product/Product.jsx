@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { fetchOneProduct } from "../../redux/apiCalls/product.api";
 import { addProduct } from "../../redux/cartSlice";
 

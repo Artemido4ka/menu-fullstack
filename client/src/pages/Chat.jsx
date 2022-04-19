@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 import { useSelector } from "react-redux";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 
 import styled from "styled-components";
 

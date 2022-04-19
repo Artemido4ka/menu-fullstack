@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Product from "./Product";
+import MenuProduct from "./MenuProduct/MenuProduct";
 
 import { fetchProducts } from "../redux/apiCalls/product.api";
 
@@ -14,7 +14,7 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Products = () => {
+const MenuProducts = () => {
   const dispatch = useDispatch();
   const { isFetching, error, products } = useSelector((state) => state.product);
 
@@ -24,11 +24,11 @@ const Products = () => {
 
   return (
     <Container>
-      {products.map((item) => (
-        <Product item={item} key={item.id} />
+      {products.map((product) => (
+        <MenuProduct product={product} key={product.id} />
       ))}
     </Container>
   );
 };
 
-export default Products;
+export default MenuProducts;

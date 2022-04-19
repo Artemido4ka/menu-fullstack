@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components//Navbar/Navbar";
 import { fetchOneUserOrder } from "../../redux/apiCalls/order.api";
 import OrderTable from "../../components/OrderTable/OrderTable";
 

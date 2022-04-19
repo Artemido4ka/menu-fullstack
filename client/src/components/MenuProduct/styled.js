@@ -1,14 +1,6 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
-import CustomizedDialogs from "./InfoProduct";
-
-import { SearchOutlined, ShoppingCartOutlined } from "@material-ui/icons";
-
 import styled from "styled-components";
 
-const Info = styled.div`
+export const Info = styled.div`
   opacity: 0;
   width: 100%;
   height: 100%;
@@ -23,7 +15,7 @@ const Info = styled.div`
   transition: all 0.5s ease;
 `;
 
-const Title = styled.div`
+export const Title = styled.div`
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -38,7 +30,7 @@ const Title = styled.div`
   font-weight: 600;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   flex: 1;
   margin: 5px;
   min-width: 280px;
@@ -56,7 +48,7 @@ const Container = styled.div`
   }
 `;
 
-const Circle = styled.div`
+export const Circle = styled.div`
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -64,13 +56,13 @@ const Circle = styled.div`
   position: absolute;
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   max-width: 200px;
   height: auto;
   z-index: 2;
 `;
 
-const Icon = styled.div`
+export const Icon = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -86,36 +78,3 @@ const Icon = styled.div`
     transform: scale(1.1);
   }
 `;
-
-const Product = ({ item }) => {
-  const [open, setOpen] = useState(false);
-  const { user } = useSelector((state) => state.user);
-
-  const navigate = useNavigate();
-  const redirectToProductHandler = () => {
-    navigate(user ? `/product/${item.id}` : `/login`);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(!open);
-  };
-
-  return (
-    <Container>
-      <Circle />
-      <Image src={`http://localhost:5000/${item.image}`} />
-      <Info>
-        <Icon onClick={handleClickOpen}>
-          <SearchOutlined />
-        </Icon>
-        <Icon onClick={() => redirectToProductHandler()}>
-          <ShoppingCartOutlined />
-        </Icon>
-      </Info>
-      <Title>{item.title}</Title>
-      {open ? <CustomizedDialogs handleOpen={setOpen} product={item} /> : null}
-    </Container>
-  );
-};
-
-export default Product;

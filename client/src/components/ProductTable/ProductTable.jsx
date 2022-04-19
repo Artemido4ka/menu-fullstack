@@ -12,7 +12,7 @@ import {
   ProductRowValue,
 } from "./styled";
 
-const ProductTable = ({ productValues }) => {
+const ProductTable = ({ productValues, isButtonHidden }) => {
   let navigate = useNavigate();
   const onClickHandler = () => {
     navigate("/");
@@ -48,11 +48,13 @@ const ProductTable = ({ productValues }) => {
         </ProductRow>
       </OrderList>
 
-      <Buttons>
-        <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
-          <ArrowBack /> На главную страницу
-        </StyledButton>
-      </Buttons>
+      {!isButtonHidden && (
+        <Buttons>
+          <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
+            <ArrowBack /> На главную страницу
+          </StyledButton>
+        </Buttons>
+      )}
     </>
   );
 };

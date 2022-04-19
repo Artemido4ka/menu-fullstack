@@ -29,7 +29,6 @@ const RecommendationModal = ({ active, setActive }) => {
     fetchRecommendation();
   }, [user]);
 
-  console.log(products);
 
   return (
     <>

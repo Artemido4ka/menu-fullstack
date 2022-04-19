@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import defaultProduct from "../images/defaultProduct.jpg";
 
 import { devices } from "../devices";

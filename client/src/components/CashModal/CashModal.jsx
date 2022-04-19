@@ -27,7 +27,6 @@ const CashModal = ({
       title: customer,
       description: comment,
     });
-    console.log("create");
   };
 
   return (

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import CashModal from "../../components/CashModal/CashModal";
 import Footer from "../../components/Footer";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { changeProductQuantity } from "../../redux/cartSlice";
 
 import { Add, ArrowBack, Beenhere, Remove } from "@material-ui/icons";
@@ -56,7 +56,6 @@ const Cart = () => {
       newQuantity = product.quantity + 1;
       priceDiff = +product.price;
     }
-    console.log(newQuantity, priceDiff);
     dispatch(changeProductQuantity({ ...product, newQuantity, priceDiff }));
   };
 
@@ -79,12 +78,12 @@ const Cart = () => {
         <Bottom>
           <Info>
             {cart.products.map((product) => (
-              <Product>
+              <Product key={product.id}>
                 <ProductDetail>
                   <Image src={`http://localhost:5000/${product.image}`} />
                   <Details>
                     <ProductName>
-                      <b>Product:</b> {product.title}
+                      <b>Блюдо: </b> {product.title}
                     </ProductName>
                   </Details>
                 </ProductDetail>
