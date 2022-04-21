@@ -40,14 +40,14 @@ const ProductTable = ({ products }) => {
               background: "teal",
             }}
           >
-            <StyledTableHeadCell>Title</StyledTableHeadCell>
-            <StyledTableHeadCell>Description</StyledTableHeadCell>
-            <StyledTableHeadCell>Fats&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Proteins&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Carbs&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Price&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Weight&nbsp;(g)</StyledTableHeadCell>
-            <StyledTableHeadCell>Image</StyledTableHeadCell>
+            <StyledTableHeadCell>Название</StyledTableHeadCell>
+            <StyledTableHeadCell>Описание</StyledTableHeadCell>
+            <StyledTableHeadCell>Жиры&nbsp;(г)</StyledTableHeadCell>
+            <StyledTableHeadCell>Белки&nbsp;(г)</StyledTableHeadCell>
+            <StyledTableHeadCell>Углеводы&nbsp;(г)</StyledTableHeadCell>
+            <StyledTableHeadCell>Цена&nbsp;(руб)</StyledTableHeadCell>
+            <StyledTableHeadCell>Масса&nbsp;(г)</StyledTableHeadCell>
+            <StyledTableHeadCell>Изображение</StyledTableHeadCell>
             <StyledTableHeadCell sx={{ "&:last-child,": { border: 0 } }}>
               Info
             </StyledTableHeadCell>
@@ -76,7 +76,7 @@ const ProductTable = ({ products }) => {
               </TableCell>
               <TableCell align="center">
                 <Link to={`/products/${row.id}`}>
-                  <StyledButton variant="contained">More..</StyledButton>
+                  <StyledButton variant="contained">Подробнее..</StyledButton>
                 </Link>
               </TableCell>
             </StyledTableRow>

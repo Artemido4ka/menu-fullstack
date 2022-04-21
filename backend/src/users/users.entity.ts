@@ -10,6 +10,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { DecimalTransformer } from 'src/transformers/decimal.transformer';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -45,7 +46,11 @@ export class User {
   @Column({ default: 0 })
   age: number;
 
-  @Column({ type: 'decimal', default: 0 })
+  @Column({
+    type: 'decimal',
+    default: 0,
+    transformer: new DecimalTransformer(),
+  })
   activity: number;
 
   @Column({ default: null })

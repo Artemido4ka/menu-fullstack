@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
@@ -19,19 +19,34 @@ const ProductContainer = styled.div`
 `;
 
 const ImgContainer = styled.div`
-  flex: 1;
+  flex: 2;
+  @media ${devices.tablet} {
+    margin: 0 50px;
+  }
+`;
+
+const ProductRow = styled.div`
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
+
+  background: rgba(24, 144, 150, 0.2);
+  :nth-child(odd) {
+    color: rgba(199, 136, 93, 1);
+    background: rgba(24, 144, 150, 0.2);
+  }
 `;
 
 const Image = styled.img`
   width: 100%;
-
-  object-fit: cover;
-  margin-bottom: 20px;
 `;
 
 const InfoContainer = styled.div`
-  flex: 1;
-  padding: 0px 50px;
+  flex: 3;
+  @media ${devices.laptopL} {
+    margin: 0px 50px;
+  }
 `;
 
 const Product = () => {
@@ -39,10 +54,12 @@ const Product = () => {
   const productId = location.pathname.split("/")[2];
   const { isFetching, error, product } = useSelector((state) => state.product);
   const { image } = useSelector((state) => state.image);
+  console.log(product, "PRODUCT");
 
   const dispatch = useDispatch();
 
   const handleForm = (formValues) => {
+    // console.log(formValues);
     updateProduct(dispatch, formValues, productId);
   };
 
@@ -59,20 +76,22 @@ const Product = () => {
   return (
     <>
       <Navbar />
-      <ProductContainer>
-        <ImgContainer>
-          <Image src={handleImageSrc()} />
-        </ImgContainer>
-        <InfoContainer>
-          {!isFetching && product && (
+      {!isFetching && product && (
+        <ProductContainer>
+          <ImgContainer>
+            <ProductRow>
+              <Image src={handleImageSrc()} />
+            </ProductRow>
+          </ImgContainer>
+          <InfoContainer>
             <ProductForm
               productValues={product}
               handleForm={handleForm}
               loadedImage={image}
             />
-          )}
-        </InfoContainer>
-      </ProductContainer>
+          </InfoContainer>
+        </ProductContainer>
+      )}
     </>
   );
 };

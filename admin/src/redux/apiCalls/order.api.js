@@ -31,8 +31,7 @@ export const fetchOrders = async (dispatch) => {
       const res = await userRequest(
         localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
       ).put("orders/" + productId, newOrder);
-      console.log(res);
-  
+      
       dispatch(fetchOneOrderSuccess(res.data));
     } catch (err) {
       dispatch(fetchOrderError());

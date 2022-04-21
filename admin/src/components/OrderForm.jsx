@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 
-import { COOKING, ORDERED, READY } from "../constants";
+import { BLUE, COOKING, GREEN, ORDERED, READY, RED, WHITE } from "../constants";
 import { StyledButton } from "./StyledButton";
 
 import TextField from "@material-ui/core/TextField";
@@ -110,22 +110,16 @@ const OrderForm = ({ handleForm, orderValues }) => {
           onChange={formik.handleChange}
         >
           <MenuItem value={ORDERED}>
-            <Chip
-              label={ORDERED}
-              sx={{ backgroundColor: "red", color: "white" }}
-            />
+            <Chip label={ORDERED} sx={{ backgroundColor: RED, color: WHITE }} />
           </MenuItem>
           <MenuItem value={COOKING}>
             <Chip
               label={COOKING}
-              sx={{ backgroundColor: "blue", color: "white" }}
+              sx={{ backgroundColor: BLUE, color: WHITE }}
             />
           </MenuItem>
           <MenuItem value={READY}>
-            <Chip
-              label={READY}
-              sx={{ backgroundColor: "green", color: "white" }}
-            />
+            <Chip label={READY} sx={{ backgroundColor: GREEN, color: WHITE }} />
           </MenuItem>
         </Select>
       </FormControl>

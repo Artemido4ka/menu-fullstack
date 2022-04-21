@@ -25,7 +25,6 @@ export class AuthService {
 
   async loginAdmin(userDto: CreateUserDto) {
     const user = await this.validateUser(userDto);
-    console.log(user.roles[0].value);
     if (user.roles[0].value !== 'ADMIN')
       throw new UnauthorizedException({ message: 'Ошибка авторизации' });
     const token = await this.generateToken(user);

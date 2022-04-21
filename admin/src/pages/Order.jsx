@@ -17,14 +17,14 @@ const OrderContainer = styled.div`
   }
 `;
 
-const ProductsContainer = styled.div`
+const ImgContainer = styled.div`
   flex: 2;
   @media ${devices.tablet} {
     margin: 0 50px;
   }
 `;
 
-const ProductRow = styled.div`
+const OrderRow = styled.div`
   margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
@@ -36,14 +36,14 @@ const ProductRow = styled.div`
   }
 `;
 
-export const ProductTitleContainer = styled.div`
+export const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 26px;
   color: black;
 `;
 
-export const ProductTitle = styled.div`
+export const Title = styled.div`
   padding: 5px;
   display: flex;
   align-items: center;
@@ -54,7 +54,7 @@ export const ProductTitle = styled.div`
   border-top: 1px solid rgba(24, 144, 150, 1);
 `;
 
-const ProductImage = styled.img`
+const Image = styled.img`
   max-width: 200px;
   height: auto;
 `;
@@ -86,16 +86,16 @@ const Order = () => {
       <Navbar />
       {!isFetching && order && (
         <OrderContainer>
-          <ProductsContainer>
+          <ImgContainer>
             {order.products.map((product) => (
-              <ProductRow key={product.id}>
-                <ProductImage src={`http://localhost:5000/${product.image}`} />
-                <ProductTitleContainer>
-                  <ProductTitle>{product.title}</ProductTitle>
-                </ProductTitleContainer>
-              </ProductRow>
+              <OrderRow key={product.id}>
+                <Image src={`http://localhost:5000/${product.image}`} />
+                <TitleContainer>
+                  <Title>{product.title}</Title>
+                </TitleContainer>
+              </OrderRow>
             ))}
-          </ProductsContainer>
+          </ImgContainer>
           <InfoContainer>
             <OrderForm orderValues={order} handleForm={handleForm} />
           </InfoContainer>

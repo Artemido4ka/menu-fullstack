@@ -38,13 +38,13 @@ const Products = () => {
           <Link to={`/`}>
             <StyledButton margin="0 20px 0 0">
               <ArrowBack />
-              To home page
+              на главную страницу
             </StyledButton>
           </Link>
           <Link to={`/products/new`}>
             <StyledButton primary>
               <Create />
-              Create New Product
+              Создать новое блюдо
             </StyledButton>
           </Link>
         </ButtonContainer>

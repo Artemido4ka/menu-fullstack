@@ -17,7 +17,6 @@ const ProductTable = ({ productValues, isButtonHidden }) => {
   const onClickHandler = () => {
     navigate("/");
   };
-  console.log(productValues);
 
   return (
     <>

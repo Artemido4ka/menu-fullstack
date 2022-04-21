@@ -18,7 +18,6 @@ export const fetchProducts = async (dispatch) => {
     try {
       const res = await publicRequest.get("/products/" + productId);
       dispatch(fetchOneProductSuccess(res.data));
-      console.log(res.data)
     } catch (err) {
       dispatch(fetchProductsError());
     }

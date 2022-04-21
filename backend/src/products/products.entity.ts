@@ -1,3 +1,4 @@
+import { DecimalTransformer } from './../transformers/decimal.transformer';
 import { Order } from 'src/orders/orders.entity';
 import {
   Column,
@@ -17,19 +18,19 @@ export class Product {
   @Column()
   description: string;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', transformer: new DecimalTransformer() })
   fats: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', transformer: new DecimalTransformer() })
   proteins: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', transformer: new DecimalTransformer() })
   carbohydrates: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', transformer: new DecimalTransformer() })
   price: number;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'decimal', transformer: new DecimalTransformer() })
   weight: number;
 
   @Column()

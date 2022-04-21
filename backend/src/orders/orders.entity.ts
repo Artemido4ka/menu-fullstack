@@ -16,7 +16,7 @@ export class Order {
   @Column()
   title: string;
 
-  @Column({ type: 'decimal' })
+  @Column({ type: 'real' })
   price: number;
 
   @Column()
