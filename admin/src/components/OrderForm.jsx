@@ -1,19 +1,25 @@
-import React from "react";
+import styled from "styled-components";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 
-import styled from "styled-components";
-import TextField from "@material-ui/core/TextField";
+import { COOKING, ORDERED, READY } from "../constants";
 import { StyledButton } from "./StyledButton";
+
+import TextField from "@material-ui/core/TextField";
 import { ArrowBack, Beenhere } from "@material-ui/icons";
+
+import MenuItem from "@mui/material/MenuItem";
+
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
+
+import { Chip, InputLabel } from "@mui/material";
 
 const Buttons = styled.div`
   display: flex;
   margin-top: 20px;
 `;
-
-const Form = styled.form``;
 
 const validationSchema = yup.object({
   //   email: yup
@@ -41,7 +47,11 @@ const OrderForm = ({ handleForm, orderValues }) => {
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <form
+      // sx={{ width: "100%" }}
+      // variant="standard"
+      onSubmit={formik.handleSubmit}
+    >
       <TextField
         fullWidth
         id="title"
@@ -89,28 +99,48 @@ const OrderForm = ({ handleForm, orderValues }) => {
         helperText={formik.touched.date && formik.errors.date}
       />
 
-      <TextField
-        fullWidth
-        id="status"
-        name="status"
-        label="status"
-        type="text"
-        value={formik.values.status}
-        onChange={formik.handleChange}
-        error={formik.touched.status && Boolean(formik.errors.status)}
-        helperText={formik.touched.status && formik.errors.status}
-      />
+      <FormControl sx={{ width: "100%" }} variant="standard">
+        <InputLabel id="select-label">Статус</InputLabel>
+        <Select
+          labelId="select-label"
+          id="status"
+          name="status"
+          value={formik.values.status}
+          label="status"
+          onChange={formik.handleChange}
+        >
+          <MenuItem value={ORDERED}>
+            <Chip
+              label={ORDERED}
+              sx={{ backgroundColor: "red", color: "white" }}
+            />
+          </MenuItem>
+          <MenuItem value={COOKING}>
+            <Chip
+              label={COOKING}
+              sx={{ backgroundColor: "blue", color: "white" }}
+            />
+          </MenuItem>
+          <MenuItem value={READY}>
+            <Chip
+              label={READY}
+              sx={{ backgroundColor: "green", color: "white" }}
+            />
+          </MenuItem>
+        </Select>
+      </FormControl>
+
       <Buttons>
         <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
-          <ArrowBack /> Go back
+          <ArrowBack /> назад
         </StyledButton>
 
         <StyledButton type="submit" primary>
           <Beenhere />
-          Submit
+          сохранить
         </StyledButton>
       </Buttons>
-    </Form>
+    </form>
   );
 };
 

@@ -28,6 +28,24 @@ export const ProductRow = styled.div`
   }
 `;
 
+export const ProductTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  color: black;
+`;
+
+export const ProductTitle = styled.div`
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  color: black;
+
+  border-bottom: 1px solid rgba(199, 136, 93, 1);
+  border-top: 1px solid rgba(24, 144, 150, 1);
+`;
+
 export const ProductImage = styled.img`
   max-width: 200px;
   height: auto;

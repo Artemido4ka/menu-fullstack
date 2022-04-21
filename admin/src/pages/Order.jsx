@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -18,21 +18,40 @@ const OrderContainer = styled.div`
 `;
 
 const ProductsContainer = styled.div`
-  flex: 1;
+  flex: 2;
+  @media ${devices.tablet} {
+    margin: 0 50px;
+  }
 `;
 
 const ProductRow = styled.div`
   margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
-  border-bottom: 1px solid black;
+  border-radius: 5px;
+  background: rgba(24, 144, 150, 0.2);
+  :nth-child(odd) {
+    color: rgba(199, 136, 93, 1);
+    background: rgba(24, 144, 150, 0.2);
+  }
 `;
 
-const ProductName = styled.div`
+export const ProductTitleContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 20px;
+  font-size: 26px;
+  color: black;
+`;
+
+export const ProductTitle = styled.div`
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  color: black;
+
+  border-bottom: 1px solid rgba(199, 136, 93, 1);
+  border-top: 1px solid rgba(24, 144, 150, 1);
 `;
 
 const ProductImage = styled.img`
@@ -41,8 +60,10 @@ const ProductImage = styled.img`
 `;
 
 const InfoContainer = styled.div`
-  flex: 1;
-  padding: 0px 50px;
+  flex: 3;
+  @media ${devices.laptopL} {
+    margin: 0px 50px;
+  }
 `;
 
 const Order = () => {
@@ -63,24 +84,23 @@ const Order = () => {
   return (
     <>
       <Navbar />
-
-      <OrderContainer>
-        <ProductsContainer>
-          {!isFetching &&
-            order &&
-            order.products.map((product) => (
+      {!isFetching && order && (
+        <OrderContainer>
+          <ProductsContainer>
+            {order.products.map((product) => (
               <ProductRow key={product.id}>
-                <ProductName>{product.title} </ProductName>
                 <ProductImage src={`http://localhost:5000/${product.image}`} />
+                <ProductTitleContainer>
+                  <ProductTitle>{product.title}</ProductTitle>
+                </ProductTitleContainer>
               </ProductRow>
             ))}
-        </ProductsContainer>
-        <InfoContainer>
-          {!isFetching && order && (
+          </ProductsContainer>
+          <InfoContainer>
             <OrderForm orderValues={order} handleForm={handleForm} />
-          )}
-        </InfoContainer>
-      </OrderContainer>
+          </InfoContainer>
+        </OrderContainer>
+      )}
     </>
   );
 };

@@ -1,4 +1,7 @@
-import * as React from "react";
+import { Link } from "react-router-dom";
+
+import { BLUE, COOKING, GREEN, ORDERED, READY, RED } from "../constants";
+import { StyledButton } from "./StyledButton";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,9 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { StyledButton } from "./StyledButton";
 import { Avatar, Chip, List, ListItem } from "@material-ui/core";
 import { ListItemAvatar, ListItemText } from "@mui/material";
 
@@ -34,10 +35,9 @@ const StyledChip = styled(Chip)(({ status }) => ({
 
 const OrdersTable = ({ orders }) => {
   const switchColor = (status) => {
-    console.log(status);
-    if (status === "ORDERED") return "red";
-    if (status === "COOKING") return "blue";
-    if (status === "READY") return "green";
+    if (status === ORDERED) return RED;
+    if (status === COOKING) return BLUE;
+    if (status === READY) return GREEN;
   };
 
   return (
@@ -49,14 +49,12 @@ const OrdersTable = ({ orders }) => {
               background: "teal",
             }}
           >
-            <StyledTableHeadCell>User Id</StyledTableHeadCell>
-            <StyledTableHeadCell>User Email </StyledTableHeadCell>
-            <StyledTableHeadCell>Title</StyledTableHeadCell>
-            <StyledTableHeadCell>Description</StyledTableHeadCell>
-            <StyledTableHeadCell>Price&nbsp;(BYN)</StyledTableHeadCell>
-            <StyledTableHeadCell>Date</StyledTableHeadCell>
-            <StyledTableHeadCell>Products</StyledTableHeadCell>
-            <StyledTableHeadCell>Status</StyledTableHeadCell>
+            <StyledTableHeadCell>Название</StyledTableHeadCell>
+            <StyledTableHeadCell>Описание</StyledTableHeadCell>
+            <StyledTableHeadCell>Цена&nbsp;(BYN)</StyledTableHeadCell>
+            <StyledTableHeadCell>Дата</StyledTableHeadCell>
+            <StyledTableHeadCell>Продукты</StyledTableHeadCell>
+            <StyledTableHeadCell>Статус</StyledTableHeadCell>
             <StyledTableHeadCell>Info</StyledTableHeadCell>
           </TableRow>
         </TableHead>
@@ -66,9 +64,7 @@ const OrdersTable = ({ orders }) => {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell align="center">{row.userId}</TableCell>
-              <TableCell align="center">{row.user.email}</TableCell>
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" align="center">
                 {row.title}
               </TableCell>
               <TableCell align="center">{row.description}</TableCell>
@@ -103,7 +99,7 @@ const OrdersTable = ({ orders }) => {
               </TableCell>
               <TableCell align="center">
                 <Link to={`/orders/${row.id}`}>
-                  <StyledButton variant="contained">More..</StyledButton>
+                  <StyledButton variant="contained">Подробнее..</StyledButton>
                 </Link>
               </TableCell>
             </StyledTableRow>

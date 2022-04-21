@@ -1,7 +1,8 @@
-import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { BLUE, COOKING, GREEN, ORDERED, READY, RED } from "../constants";
 import { StyledButton } from "./StyledButton";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -34,9 +35,9 @@ const StyledChip = styled(Chip)(({ status }) => ({
 
 const OrdersTable = ({ orders }) => {
   const switchColor = (status) => {
-    if (status === "ORDERED") return "red";
-    if (status === "COOKING") return "blue";
-    if (status === "READY") return "green";
+    if (status === ORDERED) return RED;
+    if (status === COOKING) return GREEN;
+    if (status === READY) return BLUE;
   };
 
   return (
@@ -63,7 +64,7 @@ const OrdersTable = ({ orders }) => {
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" align="center">
                 {row.title}
               </TableCell>
               <TableCell align="center">{row.description}</TableCell>
@@ -98,7 +99,7 @@ const OrdersTable = ({ orders }) => {
               </TableCell>
               <TableCell align="center">
                 <Link to={`/orders/${row.id}`}>
-                  <StyledButton variant="contained">More..</StyledButton>
+                  <StyledButton variant="contained">Подробнее..</StyledButton>
                 </Link>
               </TableCell>
             </StyledTableRow>

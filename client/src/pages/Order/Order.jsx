@@ -12,6 +12,8 @@ import {
   ProductImage,
   ProductRow,
   ProductsContainer,
+  ProductTitleContainer,
+  ProductTitle,
 } from "./styled";
 
 const Order = () => {
@@ -32,22 +34,23 @@ const Order = () => {
   return (
     <>
       <Navbar />
-      <OrderContainer>
-        <ProductsContainer>
-          {!isFetching &&
-            order &&
-            order.products.map((product) => (
+      {!isFetching && order && (
+        <OrderContainer>
+          <ProductsContainer>
+            {order.products.map((product) => (
               <ProductRow key={product.id}>
                 <ProductImage src={`http://localhost:5000/${product.image}`} />
+                <ProductTitleContainer>
+                  <ProductTitle>{product.title}</ProductTitle>
+                </ProductTitleContainer>
               </ProductRow>
             ))}
-        </ProductsContainer>
-        <InfoContainer>
-          {!isFetching && order && (
+          </ProductsContainer>
+          <InfoContainer>
             <OrderTable orderValues={order} handleForm={handleForm} />
-          )}
-        </InfoContainer>
-      </OrderContainer>
+          </InfoContainer>
+        </OrderContainer>
+      )}
     </>
   );
 };

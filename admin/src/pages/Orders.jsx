@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { fetchOrders } from "../redux/apiCalls/order.api";
 import OrdersTable from "../components/OrdersTable";
 
 import { StyledButton } from "../components/StyledButton";
 import { ArrowBack } from "@material-ui/icons";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const ProductContainer = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const Orders = () => {
           <Link to={`/`}>
             <StyledButton>
               <ArrowBack />
-              To home page
+              На главную страницу
             </StyledButton>
           </Link>
         </ButtonContainer>
