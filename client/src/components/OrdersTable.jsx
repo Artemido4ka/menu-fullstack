@@ -1,5 +1,7 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
+import { StyledButton } from "./StyledButton";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,9 +9,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { StyledButton } from "./StyledButton";
 import { Avatar, Chip, List, ListItem } from "@material-ui/core";
 import { ListItemAvatar, ListItemText } from "@mui/material";
 
@@ -48,12 +48,12 @@ const OrdersTable = ({ orders }) => {
               background: "teal",
             }}
           >
-            <StyledTableHeadCell>Title</StyledTableHeadCell>
-            <StyledTableHeadCell>Description</StyledTableHeadCell>
-            <StyledTableHeadCell>Price&nbsp;(BYN)</StyledTableHeadCell>
-            <StyledTableHeadCell>Date</StyledTableHeadCell>
-            <StyledTableHeadCell>Products</StyledTableHeadCell>
-            <StyledTableHeadCell>Status</StyledTableHeadCell>
+            <StyledTableHeadCell>Название</StyledTableHeadCell>
+            <StyledTableHeadCell>Описание</StyledTableHeadCell>
+            <StyledTableHeadCell>Цена&nbsp;(BYN)</StyledTableHeadCell>
+            <StyledTableHeadCell>Дата</StyledTableHeadCell>
+            <StyledTableHeadCell>Продукты</StyledTableHeadCell>
+            <StyledTableHeadCell>Статус</StyledTableHeadCell>
             <StyledTableHeadCell>Info</StyledTableHeadCell>
           </TableRow>
         </TableHead>

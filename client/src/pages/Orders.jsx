@@ -37,7 +37,7 @@ const Orders = () => {
           <Link to={`/`}>
             <StyledButton>
               <ArrowBack />
-              To home page
+              На главную страницу
             </StyledButton>
           </Link>
         </ButtonContainer>

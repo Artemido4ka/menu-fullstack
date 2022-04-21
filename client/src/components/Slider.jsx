@@ -1,8 +1,32 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import styled from "styled-components";
-import { sliderItems } from "./data";
+
 // import { mobile } from "../responsive";
+
+export const sliderItems = [
+  {
+    id: 1,
+    img: "https://pngimg.com/uploads/cocktail/cocktail_PNG113.png",
+    title: "SUMMER SALE",
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: "f5fafd",
+  },
+  {
+    id: 2,
+    img: "https://pngimg.com/uploads/christmas_garland/christmas_garland_PNG10.png",
+    title: "AUTUMN COLLECTION",
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: "fcf1ed",
+  },
+  {
+    id: 3,
+    img: "https://pngimg.com/uploads/student/student_PNG62552.png",
+    title: "LOUNGEWEAR LOVE",
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: "fbf0f4",
+  },
+];
 
 const Container = styled.div`
   width: 100%;
