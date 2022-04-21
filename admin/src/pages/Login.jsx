@@ -2,24 +2,30 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { login } from "../redux/apiCalls/auth.api";
 import { devices } from "../devices";
 
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
+import { StyledButton } from "../components/StyledButton";
+import { Beenhere } from "@material-ui/icons";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
+  background: linear-gradient(
+    rgba(24, 144, 150, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const Wrapper = styled.div`
-  border: 1px solid teal;
   width: 75%;
   padding: 20px;
   background-color: white;
@@ -41,20 +47,10 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
-const Button = styled.button`
-  text-transform: uppercase;
-  margin-top: 20px;
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
+const CreateAccountLink = styled.div`
+  font-size: 16px;
+  color: black;
   cursor: pointer;
-  margin-bottom: 10px;
-  &:disabled {
-    color: aqua;
-    cursor: not-allowed;
-  }
 `;
 
 const Error = styled.span`
@@ -97,7 +93,7 @@ const Login = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>SIGN IN</Title>
+        <Title>Login</Title>
         <Form onSubmit={formik.handleSubmit}>
           <TextField
             fullWidth
@@ -121,9 +117,10 @@ const Login = () => {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            Submit
-          </Button>
+          <StyledButton type="submit" primary margin="20px 0">
+            <Beenhere />
+            Войти
+          </StyledButton>
           {error && <Error>Something is wrong...</Error>}
         </Form>
       </Wrapper>

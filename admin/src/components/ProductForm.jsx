@@ -67,7 +67,6 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
     },
   });
 
-
   return (
     <>
       <Form onSubmit={formik.handleSubmit}>
@@ -156,11 +155,11 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
         />
         <Buttons>
           <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
-            <ArrowBack /> Go back
+            <ArrowBack /> назад
           </StyledButton>
           <StyledButton type="submit" primary>
             <Beenhere />
-            Submit
+            сохранить
           </StyledButton>
         </Buttons>
       </Form>
@@ -178,7 +177,7 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           onClick={handleClick}
           background="rgba(23, 35, 143, 0.8);"
         >
-          <AddPhotoAlternate /> Upload image
+          <AddPhotoAlternate /> загрузить фото
         </StyledButton>
       </>
     </>

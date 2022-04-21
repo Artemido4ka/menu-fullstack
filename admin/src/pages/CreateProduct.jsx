@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import { createProduct } from "../redux/apiCalls/product.api";
 import defaultProduct from "../images/defaultProduct.jpg";
 import ProductForm from "../components/ProductForm";

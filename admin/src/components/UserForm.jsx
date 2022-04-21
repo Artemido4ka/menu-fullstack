@@ -108,11 +108,11 @@ const UserForm = ({ loadedImage, handleForm, userValues }) => {
 
         <Buttons>
           <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
-            <ArrowBack /> Go back
+            <ArrowBack /> на главную страницу
           </StyledButton>
           <StyledButton type="submit" primary>
             <Beenhere />
-            Submit
+            сохранить
           </StyledButton>
         </Buttons>
       </Form>
@@ -130,7 +130,7 @@ const UserForm = ({ loadedImage, handleForm, userValues }) => {
           onClick={handleClick}
           background="rgba(23, 35, 143, 0.8);"
         >
-          <AddPhotoAlternate /> Upload image
+          <AddPhotoAlternate /> загрузить изображение
         </StyledButton>
       </>
     </>

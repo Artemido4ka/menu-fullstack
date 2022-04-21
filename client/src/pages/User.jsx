@@ -9,37 +9,38 @@ import { devices } from "../devices";
 import styled from "styled-components";
 import UserForm from "../components/UserForm";
 import { fetchUserProfile, updateUser } from "../redux/apiCalls/user.api";
-import { useLocation } from "react-router-dom";
 
 const UserContainer = styled.div`
-  padding: 50px;
-
-  @media ${devices.tablet} {
-    display: flex;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const AvatarContainer = styled.div`
-  flex: 1;
+  margin: 40px 0;
+  padding: 40px;
+  width: 50%;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(rgba(24, 144, 150, 1), rgba(24, 144, 150, 0.5));
 `;
 
 const Image = styled.img`
-  width: 100%;
-
   object-fit: cover;
-  margin-bottom: 20px;
+  border-radius: 10%;
+  width: 300px;
+  height: auto;
 `;
 
 const InfoContainer = styled.div`
-  flex: 1;
+  /* flex: 1; */
   padding: 0px 50px;
 `;
 
 const User = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
   const { image } = useSelector((state) => state.image);
-  const location = useLocation();
-  const userId = location.pathname.split("/")[2];
 
   const dispatch = useDispatch();
 
@@ -48,8 +49,8 @@ const User = () => {
   };
 
   useEffect(() => {
-    fetchUserProfile(dispatch, userId);
-  }, [dispatch, userId]);
+    fetchUserProfile(dispatch);
+  }, [dispatch]);
 
   const handleImageSrc = () => {
     if (image) return `http://localhost:5000/${image}`;

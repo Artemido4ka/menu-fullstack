@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { fetchOneProduct, updateProduct } from "../redux/apiCalls/product.api";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import defaultProduct from "../images/defaultProduct.jpg";
 import ProductForm from "../components/ProductForm";
 import { devices } from "../devices";

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Dashboard } from "@material-ui/icons";
 import { PersonOutline } from "@material-ui/icons";
@@ -10,6 +10,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { ListItemIcon } from "@material-ui/core";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { signout } from "../redux/apiCalls/auth.api";
 
 const SidebarContainer = styled.div`
   border: 0.5px solid rgb(230, 227, 227);
@@ -18,6 +20,13 @@ const SidebarContainer = styled.div`
 `;
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const signoutHandler = () => {
+    dispatch(signout());
+    navigate("/");
+  };
+
   return (
     <SidebarContainer>
       <List>
@@ -26,7 +35,7 @@ const Sidebar = () => {
             <ListItemIcon>
               <Dashboard />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Главная" />
           </ListItem>
         </Link>
 
@@ -35,7 +44,7 @@ const Sidebar = () => {
             <ListItemIcon>
               <ShoppingCartOutlined />
             </ListItemIcon>
-            <ListItemText primary="Products" />
+            <ListItemText primary="Блюда" />
           </ListItem>
         </Link>
 
@@ -44,7 +53,7 @@ const Sidebar = () => {
             <ListItemIcon>
               <Store />
             </ListItemIcon>
-            <ListItemText primary="Orders" />
+            <ListItemText primary="Заказы" />
           </ListItem>
         </Link>
 
@@ -53,16 +62,16 @@ const Sidebar = () => {
             <ListItemIcon>
               <PersonOutline />
             </ListItemIcon>
-            <ListItemText primary="Profile" />
+            <ListItemText primary="Пользователи" />
           </ListItem>
         </Link>
 
         <Link to="/">
-          <ListItem>
+          <ListItem onClick={signoutHandler}>
             <ListItemIcon>
               <ExitToApp />
             </ListItemIcon>
-            <ListItemText primary="Logout" />
+            <ListItemText primary="Выйти" />
           </ListItem>
         </Link>
       </List>
