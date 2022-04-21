@@ -2,23 +2,23 @@ import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { login } from "../redux/apiCalls/auth.api";
 import { devices } from "../devices";
 
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
+import { StyledButton } from "../components/StyledButton";
+import { Beenhere } from "@material-ui/icons";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-      center;
+    rgba(24, 144, 150, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
   background-size: cover;
   display: flex;
   align-items: center;
@@ -47,33 +47,9 @@ const Form = styled.form`
   flex-direction: column;
 `;
 
-const Input = styled.input`
-  flex: 1;
-  min-width: 40%;
-  margin: 10px 0;
-  padding: 10px;
-`;
-
-const Button = styled.button`
-  text-transform: uppercase;
-  margin-top: 20px;
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-  &:disabled {
-    color: aqua;
-    cursor: not-allowed;
-  }
-`;
-
-const Link = styled.a`
-  margin: 5px 0px;
-  font-size: 12px;
-  text-decoration: underline;
+const CreateAccountLink = styled.div`
+  font-size: 16px;
+  color: black;
   cursor: pointer;
 `;
 
@@ -117,7 +93,7 @@ const Login = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>SIGN IN</Title>
+        <Title>Login</Title>
         <Form onSubmit={formik.handleSubmit}>
           <TextField
             fullWidth
@@ -141,12 +117,14 @@ const Login = () => {
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
           />
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            Submit
-          </Button>
+          <StyledButton type="submit" primary margin="20px 0">
+            <Beenhere />
+            Войти
+          </StyledButton>
           {error && <Error>Something is wrong...</Error>}
-          {/* <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link> */}
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link to="/register">
+            <CreateAccountLink>Создать аккаунт</CreateAccountLink>
+          </Link>
         </Form>
       </Wrapper>
     </Container>

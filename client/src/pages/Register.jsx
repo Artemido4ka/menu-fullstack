@@ -9,16 +9,17 @@ import { devices } from "../devices";
 
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
+import { StyledButton } from "../components/StyledButton";
+import { Beenhere } from "@material-ui/icons";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/6984661/pexels-photo-6984661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
-      center;
+    rgba(199, 136, 93, 0.5),
+    rgba(255, 255, 255, 0.5)
+  );
+
   background-size: cover;
   display: flex;
   align-items: center;
@@ -44,23 +45,7 @@ const Title = styled.h1`
 
 const Form = styled.form`
   display: flex;
-  flex-wrap: wrap;
-`;
-
-const Button = styled.button`
-  text-transform: uppercase;
-  margin-top: 20px;
-  width: 40%;
-  border: none;
-  padding: 15px 20px;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 10px;
-  &:disabled {
-    color: aqua;
-    cursor: not-allowed;
-  }
+  flex-direction: column;
 `;
 
 const Error = styled.span`
@@ -112,7 +97,7 @@ const Register = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
+        <Title>Создать аккаунт</Title>
         <Form onSubmit={formik.handleSubmit}>
           <TextField
             fullWidth
@@ -177,12 +162,11 @@ const Register = () => {
             }
           />
 
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            Submit
-          </Button>
+          <StyledButton type="submit" primary margin="20px 0">
+            <Beenhere />
+            Создать
+          </StyledButton>
           {error && <Error>Something is wrong...</Error>}
-          {/* <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link> */}
-          {/* <Link>CREATE A NEW ACCOUNT</Link> */}
         </Form>
       </Wrapper>
     </Container>
