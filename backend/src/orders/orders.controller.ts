@@ -35,6 +35,13 @@ export class OrdersController {
     return this.ordersService.deleteOrder(id);
   }
 
+  @Roles('USER')
+  @UseGuards(RolesGuard)
+  @Get('cancel/:orderId')
+  cancelOrder(@Param('orderId') orderId: string) {
+    return this.ordersService.cancelOrder(orderId);
+  }
+
   @Roles('ADMIN')
   @UseGuards(RolesGuard)
   @Put(':id')

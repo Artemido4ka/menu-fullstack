@@ -53,6 +53,14 @@ export class OrdersService {
     });
   }
 
+  async cancelOrder(orderId: string) {
+    const oldOrder = await this.getOneOrder(orderId);
+    const canceledOrder = { ...oldOrder, status: 'CANCELED' };
+    await this.orderRepository.save(canceledOrder);
+    return { order: canceledOrder, orders: await this.getAllOrders() };
+    // await
+  }
+
   async getAllOrders() {
     const orders = await this.orderRepository.find({
       relations: ['user', 'products'],

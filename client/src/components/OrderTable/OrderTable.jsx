@@ -1,7 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { cancelOrder } from "../../redux/apiCalls/order.api";
 
 import { ArrowBack, DeleteForever } from "@material-ui/icons";
+import { RED } from "../../constants";
 import { StyledButton } from "../StyledButton";
 import {
   Buttons,
@@ -10,11 +14,18 @@ import {
   OrderRowName,
   OrderRowValue,
 } from "./styled";
-import { RED } from "../../constants";
 
 const OrderTable = ({ orderValues }) => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const orderId = location.pathname.split("/")[2];
+
+  const handleDelete = () => {
+    cancelOrder(dispatch, orderId);
+  };
+
   let navigate = useNavigate();
-  const onClickHandler = () => {
+  const returnClickHandler = () => {
     navigate("/orders");
   };
 
@@ -43,11 +54,11 @@ const OrderTable = ({ orderValues }) => {
         </OrderRow>
       </OrderList>
       <Buttons>
-        <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
+        <StyledButton margin="0 20px 0 0" onClick={() => returnClickHandler()}>
           <ArrowBack /> К заказам
         </StyledButton>
 
-        <StyledButton type="submit" background={RED}>
+        <StyledButton background={RED} onClick={() => handleDelete()}>
           <DeleteForever />
           Отменить
         </StyledButton>

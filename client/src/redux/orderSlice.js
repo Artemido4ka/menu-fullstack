@@ -31,6 +31,12 @@ const orderSlice = createSlice({
       state.error = false;
       state.order = action.payload;
     },
+    fetchCancelOrderSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+      state.order = action.payload.order;
+      state.orders = action.payload.orders;
+    },
   },
 });
 
@@ -40,5 +46,6 @@ export const {
   createOrderSuccess,
   fetchUserOrdersSuccess,
   fetchUserOneOrderSuccess,
+  fetchCancelOrderSuccess,
 } = orderSlice.actions;
 export default orderSlice.reducer;
