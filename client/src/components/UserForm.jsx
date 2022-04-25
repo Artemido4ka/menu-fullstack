@@ -2,15 +2,17 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { uploadImage } from "../redux/apiCalls/image.api";
-
-import TextField from "@material-ui/core/TextField";
-import styled from "styled-components";
-import { StyledButton } from "./StyledButton";
-import { AddPhotoAlternate, ArrowBack, Beenhere } from "@material-ui/icons";
-import { useNavigate } from "react-router-dom";
 import { BLUE } from "../constants";
+import { StyledButton } from "./StyledButton";
+
+import styled from "styled-components";
+import TextField from "@material-ui/core/TextField";
+import { AddPhotoAlternate, ArrowBack, Beenhere } from "@material-ui/icons";
+import ActivityFormControl from "./ActivityFormControl";
+import SexFormControl from "./SexFormControl";
 
 const Input = styled.input`
   display: none;
@@ -106,6 +108,42 @@ const UserForm = ({ loadedImage, handleForm, userValues }) => {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
+        <TextField
+          fullWidth
+          id="age"
+          name="age"
+          label="age"
+          type="number"
+          value={formik.values.age}
+          onChange={formik.handleChange}
+          error={formik.touched.age && Boolean(formik.errors.age)}
+          helperText={formik.touched.age && formik.errors.age}
+        />
+        <TextField
+          fullWidth
+          id="weight"
+          name="weight"
+          label="weight"
+          type="number"
+          value={formik.values.weight}
+          onChange={formik.handleChange}
+          error={formik.touched.weight && Boolean(formik.errors.weight)}
+          helperText={formik.touched.weight && formik.errors.weight}
+        />
+        <TextField
+          fullWidth
+          id="height"
+          name="height"
+          label="height"
+          type="number"
+          value={formik.values.height}
+          onChange={formik.handleChange}
+          error={formik.touched.height && Boolean(formik.errors.height)}
+          helperText={formik.touched.height && formik.errors.height}
+        />
+
+        <SexFormControl formik={formik} />
+        <ActivityFormControl formik={formik} />
 
         <Buttons>
           <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>

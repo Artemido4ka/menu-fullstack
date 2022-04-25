@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Navbar from "../components/Navbar/Navbar";
@@ -9,11 +9,13 @@ import { devices } from "../devices";
 import styled from "styled-components";
 import UserForm from "../components/UserForm";
 import { fetchUserProfile, updateUser } from "../redux/apiCalls/user.api";
+import Footer from "../components/Footer";
 
 const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 `;
 
 const AvatarContainer = styled.div`
@@ -75,6 +77,7 @@ const User = () => {
           )}
         </InfoContainer>
       </UserContainer>
+      <Footer />
     </>
   );
 };

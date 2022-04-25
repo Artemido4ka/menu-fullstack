@@ -1,28 +1,11 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import {
-  BLUE,
-  CANCELED,
-  COOKING,
-  GREEN,
-  ORDERED,
-  READY,
-  RED,
-  PURPLE,
-  WHITE,
-} from "../constants";
 import { StyledButton } from "./StyledButton";
 
 import TextField from "@material-ui/core/TextField";
 import { Beenhere } from "@material-ui/icons";
-
-import MenuItem from "@mui/material/MenuItem";
-
-import Select from "@mui/material/Select";
-import FormControl from "@mui/material/FormControl";
-
-import { Chip, InputLabel } from "@mui/material";
+import StatusFormControl from "./StatusFormControl";
 
 const validationSchema = yup.object({
   //   email: yup
@@ -97,39 +80,7 @@ const OrderForm = ({ handleForm, orderValues }) => {
         helperText={formik.touched.date && formik.errors.date}
       />
 
-      <FormControl sx={{ width: "100%" }} variant="standard">
-        <InputLabel id="select-label">Статус</InputLabel>
-        <Select
-          labelId="select-label"
-          id="status"
-          name="status"
-          value={formik.values.status}
-          label="status"
-          onChange={formik.handleChange}
-        >
-          <MenuItem value={ORDERED}>
-            <Chip
-              label={ORDERED}
-              sx={{ backgroundColor: PURPLE, color: WHITE }}
-            />
-          </MenuItem>
-          <MenuItem value={COOKING}>
-            <Chip
-              label={COOKING}
-              sx={{ backgroundColor: BLUE, color: WHITE }}
-            />
-          </MenuItem>
-          <MenuItem value={READY}>
-            <Chip label={READY} sx={{ backgroundColor: GREEN, color: WHITE }} />
-          </MenuItem>
-          <MenuItem value={CANCELED}>
-            <Chip
-              label={CANCELED}
-              sx={{ backgroundColor: RED, color: WHITE }}
-            />
-          </MenuItem>
-        </Select>
-      </FormControl>
+      <StatusFormControl formik={formik} />
 
       <StyledButton margin="20px 0" type="submit" primary>
         <Beenhere />
