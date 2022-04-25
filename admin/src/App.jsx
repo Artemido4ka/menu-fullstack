@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
@@ -13,9 +13,20 @@ import "./App.css";
 import CreateProduct from "./pages/CreateProduct";
 import User from "./pages/User";
 import AllUsers from "./pages/AllUsers";
+import { useEffect } from "react";
+import { fetchIsUserLoggedIn } from "./redux/apiCalls/auth.api";
 
 const App = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  // user: localStorage.getItem("currentUser")
+  // ? JSON.parse(localStorage.getItem("currentUser"))
+  // : null,
+  useEffect(() => {
+    fetchIsUserLoggedIn(dispatch);
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route exact path="/login" element={<Login />} />

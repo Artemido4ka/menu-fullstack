@@ -1,5 +1,5 @@
-import { publicRequest } from "../requestMethods";
-import { loginError, loginStart, loginSuccess, logout } from "../userSlice";
+import { publicRequest, userRequest } from "../requestMethods";
+import { fetchUserError, fetchUserStart, fetchUserSuccess, loginError, loginStart, loginSuccess, logout } from "../userSlice";
 
 export const login = async (dispatch, user) => {
     dispatch(loginStart());
@@ -18,3 +18,18 @@ export const signout = () => (dispatch) => {
     localStorage.removeItem("currentUserToken");
     dispatch(logout());
 };
+
+export const fetchIsUserLoggedIn = async (dispatch) => {
+    dispatch(fetchUserStart());
+    try {
+        const res = await userRequest(
+            localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+        ).get("users/islogged/");
+        dispatch(fetchUserSuccess(res.data));
+
+    } catch (err) {
+        dispatch(fetchUserError());
+    }
+};
+
+

@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Put, Request, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Put,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -17,9 +25,15 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('/:id')
-  getUser(@Request() req: any) {
+  @Get('/islogged/')
+  isUserLoggedIn(@Request() req: any) {
     return this.usersService.getUser(req.user.id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/:id')
+  getUser(@Param('id') userId: string) {
+    return this.usersService.getUser(userId);
   }
 
   @UseGuards(JwtAuthGuard)

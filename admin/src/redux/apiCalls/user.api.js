@@ -9,6 +9,7 @@ export const fetchUserProfile = async (dispatch, userId) => {
         ).get("users/" + userId);
 
         dispatch(fetchUserSuccess(res.data));
+        console.log(res.data, "RES DATA")
     } catch (err) {
         dispatch(fetchUserError());
     }
