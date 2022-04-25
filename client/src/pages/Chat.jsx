@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar/Navbar";
 
 import { Send } from "@material-ui/icons";
 import styled from "styled-components";
+import { SUPERLIGHTGREEN } from "../constants";
 
 const socket = io("http://localhost:5000/");
 
@@ -45,7 +46,7 @@ const ChatButton = styled.button`
 
 const Message = styled.div`
   margin: 20px;
-  background: rgba(24, 144, 150, 0.2);
+  background: ${SUPERLIGHTGREEN};
   display: flex;
   flex-direction: column;
   border-radius: 5px;

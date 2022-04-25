@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
 import { AddPhotoAlternate, Beenhere } from "@material-ui/icons";
+import { BLUE } from "../constants";
 
 const Input = styled.input`
   display: none;
@@ -160,7 +161,7 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
         <StyledButton
           margin="0 20px 0 0"
           onClick={handleClick}
-          background="rgba(23, 35, 143, 0.8);"
+          background={BLUE}
         >
           <AddPhotoAlternate /> загрузить фото
         </StyledButton>

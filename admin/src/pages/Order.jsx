@@ -14,7 +14,7 @@ import { devices } from "../devices";
 import styled from "styled-components";
 import { StyledButton } from "../components/StyledButton";
 import { ArrowBack, DeleteForever } from "@material-ui/icons";
-import { RED } from "../constants";
+import { BROWN, LIGHTGREEN, RED, SUPERLIGHTGREEN } from "../constants";
 
 const OrderContainer = styled.div`
   padding: 50px;
@@ -36,11 +36,7 @@ const OrderRow = styled.div`
   display: flex;
   justify-content: space-around;
   border-radius: 5px;
-  background: rgba(24, 144, 150, 0.2);
-  :nth-child(odd) {
-    color: rgba(199, 136, 93, 1);
-    background: rgba(24, 144, 150, 0.2);
-  }
+  background: ${SUPERLIGHTGREEN};
 `;
 
 export const TitleContainer = styled.div`
@@ -57,8 +53,8 @@ export const Title = styled.div`
   font-size: 26px;
   color: black;
 
-  border-bottom: 1px solid rgba(199, 136, 93, 1);
-  border-top: 1px solid rgba(24, 144, 150, 1);
+  border-bottom: 1px solid ${BROWN};
+  border-top: 1px solid ${LIGHTGREEN};
 `;
 
 const Image = styled.img`

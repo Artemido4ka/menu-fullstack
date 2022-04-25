@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
 import { AddPhotoAlternate, ArrowBack, Beenhere } from "@material-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { BLUE } from "../constants";
 
 const Input = styled.input`
   display: none;
@@ -128,7 +129,7 @@ const UserForm = ({ loadedImage, handleForm, userValues }) => {
         <StyledButton
           margin="0 20px 0 0"
           onClick={handleClick}
-          background="rgba(23, 35, 143, 0.8);"
+          background={BLUE}
         >
           <AddPhotoAlternate /> загрузить изображение
         </StyledButton>

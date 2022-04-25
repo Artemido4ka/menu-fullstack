@@ -1,7 +1,17 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import { BLUE, COOKING, GREEN, ORDERED, READY, RED, WHITE } from "../constants";
+import {
+  BLUE,
+  CANCELED,
+  COOKING,
+  GREEN,
+  ORDERED,
+  READY,
+  RED,
+  PURPLE,
+  WHITE,
+} from "../constants";
 import { StyledButton } from "./StyledButton";
 
 import TextField from "@material-ui/core/TextField";
@@ -33,7 +43,6 @@ const OrderForm = ({ handleForm, orderValues }) => {
       handleForm(values);
     },
   });
-  
 
   return (
     <form
@@ -99,7 +108,10 @@ const OrderForm = ({ handleForm, orderValues }) => {
           onChange={formik.handleChange}
         >
           <MenuItem value={ORDERED}>
-            <Chip label={ORDERED} sx={{ backgroundColor: RED, color: WHITE }} />
+            <Chip
+              label={ORDERED}
+              sx={{ backgroundColor: PURPLE, color: WHITE }}
+            />
           </MenuItem>
           <MenuItem value={COOKING}>
             <Chip
@@ -109,6 +121,12 @@ const OrderForm = ({ handleForm, orderValues }) => {
           </MenuItem>
           <MenuItem value={READY}>
             <Chip label={READY} sx={{ backgroundColor: GREEN, color: WHITE }} />
+          </MenuItem>
+          <MenuItem value={CANCELED}>
+            <Chip
+              label={CANCELED}
+              sx={{ backgroundColor: RED, color: WHITE }}
+            />
           </MenuItem>
         </Select>
       </FormControl>

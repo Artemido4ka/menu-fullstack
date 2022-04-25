@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { LIGHTBROWN } from "../../constants";
 import { devices } from "../../devices";
 
 export const Container = styled.div`
@@ -73,7 +74,7 @@ export const Amount = styled.span`
 `;
 
 export const ImageWithAmmountContainer = styled.div`
-  background-color: rgba(199, 136, 93, 0.1);
+  background-color: ${LIGHTBROWN};
   border-radius: 5px;
   display: flex;
   align-items: center;

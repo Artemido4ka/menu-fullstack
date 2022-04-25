@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { PURPLE } from "../constants";
 
 export const StyledButton = styled.button`
   display: flex;
@@ -11,7 +12,7 @@ export const StyledButton = styled.button`
   text-transform: uppercase;
   white-space: nowrap;
   color: "white";
-  background: ${(props) => (props.primary ? "teal" : "rgba(75, 15, 125, 0.7)")};
+  background: ${(props) => (props.primary ? "teal" : `${PURPLE}`)};
   background: ${(props) => props.background};
   border: ${(props) => (props.primary ? "1px solid white" : "none")};
   color: ${(props) => (props.primary ? "white" : "white")};
@@ -22,7 +23,6 @@ export const StyledButton = styled.button`
   cursor: pointer;
 
   :hover {
-    background: ${(props) =>
-      props.primary ? "rgba(75, 15, 125, 0.7)" : "teal"};
+    background: ${(props) => (props.primary ? `${PURPLE}` : "teal")};
   }
 `;

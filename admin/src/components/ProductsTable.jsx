@@ -11,6 +11,7 @@ import Paper from "@mui/material/Paper";
 import { Avatar } from "@material-ui/core";
 import { styled } from "@mui/material/styles";
 import { StyledButton } from "./StyledButton";
+import { SUPERLIGHTGREEN } from "../constants";
 
 const StyledTableHeadCell = styled(TableCell)({
   textAlign: "center",
@@ -22,7 +23,7 @@ const StyledTableHeadCell = styled(TableCell)({
 
 const StyledTableRow = styled(TableRow)({
   "&:nth-of-type(even)": {
-    backgroundColor: "rgba(24, 144, 150, 0.2)",
+    backgroundColor: `${SUPERLIGHTGREEN}`,
   },
 });
 

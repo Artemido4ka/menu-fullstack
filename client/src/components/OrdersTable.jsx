@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom";
 
-import { BLUE, COOKING, GREEN, ORDERED, READY, RED } from "../constants";
+import {
+  BLUE,
+  CANCELED,
+  COOKING,
+  GREEN,
+  ORDERED,
+  PURPLE,
+  READY,
+  RED,
+  SUPERLIGHTGREEN,
+} from "../constants";
 import { StyledButton } from "./StyledButton";
 
 import Table from "@mui/material/Table";
@@ -24,7 +34,7 @@ const StyledTableHeadCell = styled(TableCell)({
 
 const StyledTableRow = styled(TableRow)({
   "&:nth-of-type(even)": {
-    backgroundColor: "rgba(24, 144, 150, 0.2)",
+    backgroundColor: `${SUPERLIGHTGREEN}`,
   },
 });
 
@@ -35,9 +45,10 @@ const StyledChip = styled(Chip)(({ status }) => ({
 
 const OrdersTable = ({ orders }) => {
   const switchColor = (status) => {
-    if (status === ORDERED) return RED;
-    if (status === COOKING) return GREEN;
-    if (status === READY) return BLUE;
+    if (status === ORDERED) return PURPLE;
+    if (status === COOKING) return BLUE;
+    if (status === READY) return GREEN;
+    if (status === CANCELED) return RED;
   };
 
   return (
