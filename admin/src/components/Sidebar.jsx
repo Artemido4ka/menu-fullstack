@@ -57,7 +57,7 @@ const Sidebar = () => {
           </ListItem>
         </Link>
 
-        <Link to="/">
+        <Link to="/users">
           <ListItem>
             <ListItemIcon>
               <PersonOutline />

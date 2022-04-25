@@ -12,6 +12,7 @@ import Order from "./pages/Order";
 import "./App.css";
 import CreateProduct from "./pages/CreateProduct";
 import User from "./pages/User";
+import AllUsers from "./pages/AllUsers";
 
 const App = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
@@ -50,6 +51,10 @@ const App = () => {
       <Route
         path="/users/:id"
         element={<ProtectedRoute user={user} component={<User />} />}
+      />
+      <Route
+        path="/users"
+        element={<ProtectedRoute user={user} component={<AllUsers />} />}
       />
     </Routes>
   );
