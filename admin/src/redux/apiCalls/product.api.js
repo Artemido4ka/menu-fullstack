@@ -1,4 +1,4 @@
-import { createProductSuccess, fetchOneProductSuccess, fetchProductError, fetchProductsStart, fetchProductsSuccess } from "../productSlice";
+import { createProductSuccess, fetchDeleteProductSuccess, fetchOneProductSuccess, fetchProductError, fetchProductsStart, fetchProductsSuccess } from "../productSlice";
 import { publicRequest, userRequest } from "../requestMethods";
 
 export const fetchProducts = async (dispatch) => {
@@ -41,6 +41,19 @@ export const updateProduct = async (dispatch, newProduct, productId) => {
         ).put("products/" + productId, newProduct);
 
         dispatch(fetchOneProductSuccess(res.data));
+    } catch (err) {
+        dispatch(fetchProductError());
+    }
+};
+
+export const deleteProduct = async (dispatch, productId) => {
+    dispatch(fetchProductsStart());
+    try {
+        const res = await userRequest(
+            localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
+        ).delete("products/" + productId);
+
+        dispatch(fetchDeleteProductSuccess(res.data));
     } catch (err) {
         dispatch(fetchProductError());
     }

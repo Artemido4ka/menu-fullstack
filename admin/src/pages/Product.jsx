@@ -1,14 +1,21 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { fetchOneProduct, updateProduct } from "../redux/apiCalls/product.api";
+import {
+  deleteProduct,
+  fetchOneProduct,
+  updateProduct,
+} from "../redux/apiCalls/product.api";
 import Navbar from "../components/Navbar/Navbar";
 import defaultProduct from "../images/defaultProduct.jpg";
 import ProductForm from "../components/ProductForm";
 import { devices } from "../devices";
 
 import styled from "styled-components";
+import { StyledButton } from "../components/StyledButton";
+import { ArrowBack, DeleteForever } from "@material-ui/icons";
+import { RED } from "../constants";
 
 const ProductContainer = styled.div`
   padding: 50px;
@@ -49,6 +56,11 @@ const InfoContainer = styled.div`
   }
 `;
 
+const Buttons = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
 const Product = () => {
   const location = useLocation();
   const productId = location.pathname.split("/")[2];
@@ -57,19 +69,29 @@ const Product = () => {
 
   const dispatch = useDispatch();
 
-  const handleForm = (formValues) => {
-    // console.log(formValues);
-    updateProduct(dispatch, formValues, productId);
-  };
-
   useEffect(() => {
     fetchOneProduct(dispatch, productId);
   }, [dispatch, productId]);
+
+  const handleForm = (formValues) => {
+    updateProduct(dispatch, formValues, productId);
+  };
 
   const handleImageSrc = () => {
     if (image) return `http://localhost:5000/${image}`;
     if (product) return `http://localhost:5000/${product.image}`;
     return defaultProduct;
+  };
+
+  const handleDelete = () => {
+    deleteProduct(dispatch, productId);
+    returnClickHandler();
+    console.log("DELETE");
+  };
+
+  let navigate = useNavigate();
+  const returnClickHandler = () => {
+    navigate("/products");
   };
 
   return (
@@ -88,6 +110,19 @@ const Product = () => {
               handleForm={handleForm}
               loadedImage={image}
             />
+
+            <Buttons>
+              <StyledButton
+                margin="0 20px 0 0"
+                onClick={() => returnClickHandler()}
+              >
+                <ArrowBack /> назад
+              </StyledButton>
+              <StyledButton background={RED} onClick={() => handleDelete()}>
+                <DeleteForever />
+                удалить
+              </StyledButton>
+            </Buttons>
           </InfoContainer>
         </ProductContainer>
       )}

@@ -8,19 +8,13 @@ import { uploadImage } from "../redux/apiCalls/image.api";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { StyledButton } from "./StyledButton";
-import { AddPhotoAlternate, ArrowBack, Beenhere } from "@material-ui/icons";
-import { useNavigate } from "react-router-dom";
+import { AddPhotoAlternate, Beenhere } from "@material-ui/icons";
 
 const Input = styled.input`
   display: none;
 `;
 
 const Form = styled.form``;
-
-const Buttons = styled.div`
-  display: flex;
-  margin: 20px 0;
-`;
 
 const validationSchema = yup.object({
   //   email: yup
@@ -35,11 +29,6 @@ const validationSchema = yup.object({
 
 const ProductForm = ({ loadedImage, handleForm, productValues }) => {
   const dispatch = useDispatch();
-
-  let navigate = useNavigate();
-  const onClickHandler = () => {
-    navigate("/products");
-  };
 
   const hiddenFileInput = React.useRef(null);
 
@@ -153,15 +142,11 @@ const ProductForm = ({ loadedImage, handleForm, productValues }) => {
           error={formik.touched.weight && Boolean(formik.errors.weight)}
           helperText={formik.touched.weight && formik.errors.weight}
         />
-        <Buttons>
-          <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
-            <ArrowBack /> назад
-          </StyledButton>
-          <StyledButton type="submit" primary>
-            <Beenhere />
-            сохранить
-          </StyledButton>
-        </Buttons>
+
+        <StyledButton type="submit" primary margin="20px 0">
+          <Beenhere />
+          сохранить
+        </StyledButton>
       </Form>
 
       <>

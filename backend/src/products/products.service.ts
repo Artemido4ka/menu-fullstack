@@ -25,7 +25,8 @@ export class ProductsService {
     if (!product) {
       throw new NotFoundException('Product not found');
     }
-    return this.productRepository.delete(id);
+    await this.productRepository.delete(id);
+    return this.getAllProducts();
   }
 
   //UPDATE PRODUCT
