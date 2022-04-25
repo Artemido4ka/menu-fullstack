@@ -1,13 +1,17 @@
 import {
-  COOKING,
+  COOKING_LABEL,
   GREEN,
-  ORDERED,
-  READY,
-  CANCELED,
+  ORDERED_LABEL,
+  READY_LABEL,
+  CANCELED_LABEL,
   BLUE,
   RED,
   PURPLE,
   WHITE,
+  ORDERED,
+  COOKING,
+  READY,
+  CANCELED,
 } from "../constants";
 
 import MenuItem from "@mui/material/MenuItem";
@@ -29,18 +33,18 @@ const StatusFormControl = ({ formik }) => {
       >
         <MenuItem value={ORDERED}>
           <Chip
-            label={ORDERED}
+            label={ORDERED_LABEL}
             sx={{ backgroundColor: PURPLE, color: WHITE }}
           />
         </MenuItem>
         <MenuItem value={COOKING}>
-          <Chip label={COOKING} sx={{ backgroundColor: BLUE, color: WHITE }} />
+          <Chip label={COOKING_LABEL} sx={{ backgroundColor: BLUE, color: WHITE }} />
         </MenuItem>
         <MenuItem value={READY}>
-          <Chip label={READY} sx={{ backgroundColor: GREEN, color: WHITE }} />
+          <Chip label={READY_LABEL} sx={{ backgroundColor: GREEN, color: WHITE }} />
         </MenuItem>
         <MenuItem value={CANCELED}>
-          <Chip label={CANCELED} sx={{ backgroundColor: RED, color: WHITE }} />
+          <Chip label={CANCELED_LABEL} sx={{ backgroundColor: RED, color: WHITE }} />
         </MenuItem>
       </Select>
     </FormControl>

@@ -1,7 +1,12 @@
-export const ORDERED = "Заказан";
-export const COOKING = "Готовится";
-export const READY = "Готов";
-export const CANCELED = "Отменен";
+export const ORDERED_LABEL = "Заказан";
+export const COOKING_LABEL = "Готовится";
+export const READY_LABEL = "Готов";
+export const CANCELED_LABEL = "Отменен";
+
+export const ORDERED = "ORDERED";
+export const COOKING = "COOKING";
+export const READY = "READY";
+export const CANCELED = "CANCELED";
 
 export const PURPLE = "rgba(75, 15, 125, 0.7)";
 export const BLUE = "rgba(23, 35, 143, 0.8)";

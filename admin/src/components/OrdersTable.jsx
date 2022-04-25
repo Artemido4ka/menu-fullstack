@@ -4,10 +4,10 @@ import {
   BLUE,
   CANCELED,
   COOKING,
-  GREEN,
+  READY,
   ORDERED,
   PURPLE,
-  READY,
+  GREEN,
   RED,
   SUPERLIGHTGREEN,
 } from "../constants";
