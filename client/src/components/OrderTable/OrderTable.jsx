@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ArrowBack, Beenhere } from "@material-ui/icons";
+import { ArrowBack, DeleteForever } from "@material-ui/icons";
 import { StyledButton } from "../StyledButton";
 import {
   Buttons,
@@ -10,6 +10,7 @@ import {
   OrderRowName,
   OrderRowValue,
 } from "./styled";
+import { RED } from "../../constants";
 
 const OrderTable = ({ orderValues }) => {
   let navigate = useNavigate();
@@ -46,8 +47,8 @@ const OrderTable = ({ orderValues }) => {
           <ArrowBack /> К заказам
         </StyledButton>
 
-        <StyledButton type="submit" background="rgba(227, 20, 41, 0.7)">
-          <Beenhere />
+        <StyledButton type="submit" background={RED}>
+          <DeleteForever />
           Отменить
         </StyledButton>
       </Buttons>

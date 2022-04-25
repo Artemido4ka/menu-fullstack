@@ -1,13 +1,11 @@
-import styled from "styled-components";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 
 import { BLUE, COOKING, GREEN, ORDERED, READY, RED, WHITE } from "../constants";
 import { StyledButton } from "./StyledButton";
 
 import TextField from "@material-ui/core/TextField";
-import { ArrowBack, Beenhere } from "@material-ui/icons";
+import { Beenhere } from "@material-ui/icons";
 
 import MenuItem from "@mui/material/MenuItem";
 
@@ -15,11 +13,6 @@ import Select from "@mui/material/Select";
 import FormControl from "@mui/material/FormControl";
 
 import { Chip, InputLabel } from "@mui/material";
-
-const Buttons = styled.div`
-  display: flex;
-  margin-top: 20px;
-`;
 
 const validationSchema = yup.object({
   //   email: yup
@@ -33,11 +26,6 @@ const validationSchema = yup.object({
 });
 
 const OrderForm = ({ handleForm, orderValues }) => {
-  let navigate = useNavigate();
-  const onClickHandler = () => {
-    navigate("/orders");
-  };
-
   const formik = useFormik({
     initialValues: orderValues,
     validationSchema: validationSchema,
@@ -124,16 +112,10 @@ const OrderForm = ({ handleForm, orderValues }) => {
         </Select>
       </FormControl>
 
-      <Buttons>
-        <StyledButton margin="0 20px 0 0" onClick={() => onClickHandler()}>
-          <ArrowBack /> назад
-        </StyledButton>
-
-        <StyledButton type="submit" primary>
-          <Beenhere />
-          сохранить
-        </StyledButton>
-      </Buttons>
+      <StyledButton margin="20px 0" type="submit" primary>
+        <Beenhere />
+        сохранить
+      </StyledButton>
     </form>
   );
 };

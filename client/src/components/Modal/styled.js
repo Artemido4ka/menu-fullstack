@@ -26,4 +26,5 @@ export const ButtonClose = styled.div`
   position: fixed;
   top: 5px;
   right: 5px;
+  cursor: pointer;
 `;

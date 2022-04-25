@@ -22,6 +22,12 @@ const productSlice = createSlice({
       state.error = false;
       state.order = action.payload;
     },
+    fetchDeleteOrderSuccess: (state, action) => {
+      state.isFetching = false;
+      state.error = false;
+      state.orders = action.payload;
+      state.order = null;
+    },
     fetchOrderError: (state) => {
       state.isFetching = false;
       state.error = true;
@@ -34,5 +40,6 @@ export const {
   fetchOrdersSuccess,
   fetchOneOrderSuccess,
   fetchOrderError,
+  fetchDeleteOrderSuccess
 } = productSlice.actions;
 export default productSlice.reducer;

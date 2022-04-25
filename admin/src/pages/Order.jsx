@@ -1,13 +1,20 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import Navbar from "../components/Navbar/Navbar";
 import OrderForm from "../components/OrderForm";
-import { fetchOneOrder, updateOrder } from "../redux/apiCalls/order.api";
+import {
+  deleteOrder,
+  fetchOneOrder,
+  updateOrder,
+} from "../redux/apiCalls/order.api";
 import { devices } from "../devices";
 
 import styled from "styled-components";
+import { StyledButton } from "../components/StyledButton";
+import { ArrowBack, DeleteForever } from "@material-ui/icons";
+import { RED } from "../constants";
 
 const OrderContainer = styled.div`
   padding: 50px;
@@ -66,6 +73,11 @@ const InfoContainer = styled.div`
   }
 `;
 
+const Buttons = styled.div`
+  display: flex;
+  margin-top: 20px;
+`;
+
 const Order = () => {
   const location = useLocation();
   const orderId = location.pathname.split("/")[2];
@@ -75,6 +87,16 @@ const Order = () => {
 
   const handleForm = (orderFormValues) => {
     updateOrder(dispatch, orderFormValues, orderId);
+  };
+
+  const handleDelete = () => {
+    deleteOrder(dispatch, orderId);
+    returnClickHandler();
+  };
+
+  let navigate = useNavigate();
+  const returnClickHandler = () => {
+    navigate("/orders");
   };
 
   useEffect(() => {
@@ -98,6 +120,19 @@ const Order = () => {
           </ImgContainer>
           <InfoContainer>
             <OrderForm orderValues={order} handleForm={handleForm} />
+
+            <Buttons>
+              <StyledButton
+                margin="0 20px 0 0"
+                onClick={() => returnClickHandler()}
+              >
+                <ArrowBack /> назад
+              </StyledButton>
+              <StyledButton background={RED} onClick={() => handleDelete()}>
+                <DeleteForever />
+                удалить
+              </StyledButton>
+            </Buttons>
           </InfoContainer>
         </OrderContainer>
       )}

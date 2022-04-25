@@ -54,7 +54,6 @@ const Product = () => {
   const productId = location.pathname.split("/")[2];
   const { isFetching, error, product } = useSelector((state) => state.product);
   const { image } = useSelector((state) => state.image);
-  console.log(product, "PRODUCT");
 
   const dispatch = useDispatch();
 

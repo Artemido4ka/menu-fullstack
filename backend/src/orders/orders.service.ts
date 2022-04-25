@@ -28,11 +28,18 @@ export class OrdersService {
   }
 
   async deleteOrder(id: string) {
-    const order = await this.orderRepository.findOne(id);
+    const order = await this.orderRepository.findOne(id, {
+      relations: ['products'],
+    });
+
     if (!order) {
       throw new NotFoundException('Order not found');
     }
-    return this.orderRepository.delete(id);
+    //unbind order from products /many-to-many problem
+    order.products = null;
+    await this.orderRepository.save(order);
+    await this.orderRepository.delete(id);
+    return await this.getAllOrders();
   }
 
   async updateOrder(dto: any, id: string) {
