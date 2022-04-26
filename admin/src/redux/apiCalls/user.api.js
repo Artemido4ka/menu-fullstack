@@ -67,7 +67,7 @@ export const getAllUsers = async (dispatch) => {
     const res = await userRequest(
       localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
     ).get("users");
-    console.log(res.data);
+
 
     dispatch(fetchAllUsersSuccess(res.data));
   } catch (err) {

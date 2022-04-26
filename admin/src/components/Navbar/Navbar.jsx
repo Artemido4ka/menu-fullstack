@@ -23,7 +23,6 @@ const Navbar = () => {
     dispatch(signout());
     navigate("/");
   };
-  console.log(user, "USER");
 
   return (
     <Container>

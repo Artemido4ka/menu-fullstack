@@ -1,31 +1,22 @@
-import React from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar/Navbar";
 import styled from "styled-components";
+
+import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar";
-import Widget from "../components/Widget";
+import WidgetUsers from "../components/Widgets/WidgetUsers";
+import WidgetOrders from "../components/Widgets/WidgetOrders";
+import WidgetEarnings from "../components/Widgets/WidgetEarnings";
+import WidgetProducts from "../components/Widgets/WidgetProducts";
+import { devices } from "../devices";
 
 const HomeContainer = styled.div`
   display: flex;
-  /* @media (max-width: 1200px) {
-    flex-direction: "column";
-    display: none;
-  } */
-  /* @media (max-width: 1200px) {
-    display: block;
-  } */
 `;
 const HomeWrapper = styled.div`
-  flex: 6;
-`;
-
-const Widgets = styled.div`
-  display: flex;
+  /* display: flex; */
+  justify-content: space-between;
   padding: 20px;
-  gap: 20px;
-
-  @media (max-width: 760px) {
-    display: block;
+  @media ${devices.laptop} {
+    display: flex;
   }
 `;
 
@@ -36,20 +27,13 @@ const Home = () => {
       <HomeContainer>
         <Sidebar />
         <HomeWrapper>
-          <Widgets>
-            <Widget type="user" />
-            <Widget type="order" />
-            <Widget type="earning" />
-            <Widget type="balance" />
-          </Widgets>
+          <WidgetUsers />
+          <WidgetOrders />
+          <WidgetProducts />
+          <WidgetEarnings />
         </HomeWrapper>
       </HomeContainer>
     </>
-
-    // <div>
-    //   <Navbar />
-    //   <Footer />
-    // </div>
   );
 };
 

@@ -61,7 +61,6 @@ const User = () => {
     if (user.avatar) return `http://localhost:5000/${user.avatar}`;
     return defaultProduct;
   };
-  console.log(user);
 
   return (
     <>

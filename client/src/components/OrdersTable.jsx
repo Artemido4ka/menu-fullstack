@@ -45,7 +45,6 @@ const StyledChip = styled(Chip)(({ status }) => ({
 
 const OrdersTable = ({ orders }) => {
   const switchColor = (status) => {
-    console.log(status);
     if (status === ORDERED) return PURPLE;
     if (status === COOKING) return BLUE;
     if (status === READY) return GREEN;

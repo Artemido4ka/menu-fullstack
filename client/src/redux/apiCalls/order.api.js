@@ -8,7 +8,6 @@ export const createOrder = async (dispatch, newOrder) => {
     const res = await userRequest(
       localStorage.getItem("currentUserToken").replace(/['"]+/g, "")
     ).post("orders", newOrder);
-    console.log(res.data);
     dispatch(createOrderSuccess(res.data));
     dispatch(clearCart());
   } catch (err) {

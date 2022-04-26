@@ -55,7 +55,6 @@ const SubUser = () => {
 
   const handleForm = (userFormValues) => {
     updateSubUser(dispatch, userFormValues);
-    console.log(userFormValues);
   };
 
   useEffect(() => {
