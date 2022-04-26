@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchOrders } from "../../redux/apiCalls/order.api";
-
 import { KeyboardArrowUp } from "@material-ui/icons";
 import { ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";

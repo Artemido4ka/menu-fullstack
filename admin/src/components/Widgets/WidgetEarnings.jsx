@@ -2,12 +2,10 @@ import { KeyboardArrowUp } from "@material-ui/icons";
 import { AccountBalanceWalletOutlined } from "@material-ui/icons";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import styled from "styled-components";
-import { GREEN, LIGHTGREEN, WHITE } from "../../constants";
+import {  LIGHTGREEN, WHITE } from "../../constants";
 import { fetchOrders } from "../../redux/apiCalls/order.api";
-import { getAllUsers } from "../../redux/apiCalls/user.api";
 
 const WidgetContainer = styled.div`
   display: flex;

@@ -1,12 +1,13 @@
-import { KeyboardArrowUp } from "@material-ui/icons";
-import { PersonOutlined } from "@material-ui/icons";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import styled from "styled-components";
 import { PURPLE, WHITE } from "../../constants";
 import { getAllUsers } from "../../redux/apiCalls/user.api";
+
+import styled from "styled-components";
+import { KeyboardArrowUp } from "@material-ui/icons";
+import { PersonOutlined } from "@material-ui/icons";
 
 const WidgetContainer = styled.div`
   display: flex;
