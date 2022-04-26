@@ -29,7 +29,6 @@ const AllUsers = () => {
   useEffect(() => {
     getAllUsers(dispatch);
   }, [dispatch]);
-  console.log(users);
 
   return (
     <AllUsersContainer>

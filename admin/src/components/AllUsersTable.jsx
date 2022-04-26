@@ -89,7 +89,7 @@ const AllUsersTable = ({ users }) => {
               </TableCell>
               <TableCell align="center">
                 {/* TODO СДЕЛАТЬ ФОРМУ/СТРАНИЦУ ПОЛЬЗОВАТЕЛЕЯ  */}
-                <Link to={`/users/${row.id}`}>
+                <Link to={`/subUser/${row.id}`}>
                   <StyledButton variant="contained">Подробнее..</StyledButton>
                 </Link>
               </TableCell>

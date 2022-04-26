@@ -15,14 +15,12 @@ import User from "./pages/User";
 import AllUsers from "./pages/AllUsers";
 import { useEffect } from "react";
 import { fetchIsUserLoggedIn } from "./redux/apiCalls/auth.api";
+import SubUser from "./pages/SubUser";
 
 const App = () => {
   const { isFetching, error, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // user: localStorage.getItem("currentUser")
-  // ? JSON.parse(localStorage.getItem("currentUser"))
-  // : null,
   useEffect(() => {
     fetchIsUserLoggedIn(dispatch);
   }, [dispatch]);
@@ -66,6 +64,11 @@ const App = () => {
       <Route
         path="/users"
         element={<ProtectedRoute user={user} component={<AllUsers />} />}
+      />
+
+      <Route
+        path="/subUser/:id"
+        element={<ProtectedRoute user={user} component={<SubUser />} />}
       />
     </Routes>
   );

@@ -81,7 +81,6 @@ const Product = () => {
   const handleDelete = () => {
     deleteProduct(dispatch, productId);
     returnClickHandler();
-    console.log("DELETE");
   };
 
   let navigate = useNavigate();

@@ -8,7 +8,12 @@ import { devices } from "../devices";
 
 import styled from "styled-components";
 import UserForm from "../components/UserForm";
-import { fetchUserProfile, updateUser } from "../redux/apiCalls/user.api";
+import {
+  fetchSubUserProfile,
+  fetchUserProfile,
+  updateSubUser,
+  updateUser,
+} from "../redux/apiCalls/user.api";
 import { useLocation } from "react-router-dom";
 
 const UserContainer = styled.div`
@@ -39,41 +44,41 @@ const InfoContainer = styled.div`
   padding: 0px 50px;
 `;
 
-const User = () => {
+const SubUser = () => {
   const location = useLocation();
   const userId = location.pathname.split("/")[2];
 
-  const { isFetching, error, user } = useSelector((state) => state.user);
+  const { isFetching, error, subUser } = useSelector((state) => state.user);
   const { image } = useSelector((state) => state.image);
 
   const dispatch = useDispatch();
 
   const handleForm = (userFormValues) => {
-    updateUser(dispatch, userFormValues);
+    updateSubUser(dispatch, userFormValues);
+    console.log(userFormValues);
   };
 
   useEffect(() => {
-    fetchUserProfile(dispatch, userId);
+    fetchSubUserProfile(dispatch, userId);
   }, [dispatch, userId]);
 
   const handleImageSrc = () => {
     if (image) return `http://localhost:5000/${image}`;
-    if (user.avatar) return `http://localhost:5000/${user.avatar}`;
+    if (subUser.avatar) return `http://localhost:5000/${subUser.avatar}`;
     return defaultProduct;
   };
-  console.log(user);
 
   return (
     <>
       <Navbar />
-      {!isFetching && user && (
+      {!isFetching && subUser && (
         <UserContainer>
           <AvatarContainer>
             <Image src={handleImageSrc()} />
           </AvatarContainer>
           <InfoContainer>
             <UserForm
-              userValues={user}
+              userValues={subUser}
               handleForm={handleForm}
               loadedImage={image}
             />
@@ -84,4 +89,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default SubUser;
