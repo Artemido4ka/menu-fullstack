@@ -49,7 +49,6 @@ const AllUsersTable = ({ users }) => {
             <StyledTableHeadCell>Вес&nbsp;</StyledTableHeadCell>
             <StyledTableHeadCell>Активность&nbsp;(г)</StyledTableHeadCell>
             <StyledTableHeadCell>Пол&nbsp;(г)</StyledTableHeadCell>
-            <StyledTableHeadCell>Заказы</StyledTableHeadCell>
             <StyledTableHeadCell>Изображение</StyledTableHeadCell>
             <StyledTableHeadCell sx={{ "&:last-child,": { border: 0 } }}>
               Info
@@ -73,12 +72,7 @@ const AllUsersTable = ({ users }) => {
               <TableCell align="center">{row.weight}</TableCell>
               <TableCell align="center">{row.activity}</TableCell>
               <TableCell align="center">{row.sex}</TableCell>
-              <TableCell align="center">
-                {/* TODO СДЕЛАТЬ ТАБЛИЦУ ЗАКАЗОВ ПОЛЬЗОВАТЕЛЯ  */}
-                <Link to={`/orders`}>
-                  <StyledButton variant="contained">Заказы..</StyledButton>
-                </Link>
-              </TableCell>
+
               <TableCell>
                 <StyledAvatar
                   alt="avatar"
@@ -88,7 +82,6 @@ const AllUsersTable = ({ users }) => {
                 />
               </TableCell>
               <TableCell align="center">
-                {/* TODO СДЕЛАТЬ ФОРМУ/СТРАНИЦУ ПОЛЬЗОВАТЕЛЕЯ  */}
                 <Link to={`/subUser/${row.id}`}>
                   <StyledButton variant="contained">Подробнее..</StyledButton>
                 </Link>

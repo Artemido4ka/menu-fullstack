@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
-import { ArrowBack, Create } from "@material-ui/icons";
+import { ArrowBack } from "@material-ui/icons";
 import { StyledButton } from "../components/StyledButton";
 import { getAllUsers } from "../redux/apiCalls/user.api";
 import AllUsersTable from "../components/AllUsersTable";
@@ -41,7 +41,6 @@ const AllUsers = () => {
             </StyledButton>
           </Link>
         </ButtonContainer>
-        {/* <ProductsTable products={products} /> */}
         <AllUsersTable users={users} />
       </AllUsersWrapper>
     </AllUsersContainer>
