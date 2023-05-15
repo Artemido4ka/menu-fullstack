@@ -47,6 +47,7 @@ export class ProductsService {
   //GET ALL PRODUCTS
   async getAllProducts(): Promise<ProductResponseDto[]> {
     const products = await this.productRepository.find();
+    console.log(products,"products")
     if (!products) {
       throw new NotFoundException('products not found');
     }
